@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Button } from "../ui/button";
 interface IProps {
   status?: number;
   title?: string;
@@ -10,17 +11,13 @@ const ErrorHandler = ({
   title = "❌ Server Error",
   children,
 }: IProps) => {
+  const navigate = useNavigate();
   return (
-    <div className="fixed inset-0 bg-[#fadcd6] flex flex-col items-center gap-4 justify-center z-50">
-      <h1 className="font-extrabold text-[150px]">{status}</h1>
-      <h2 className="font-bold">{title}</h2>
+    <div className="fixed inset-0 bg-[#000] flex flex-col items-center gap-4 justify-center z-50">
+      <h1 className="font-extrabold text-[150px] text-white">{status}</h1>
+      <h2 className="font-bold text-white">{title}</h2>
       {children ?? (
-        <Link
-          to="/"
-          className=" text-white py-3 px-4 rounded-lg hover:text-white shadow-lg transition-[1s] hover:shadow-[--primary-light] "
-        >
-          Back To Home
-        </Link>
+        <Button onClick={() => navigate("/projects")}>Back To Home</Button>
       )}
     </div>
   );

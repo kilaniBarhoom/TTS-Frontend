@@ -9,6 +9,7 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
+import Projects from "@/features/pages/Projects/Projects";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,15 +31,11 @@ const router = createBrowserRouter(
         <Route />
         {/* <Route path="/" element={<NavLayout />}> */}
         <Route element={<RequireAuth />}>
-          <Route path="/projects" element={<div>Projects</div>} />
+          <Route path="/projects" element={<Projects />} />
           {/* <Route path="/projects/:projectId" element={<Tickets />} /> */}
           {/* <Route path="/projects/:projectId/tickets/:ticketId" element={<Ticket />} /> */}
         </Route>
       </Route>
-      <Route
-        path="/"
-        element={<ErrorHandler status={500} title="Server Error" />}
-      />
 
       <Route
         path="*"
