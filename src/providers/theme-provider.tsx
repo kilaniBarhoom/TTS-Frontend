@@ -1,18 +1,16 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { ITheme } from "@/lib/types";
-import { useAuth } from "./auth-provider";
-
-export type { ITheme } from "@/lib/types";
+import { ThemeT } from "@/lib/types";
+export type { ThemeT } from "@/lib/types";
 
 type ThemeProviderProps = {
   children: React.ReactNode;
-  defaultTheme?: ITheme;
+  defaultTheme?: ThemeT;
   storageKey?: string;
 };
 
 type ThemeProviderState = {
-  theme: ITheme;
-  setTheme: (theme: ITheme) => void;
+  theme: ThemeT;
+  setTheme: (theme: ThemeT) => void;
 };
 
 const initialState: ThemeProviderState = {
@@ -28,12 +26,8 @@ export function ThemeProvider({
   storageKey = "ui-theme",
   ...props
 }: ThemeProviderProps) {
-  const { user } = useAuth();
-  const [theme, setTheme] = useState<ITheme>(
-    () =>
-      (localStorage.getItem(storageKey) as ITheme) ||
-      user?.theme ||
-      defaultTheme
+  const [theme, setTheme] = useState<ThemeT>(
+    () => (localStorage.getItem(storageKey) as ThemeT) || defaultTheme
   );
 
   useEffect(() => {
@@ -48,6 +42,8 @@ export function ThemeProvider({
         : "light";
 
       root.classList.add(systemTheme);
+      console.log(systemTheme);
+
       return;
     }
 
@@ -56,7 +52,7 @@ export function ThemeProvider({
 
   const value = {
     theme,
-    setTheme: (theme: ITheme) => {
+    setTheme: (theme: ThemeT) => {
       localStorage.setItem(storageKey, theme);
       setTheme(theme);
     },

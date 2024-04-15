@@ -27,6 +27,8 @@ const useAxios = () => {
   const { toast } = useToast();
 
   useEffect(() => {
+    console.log("trying");
+
     const requestInterceptor = axios.interceptors.request.use(
       (config) => {
         if (!config.headers["Authorization"]) {
@@ -59,9 +61,9 @@ const useAxios = () => {
           if (refreshNeeded && !original.refreshed) {
             original.refreshed = true;
             try {
-              const newAccessToken = await refreshToken();
-              original.headers["Authorization"] = `Bearer ${newAccessToken}`;
-              setAccessToken(newAccessToken);
+              const token = await refreshToken();
+              original.headers["Authorization"] = `Bearer ${token}`;
+              setAccessToken(token);
               return axios(original);
             } catch (error) {
               return Promise.reject(error);
@@ -72,7 +74,7 @@ const useAxios = () => {
               title: "Session Expired",
               description: "Please login again.",
             });
-            navigate("/", {
+            navigate("/login", {
               state: { from: location },
               replace: true,
             });

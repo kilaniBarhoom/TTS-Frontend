@@ -1,7 +1,8 @@
-import { Button } from "./components/ui/button";
+import { RouterProvider } from "react-router-dom";
+import router from "./routers";
 
 const App = () => {
-  return <Button>App</Button>;
+  return <RouterProvider router={router} />;
 };
 
 export default App;

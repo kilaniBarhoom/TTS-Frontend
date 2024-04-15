@@ -1,6 +1,7 @@
 import { createContext, useState, useContext } from "react";
 import { UserT } from "@/lib/types";
 import { axios } from "@/hooks/use-axios";
+import { log } from "console";
 
 type AuthProviderState = {
   user: UserT | undefined;
@@ -57,24 +58,26 @@ export const useAuth = () => {
 };
 
 export const getAuth = async (accessToken: string) => {
-  const { data: response } = await axios.get("/auth", {
+  const { data: response } = await axios.get("/user", {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${accessToken}`,
     },
   });
-  const { data } = response;
-  return data.user;
+
+  const { user } = response;
+  return user;
 };
 
 export const useRefreshToken = () => {
   const { setAccessToken } = useAuth();
   const refresh = async () => {
     const { data: response } = await axios.post("/auth/refresh");
-    const { data } = response;
-    const accessToken = data.accessToken;
-    setAccessToken(accessToken);
-    return accessToken;
+
+    const { token } = response;
+
+    setAccessToken(token);
+    return token;
   };
   return refresh;
 };
