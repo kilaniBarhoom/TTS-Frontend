@@ -9,7 +9,7 @@ const Layout = () => {
   const { error } = useError();
   const { t } = useTranslation();
   return (
-    <div className="w-screen h-screen flex items-center justify-center">
+    <div className="w-screen h-screen flex items-center justify-center bg-background">
       <Card className="w-full max-w-sm">
         {error && (
           <div className="p-5">
