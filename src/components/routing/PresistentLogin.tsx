@@ -17,6 +17,7 @@ const PersistentLogin = () => {
       try {
         const newAccessToken = await refresh();
         const user = await getAuth(newAccessToken);
+
         setUser(user);
       } catch (error: any) {
         if (error.code === "ERR_NETWORK") {

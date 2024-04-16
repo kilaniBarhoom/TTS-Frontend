@@ -42,12 +42,9 @@ export function ThemeProvider({
         : "light";
 
       root.classList.add(systemTheme);
-      console.log(systemTheme);
 
       return;
     }
-    console.log(theme);
-
     root.classList.add(theme);
   }, [theme]);
 

@@ -12,7 +12,6 @@ import Loading from "./components/component/Loading.tsx";
 i18n.on("languageChanged", (locale) => {
   let lang = locale.substring(0, 2);
   let dir = i18n.dir(locale);
-  console.log(lang, dir);
 
   const allowedLangs = ["en", "ar"];
   if (!allowedLangs.includes(lang)) {

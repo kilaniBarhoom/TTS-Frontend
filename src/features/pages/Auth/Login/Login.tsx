@@ -63,7 +63,7 @@ const Login = () => {
 
       toast({
         variant: "default",
-        title: t("Welcome back, {{name}}", { name: data.user.firstName }),
+        title: t("Welcome back, {{name}}", { name: data.user.fullName }),
         duration: 2500,
       });
 
@@ -72,7 +72,7 @@ const Login = () => {
       localStorage.setItem("isLoggedIn", "true");
       toast({
         variant: "default",
-        title: t("Welcome back, {{name}}", { name: data.user.username }),
+        title: t("Welcome back, {{name}}", { name: data.user.fullName }),
         duration: 2500,
       });
       navigate(from, { replace: true });

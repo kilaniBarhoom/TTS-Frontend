@@ -1,6 +1,8 @@
 export type UserT = {
   id: string;
-  name: string;
+  firstName: string;
+  lastName: string;
+  fullName: string;
   email: string;
   role: string;
 };
@@ -13,7 +15,7 @@ export type ProjectT = {
   id: string;
   name: string;
   description: string;
-  owner: Partial<Pick<UserT, "id" | "name">>;
+  owner: Partial<Pick<UserT, "id" | "firstName" | "lastName">>;
   startDate: string;
   endDate: string;
   projectStatus:
@@ -29,8 +31,8 @@ export type ProjectT = {
 export type TicketT = {
   id: string;
   project: Partial<Pick<ProjectT, "id" | "name">>;
-  assignee: Partial<Pick<UserT, "id" | "name">>;
-  reporter: Partial<Pick<UserT, "id" | "name">>;
+  assignee: Partial<Pick<UserT, "id" | "firstName" | "lastName">>;
+  reporter: Partial<Pick<UserT, "id" | "firstName" | "lastName">>;
   name: string;
   description: string;
   startDate: string;
@@ -43,5 +45,5 @@ export type CommentT = {
   id: string;
   content: string;
   ticket: Partial<Pick<TicketT, "id" | "name">>;
-  member: Partial<Pick<UserT, "id" | "name">>;
+  member: Partial<Pick<UserT, "id" | "firstName" | "lastName">>;
 };

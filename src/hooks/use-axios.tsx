@@ -27,8 +27,6 @@ const useAxios = () => {
   const { toast } = useToast();
 
   useEffect(() => {
-    console.log("trying");
-
     const requestInterceptor = axios.interceptors.request.use(
       (config) => {
         if (!config.headers["Authorization"]) {

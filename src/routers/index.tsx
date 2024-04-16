@@ -2,6 +2,7 @@ import ErrorHandler from "@/components/error/ErrorHandler";
 import PersistentLogin from "@/components/routing/PresistentLogin";
 import RequireAuth from "@/components/routing/RequiredAuth";
 import AuthLayout from "@/features/pages/Auth/Layout";
+import NavLayout from "@/components/navbar/layout";
 import Login from "@/features/pages/Auth/Login/Login";
 import Register from "@/features/pages/Auth/Register/Register";
 import Projects from "@/features/pages/Projects/Projects";
@@ -28,11 +29,12 @@ const router = createBrowserRouter(
           />
         </Route>
         <Route />
-        {/* <Route path="/" element={<NavLayout />}> */}
-        <Route element={<RequireAuth />}>
-          <Route path="/projects" element={<Projects />} />
-          {/* <Route path="/projects/:projectId" element={<Tickets />} /> */}
-          {/* <Route path="/projects/:projectId/tickets/:ticketId" element={<Ticket />} /> */}
+        <Route path="/" element={<NavLayout />}>
+          <Route element={<RequireAuth />}>
+            <Route path="/projects" element={<Projects />} />
+            {/* <Route path="/projects/:projectId" element={<Tickets />} /> */}
+            {/* <Route path="/projects/:projectId/tickets/:ticketId" element={<Ticket />} /> */}
+          </Route>
         </Route>
       </Route>
 
