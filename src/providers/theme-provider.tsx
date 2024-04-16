@@ -46,6 +46,7 @@ export function ThemeProvider({
 
       return;
     }
+    console.log(theme);
 
     root.classList.add(theme);
   }, [theme]);

@@ -13,14 +13,10 @@ const Layout = () => {
       <Card className="w-full max-w-sm">
         {error && (
           <div className="p-5">
-            <Alert variant="destructive" className="bg-red-600">
-              <AlertCircle className="h-4 w-4 text-white" />
-              {error?.title && (
-                <AlertTitle className="text-white">{t(error.title)}</AlertTitle>
-              )}
-              {error?.description && (
+            <Alert variant="destructive" className="bg-red-400">
+              {error.title && error?.description && (
                 <AlertDescription className="text-white">
-                  {t(error.description)}
+                  {t(error.title)} {t(error.description)}
                 </AlertDescription>
               )}
             </Alert>

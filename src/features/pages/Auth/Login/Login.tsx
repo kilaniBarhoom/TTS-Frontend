@@ -15,15 +15,16 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { toast, useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/components/ui/use-toast";
 import { axios } from "@/hooks/use-axios";
 import { useAuth } from "@/providers/auth-provider";
 import { useError } from "@/providers/error-provider";
+import { useTheme } from "@/providers/theme-provider";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 const loginSchema = z.object({
@@ -57,10 +58,14 @@ const Login = () => {
   async function onSubmit(values: LoginSchemaType) {
     setError(undefined);
     try {
-      // log the base url of the axios
       const { data: response } = await axios.post("/auth/login", values);
       const { data } = response;
-      console.log(data);
+
+      toast({
+        variant: "default",
+        title: t("Welcome back, {{name}}", { name: data.user.firstName }),
+        duration: 2500,
+      });
 
       setUser(data.user);
       setAccessToken(data.token);
@@ -85,6 +90,7 @@ const Login = () => {
       }
     }
   }
+  const { setTheme } = useTheme();
   useEffect(() => {
     if (user) {
       navigate("/projects", { replace: true });
@@ -97,6 +103,20 @@ const Login = () => {
         <CardDescription>
           {t("Enter your email below to login to your account")}.
         </CardDescription>
+        <Button
+          onClick={() => {
+            setTheme("dark");
+          }}
+        >
+          Dark
+        </Button>
+        <Button
+          onClick={() => {
+            setTheme("light");
+          }}
+        >
+          Light
+        </Button>
       </CardHeader>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>

@@ -1,15 +1,15 @@
 import ErrorHandler from "@/components/error/ErrorHandler";
-import PersistentLogin from "@/components/routing/PresistLogin";
-import AuthLayout from "@/features/pages/Auth/Layout";
+import PersistentLogin from "@/components/routing/PresistentLogin";
 import RequireAuth from "@/components/routing/RequiredAuth";
+import AuthLayout from "@/features/pages/Auth/Layout";
 import Login from "@/features/pages/Auth/Login/Login";
 import Register from "@/features/pages/Auth/Register/Register";
+import Projects from "@/features/pages/Projects/Projects";
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
-import Projects from "@/features/pages/Projects/Projects";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,7 +22,6 @@ const router = createBrowserRouter(
         {/*<Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} /> */}
         <Route element={<RequireAuth />}>
-          {/* <Route path="/logout" element={<Logout />} /> */}
           <Route
             path="/unauthorized"
             element={<ErrorHandler status={403} title="Unauthorized!" />}
