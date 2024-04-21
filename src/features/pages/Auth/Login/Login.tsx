@@ -129,7 +129,11 @@ const Login = () => {
                   <FormItem>
                     <FormLabel>{t("Email")}</FormLabel>
                     <FormControl>
-                      <Input {...field} autoComplete="email" />
+                      <Input
+                        {...field}
+                        autoComplete="email"
+                        error={!!form.formState.errors.email?.message}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -147,6 +151,7 @@ const Login = () => {
                       <Input
                         type={showPassword ? "text" : "password"}
                         {...field}
+                        error={!!form.formState.errors.password?.message}
                         autoComplete="current-password"
                         icon={
                           showPassword ? (
