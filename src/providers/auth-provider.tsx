@@ -1,7 +1,9 @@
-import { createContext, useState, useContext } from "react";
-import { UserT } from "@/lib/types";
 import { axios } from "@/hooks/use-axios";
-import { log } from "console";
+import { refreshEndp } from "@/lib/constants";
+import { UserT } from "@/lib/types";
+import { getAccessTokenFromLS, getRefreshTokenFromCookies } from "@/lib/utils";
+import Cookies from "js-cookie";
+import { createContext, useContext, useState } from "react";
 
 type AuthProviderState = {
   user: UserT | undefined;
@@ -70,13 +72,28 @@ export const getAuth = async (accessToken: string) => {
 };
 
 export const useRefreshToken = () => {
-  const { setAccessToken } = useAuth();
+  const { setAccessToken, setUser } = useAuth();
   const refresh = async () => {
-    const { data: response } = await axios.post("/auth/refresh");
+    const accessToken = getAccessTokenFromLS();
+    const values = {
+      accessToken,
+      refreshToken: getRefreshTokenFromCookies(),
+    };
+    const { data: response } = await axios.post(refreshEndp, values);
 
-    const { token } = response;
+    const { token, refreshToken, memberId, name, email } = response;
 
     setAccessToken(token);
+    Cookies.set("refreshToken", refreshToken, {
+      expires: 7,
+      secure: true,
+      sameSite: "strict",
+    });
+    setUser({
+      id: memberId,
+      name,
+      email,
+    });
     return token;
   };
   return refresh;

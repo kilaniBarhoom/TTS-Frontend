@@ -1,7 +1,6 @@
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Card } from "@/components/ui/card";
 import { useError } from "@/providers/error-provider";
-import { AlertCircle } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Outlet } from "react-router-dom";
 
@@ -13,10 +12,10 @@ const Layout = () => {
       <Card className="w-full max-w-sm">
         {error && (
           <div className="p-5">
-            <Alert variant="destructive" className="bg-red-400">
-              {error.title && error?.description && (
-                <AlertDescription className="text-white">
-                  {t(error.title)} {t(error.description)}
+            <Alert variant="destructive" className="bg-red-300">
+              {error?.description && (
+                <AlertDescription className="text-red-900 font-semibold text-base">
+                  {t(error.description)}
                 </AlertDescription>
               )}
             </Alert>

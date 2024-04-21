@@ -6,12 +6,12 @@ type UserAvatarProps = {
   image?: string;
   email: string;
 };
-const UserAvatar = ({ name, image, email }: UserAvatarProps) => {
+const UserAvatar = ({ name, email }: UserAvatarProps) => {
   const initials = getInitialsOfFullName(name);
   return (
     <div className="flex gap-2 ">
       <Avatar>
-        <AvatarImage src={image} alt={name} />
+        <AvatarImage src={undefined} alt={name} />
         <AvatarFallback>{initials.toUpperCase()}</AvatarFallback>
       </Avatar>
       <div className="flex flex-col items-start justify-center gap-[-20px]">

@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import AXIOS from "axios";
+import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
@@ -32,6 +32,7 @@ const useAxios = () => {
         if (!config.headers["Authorization"]) {
           config.headers["Authorization"] = `Bearer ${accessToken}`;
         }
+        // log the headers for debugging
         return config;
       },
       (error) => {
@@ -62,6 +63,7 @@ const useAxios = () => {
               const token = await refreshToken();
               original.headers["Authorization"] = `Bearer ${token}`;
               setAccessToken(token);
+              localStorage.setItem("accessToken", token);
               return axios(original);
             } catch (error) {
               return Promise.reject(error);
@@ -69,10 +71,9 @@ const useAxios = () => {
           } else if (error.response.status === 401) {
             await logout();
             setError({
-              title: "Session Expired",
-              description: "Please login again.",
+              description: "Session expired please login again.",
             });
-            navigate("/login", {
+            navigate("/", {
               state: { from: location },
               replace: true,
             });

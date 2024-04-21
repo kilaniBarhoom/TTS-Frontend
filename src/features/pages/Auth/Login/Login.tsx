@@ -1,3 +1,4 @@
+import LanguageSelectForm from "@/components/component/LanguageSelect";
 import { Button } from "@/components/ui/button";
 import {
   CardContent,
@@ -15,27 +16,27 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import Typography from "@/components/ui/typography";
 import { useToast } from "@/components/ui/use-toast";
 import { axios } from "@/hooks/use-axios";
+import { loginEndp } from "@/lib/constants";
+import { UserT } from "@/lib/types";
+import { setRefreshTokenInCookies } from "@/lib/utils";
 import { useAuth } from "@/providers/auth-provider";
 import { useError } from "@/providers/error-provider";
-import { useTheme } from "@/providers/theme-provider";
+import { LoginSchemaType, loginSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect } from "react";
+import { Eye, EyeOff } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
-import * as z from "zod";
-
-const loginSchema = z.object({
-  email: z.string().min(1, "Email is required"),
-  password: z.string().min(8, "Password must be at least 8 characters"),
-});
-
-type LoginSchemaType = z.infer<typeof loginSchema>;
 
 const Login = () => {
-  const { t } = useTranslation();
+  const [showPassword, setShowPassword] = useState(false);
+
+  const { t, i18n } = useTranslation();
+  const pagedirection = i18n.dir();
   const navigate = useNavigate();
   const location = useLocation();
   const pathname = location.state?.from?.pathname;
@@ -47,6 +48,7 @@ const Login = () => {
   const { toast } = useToast();
   const { user, setUser, setAccessToken } = useAuth();
   const { setError } = useError();
+  const [loadingToLogin, setLoadingToLogin] = useState(false);
 
   const form = useForm<LoginSchemaType>({
     resolver: zodResolver(loginSchema),
@@ -57,40 +59,49 @@ const Login = () => {
   });
   async function onSubmit(values: LoginSchemaType) {
     setError(undefined);
+    setLoadingToLogin(true);
     try {
-      const { data: response } = await axios.post("/auth/login", values);
-      const { data } = response;
+      const { data: response } = await axios.post(loginEndp, values);
 
       toast({
         variant: "default",
-        title: t("Welcome back, {{name}}", { name: data.user.fullName }),
+        title: t("Welcome back, {{name}}", { name: response.name }),
         duration: 2500,
       });
 
-      setUser(data.user);
-      setAccessToken(data.token);
-      localStorage.setItem("isLoggedIn", "true");
+      const { memberId, name, email, token, refreshToken } = response;
+
+      const userData: UserT = {
+        id: memberId,
+        name: name,
+        email: email,
+      };
+
+      setUser(userData);
+      setAccessToken(token);
+      setRefreshTokenInCookies(refreshToken);
+      localStorage.setItem("accessToken", token);
       toast({
         variant: "default",
-        title: t("Welcome back, {{name}}", { name: data.user.fullName }),
+        title: t("Welcome back, {{name}}", { name: name }),
         duration: 2500,
       });
       navigate(from, { replace: true });
     } catch (error: any) {
-      if (error.code === "ERR_NETWORK" || !error?.response) {
+      if (error.code === "ERR_NETWORK") {
         setError({
-          title: "Server unreachable",
           description: "Sorry, server unreachable at the moment.",
         });
       } else {
         form.setValue("password", "");
         setError({
-          description: error.response.data.message,
+          description: error.response.data[0],
         });
       }
+    } finally {
+      setLoadingToLogin(false);
     }
   }
-  const { setTheme } = useTheme();
   useEffect(() => {
     if (user) {
       navigate("/projects", { replace: true });
@@ -99,24 +110,13 @@ const Login = () => {
   return (
     <>
       <CardHeader>
-        <CardTitle className="text-2xl">{t("Login")}</CardTitle>
+        <CardTitle className="text-2xl flex items-center justify-between">
+          {t("Login")}
+          <LanguageSelectForm />
+        </CardTitle>
         <CardDescription>
           {t("Enter your email below to login to your account")}.
         </CardDescription>
-        <Button
-          onClick={() => {
-            setTheme("dark");
-          }}
-        >
-          Dark
-        </Button>
-        <Button
-          onClick={() => {
-            setTheme("light");
-          }}
-        >
-          Light
-        </Button>
       </CardHeader>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -145,9 +145,27 @@ const Login = () => {
                     <FormLabel>{t("Password")}</FormLabel>
                     <FormControl>
                       <Input
-                        type="password"
+                        type={showPassword ? "text" : "password"}
                         {...field}
                         autoComplete="current-password"
+                        icon={
+                          showPassword ? (
+                            <Eye
+                              onClick={() => setShowPassword(false)}
+                              size={20}
+                              className="cursor-pointer"
+                            />
+                          ) : (
+                            <EyeOff
+                              onClick={() => setShowPassword(true)}
+                              size={20}
+                              className="cursor-pointer"
+                            />
+                          )
+                        }
+                        iconPosition={`${
+                          pagedirection === "ltr" ? "right" : "left"
+                        }`}
                       />
                     </FormControl>
                     <FormMessage />
@@ -155,11 +173,40 @@ const Login = () => {
                 )}
               />
             </div>
+            <div
+              className={`${
+                pagedirection == "ltr" ? "ml-auto" : "mr-auto"
+              } -mt-3`}
+            >
+              <Typography
+                as="mutedText"
+                element="a"
+                className="text-blue-400 cursor-pointer hover:underline"
+              >
+                {t("forgot password?")}
+              </Typography>
+            </div>
           </CardContent>
           <CardFooter className="flex flex-col gap-1">
-            <Button className="w-full" type="submit">
-              {t("Login")}
-            </Button>
+            <div className="w-full flex flex-col gap-2">
+              <Button className="w-full" type="submit" loading={loadingToLogin}>
+                {t("Login")}
+              </Button>
+              <Typography as="smallText" element="span">
+                {t("Don't have an account?")}{" "}
+                <Typography
+                  as="mutedText"
+                  element="a"
+                  className="text-blue-400 cursor-pointer hover:underline"
+                  onClick={() => {
+                    setError(undefined);
+                    navigate("/register");
+                  }}
+                >
+                  {t("Register")}
+                </Typography>
+              </Typography>
+            </div>
           </CardFooter>
         </form>
       </Form>

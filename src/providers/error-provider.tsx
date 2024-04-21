@@ -1,8 +1,7 @@
 import { createContext, useState, useContext } from "react";
 
 type Error = {
-  title?: string;
-  description?: string;
+  description: string;
 };
 
 type ErrorProviderState = {
