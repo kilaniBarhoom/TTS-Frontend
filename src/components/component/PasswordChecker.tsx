@@ -11,7 +11,7 @@ const PasswordChecker = ({ password }: { password: string }) => {
     hasSpecialCharacter,
   } = passwordValidChecker(password);
 
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <div className="flex flex-col gap-2">
@@ -25,7 +25,7 @@ const PasswordChecker = ({ password }: { password: string }) => {
         ) : (
           <CircleX size={20} className="text-red-500" />
         )}
-        {t("Password must be 8 characters long")}
+        {t("At least 8 characters long")}
       </Typography>
       <Typography
         as={"mutedText"}
@@ -37,7 +37,7 @@ const PasswordChecker = ({ password }: { password: string }) => {
         ) : (
           <CircleX size={20} className="text-red-500" />
         )}
-        {t("Password must have at least one uppercase letter")}
+        {t("At least 1 capital letter")}
       </Typography>
       <Typography
         as={"mutedText"}
@@ -49,7 +49,7 @@ const PasswordChecker = ({ password }: { password: string }) => {
         ) : (
           <CircleX size={20} className="text-red-500" />
         )}
-        {t("Password must have one special character")}
+        {t("At least 1 special character")}
       </Typography>
       <Typography
         as={"mutedText"}
@@ -61,7 +61,7 @@ const PasswordChecker = ({ password }: { password: string }) => {
         ) : (
           <CircleX size={20} className="text-red-500" />
         )}
-        {t("Password must have at least one number")}
+        {t("At least 1 number")}
       </Typography>
     </div>
   );
