@@ -7,3 +7,5 @@ export const searchProjEndp = import.meta.env
   .VITE_SEARCH_PROJECTS_ENDPOINT as string;
 export const getProjEndp = import.meta.env
   .VITE_GET_PROJECT_BY_ID_ENDPOINT as string;
+export const getMemOfAProjEndp = import.meta.env
+  .VITE_GET_MEMBERS_OF_A_PROJECT_ENDPOINT as string;

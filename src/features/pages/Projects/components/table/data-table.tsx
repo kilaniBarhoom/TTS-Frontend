@@ -21,12 +21,12 @@ import {
 } from "@/components/ui/table";
 
 // import { useGetAllProjectsQuery } from "@/api/projects";
+import useAxios from "@/hooks/use-axios";
+import { searchProjEndp } from "@/lib/constants";
 import { ProjectT } from "@/lib/types";
+import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
 import { columns } from "./columns";
-import useAxios from "@/hooks/use-axios";
-import { useQuery } from "@tanstack/react-query";
-import { searchProjEndp } from "@/lib/constants";
 
 export default function DataTableDemo() {
   const [openProject, setopenProject] = React.useState<boolean>(false);
@@ -56,7 +56,7 @@ export default function DataTableDemo() {
       const { data: response } = await axios.get(searchProjEndp, {
         params: { search },
       });
-      console.log(response.items);
+      // console.log(response.items);
 
       return response.items;
     },
@@ -125,7 +125,6 @@ export default function DataTableDemo() {
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
                   className="cursor-pointer"
-                  onClick={() => setopenProject(true)}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>

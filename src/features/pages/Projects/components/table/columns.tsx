@@ -9,6 +9,7 @@ import {
   UserRoundPlus,
 } from "lucide-react";
 
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -18,12 +19,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Badge } from "@/components/ui/badge";
-import AddMembersDialog from "./add-members-dialog";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import ProjectSheet from "./project-sheet";
 import { useSearchParams } from "react-router-dom";
+import AddMembersDialog from "./Add members dialog/add-members-dialog";
+import ProjectSheet from "./project-sheet";
 
 export const data: ProjectT[] = [
   {
@@ -76,23 +76,38 @@ export const columns: ColumnDef<ProjectT>[] = [
   //   enableHiding: false,
   // },
   {
+    accessorKey: "id",
+    header: () => {
+      return <div className="hidden">ID</div>;
+    },
+    cell: ({ row }) => (
+      <div className="capitalize hidden">{row.getValue("id")}</div>
+    ),
+    enableHiding: true,
+  },
+  {
     accessorKey: "name",
     header: "Name",
     cell: ({ row }) => <div className="capitalize">{row.getValue("name")}</div>,
   },
   {
     accessorKey: "description",
-    header: "Description",
+    header: () => {
+      return <div className="hidden sm:block md:block">Description</div>;
+    },
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("description")}</div>
+      <div className="capitalize hidden sm:block md:block">
+        {row.getValue("description")}
+      </div>
     ),
+    enableHiding: true,
   },
   {
     accessorKey: "startDate",
     header: ({ column }) => {
       return (
         <div
-          className="flex items-center cursor-pointer gap-1"
+          className="items-center cursor-pointer gap-1 hidden sm:flex md:flex"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Start Date
@@ -101,22 +116,39 @@ export const columns: ColumnDef<ProjectT>[] = [
       );
     },
     cell: ({ row }) => {
-      return <div>{row.getValue("startDate")}</div>;
+      return (
+        <div className="hidden sm:block md:block">
+          {row.getValue("startDate")}
+        </div>
+      );
     },
+    enableHiding: true,
   },
   {
     accessorKey: "endDate",
-    header: "End Date",
-    cell: ({ row }) => {
-      return <div>{row.getValue("endDate")}</div>;
+    header: () => {
+      return <div className="hidden sm:block md:block">End Date</div>;
     },
+    cell: ({ row }) => {
+      return (
+        <div className="hidden sm:block md:block">
+          {row.getValue("endDate")}
+        </div>
+      );
+    },
+    enableHiding: true,
   },
   {
     accessorKey: "projectStatus",
-    header: "Status",
+    header: () => {
+      return <div className="hidden sm:block md:block">Status</div>;
+    },
     cell: ({ row }) => {
       return (
-        <Badge variant="outline" className="bg-black">
+        <Badge
+          variant="outline"
+          className="bg-background hidden sm:block md:block"
+        >
           {row.getValue("projectStatus")}
         </Badge>
       );

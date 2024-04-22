@@ -26,11 +26,11 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useTheme } from "@/providers/theme-provider";
 import { useTranslation } from "react-i18next";
 import { Outlet } from "react-router-dom";
 import Typography from "../ui/typography";
 import { HeaderProfileDrop } from "./header-prof-drop";
-import { useTheme } from "@/providers/theme-provider";
 
 export default function Layout() {
   const { setTheme } = useTheme();
@@ -63,14 +63,14 @@ export default function Layout() {
             <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
               <a
                 href="#"
-                className="flex items-center gap-3 rounded-lg px-1 py-2 text-muted-foreground transition-all hover:text-primary"
+                className="flex items-center gap-3 rounded-lg px-2 py-3 text-muted-foreground transition-all hover:text-primary"
               >
                 <Home size={20} />
                 Projects
               </a>
               <a
                 href="#"
-                className="flex items-center gap-3 rounded-lg px-1 py-2 text-muted-foreground transition-all hover:text-primary"
+                className="flex items-center gap-3 rounded-lg px-2 py-3 text-muted-foreground transition-all hover:text-primary"
               >
                 <ShoppingCart size={20} />
                 Orders
@@ -84,21 +84,21 @@ export default function Layout() {
               </a>
               <a
                 href="#"
-                className="flex items-center gap-3 rounded-lg bg-muted px-1 py-2 text-primary transition-all hover:text-primary"
+                className="flex items-center gap-3 rounded-lg bg-muted px-2 py-3 text-primary transition-all hover:text-primary"
               >
                 <Package size={20} />
                 Projects
               </a>
               <a
                 href="#"
-                className="flex items-center gap-3 rounded-lg px-1 py-2 text-muted-foreground transition-all hover:text-primary"
+                className="flex items-center gap-3 rounded-lg px-2 py-3 text-muted-foreground transition-all hover:text-primary"
               >
                 <Users size={20} />
                 Customers
               </a>
               <a
                 href="#"
-                className="flex items-center gap-3 rounded-lg px-1 py-2 text-muted-foreground transition-all hover:text-primary"
+                className="flex items-center gap-3 rounded-lg px-2 py-3 text-muted-foreground transition-all hover:text-primary"
               >
                 <LineChart size={20} />
                 Analytics

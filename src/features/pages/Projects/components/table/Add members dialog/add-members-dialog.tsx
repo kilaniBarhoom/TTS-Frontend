@@ -1,5 +1,3 @@
-import { Send } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -13,6 +11,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import React, { useRef, useState } from "react";
+import { axios } from "@/hooks/use-axios";
+import { getMemOfAProjEndp } from "@/lib/constants";
+import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "react-router-dom";
+import ErrorHandler from "@/components/error/ErrorHandler";
+import { OwnerT } from "@/lib/types";
+import MembersList from "./members-list";
 
 export default function AddMembersDialog({
   open,
@@ -30,6 +35,7 @@ export default function AddMembersDialog({
       setLoadingToSendEmail(true);
     }
   };
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className="sm:max-w-md">
@@ -43,15 +49,21 @@ export default function AddMembersDialog({
           <div className="flex items-center space-x-2">
             <div className="grid flex-1 gap-2">
               <Label htmlFor="email" className="sr-only">
-                Email
+                Member Email
               </Label>
-              <Input ref={emailRef} id="email" type="email" />
+              <Input
+                ref={emailRef}
+                id="email"
+                type="email"
+                placeholder="Member Email..."
+              />
             </div>
             <Button type="submit" loading={loadingToSendEmail}>
               Add
             </Button>
           </div>
         </form>
+        <MembersList />
         <DialogFooter className="sm:justify-start">
           <DialogClose asChild>
             <Button type="button" variant="secondary">

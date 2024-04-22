@@ -4,7 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
 type UserAvatarProps = {
   name: string;
   image?: string;
-  email: string;
+  email?: string;
 };
 const UserAvatar = ({ name, email }: UserAvatarProps) => {
   const initials = getInitialsOfFullName(name);
