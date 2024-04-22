@@ -5,6 +5,7 @@ import { Columns3, Table } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import DataTableDemo from "./components/table/data-table";
 import { useSearchParams } from "react-router-dom";
+import { useGetAllProjectsQuery } from "@/api/projects";
 
 const Projects = () => {
   const { t } = useTranslation();
@@ -23,6 +24,8 @@ const Projects = () => {
       { replace: true }
     );
   };
+
+  const { data: projects } = useGetAllProjectsQuery();
   return (
     <div className="flex flex-col">
       <Typography as="h2" element="h2">
@@ -49,7 +52,7 @@ const Projects = () => {
             />
           </TabsList>
           <TabsContent value="table">
-            <DataTableDemo />
+            <DataTableDemo projects={projects} />
           </TabsContent>
           <TabsContent value="board">Change your password here.</TabsContent>
         </Tabs>

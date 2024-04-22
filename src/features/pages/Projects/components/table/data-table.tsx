@@ -21,15 +21,15 @@ import {
 } from "@/components/ui/table";
 
 // import { useGetAllProjectsQuery } from "@/api/projects";
-import useAxios from "@/hooks/use-axios";
-import { searchProjEndp } from "@/lib/constants";
+// import useAxios from "@/hooks/use-axios";
+// import { searchProjEndp } from "@/lib/constants";
 import { ProjectT } from "@/lib/types";
-import { useQuery } from "@tanstack/react-query";
-import { useSearchParams } from "react-router-dom";
+// import { useQuery } from "@tanstack/react-query";
+// import { useSearchParams } from "react-router-dom";
 import { columns } from "./columns";
 
-export default function DataTableDemo() {
-  const [openProject, setopenProject] = React.useState<boolean>(false);
+export default function DataTableDemo({ projects }: { projects: ProjectT[] }) {
+  // const [openProject, setopenProject] = React.useState<boolean>(false);
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -37,30 +37,6 @@ export default function DataTableDemo() {
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
-
-  const axios = useAxios();
-  const [searchParams] = useSearchParams();
-  const search = searchParams.get("ProjectName") || "";
-  const {
-    data: projects,
-    isLoading,
-    isError,
-  } = useQuery({
-    queryKey: [
-      "projects",
-      {
-        ProjectName: search,
-      },
-    ],
-    queryFn: async () => {
-      const { data: response } = await axios.get(searchProjEndp, {
-        params: { search },
-      });
-      // console.log(response.items);
-
-      return response.items;
-    },
-  });
 
   const items: ProjectT[] = [
     {
