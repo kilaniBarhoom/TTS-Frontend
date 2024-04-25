@@ -40,6 +40,10 @@ const router = createBrowserRouter(
             />
             {/* <Route path="/projects/:projectId" element={<Tickets />} /> */}
             {/* <Route path="/projects/:projectId/tickets/:ticketId" element={<Ticket />} /> */}
+            <Route
+              path="/settings"
+              element={<div className="text-primary">Settings</div>}
+            />
           </Route>
         </Route>
       </Route>

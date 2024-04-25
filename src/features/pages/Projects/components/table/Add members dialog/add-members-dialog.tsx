@@ -11,13 +11,22 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import React, { useRef, useState } from "react";
-import { axios } from "@/hooks/use-axios";
-import { getMemOfAProjEndp } from "@/lib/constants";
-import { useQuery } from "@tanstack/react-query";
-import { useSearchParams } from "react-router-dom";
-import ErrorHandler from "@/components/error/ErrorHandler";
-import { OwnerT } from "@/lib/types";
 import MembersList from "./members-list";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { useForm } from "react-hook-form";
+import { AddMemberSchemaType, addMemberSchema } from "@/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMemberMutation } from "../../../api";
+import { toast } from "@/components/ui/use-toast";
+import { useTranslation } from "react-i18next";
+import { useSearchParams } from "react-router-dom";
 
 export default function AddMembersDialog({
   open,
@@ -27,14 +36,33 @@ export default function AddMembersDialog({
   setOpen: (open: boolean) => void;
 }) {
   const emailRef = useRef<HTMLInputElement>(null);
-  const [loadingToSendEmail, setLoadingToSendEmail] = useState(false);
-  const submitEmail = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (emailRef.current) {
-      console.log(emailRef.current.value);
-      setLoadingToSendEmail(true);
+
+  const form = useForm<AddMemberSchemaType>({
+    resolver: zodResolver(addMemberSchema),
+    defaultValues: {
+      projectId: "",
+      email: "",
+    },
+  });
+
+  const { mutateAsync } = useMemberMutation();
+  async function onSubmit(data: AddMemberSchemaType) {
+    try {
+      await mutateAsync({ data });
+      form.reset();
+    } catch (error: any) {
+      console.log(error);
+
+      //  toast({
+      //    variant: "destructive",
+      //    title: t("Error"),
+      //    description:
+      //      t(error?.response?.data?.message) || t("Something went wrong"),
+      //  });
     }
-  };
+  }
+  const [searchParams] = useSearchParams();
+  const projectId = searchParams.get("projectId") || "";
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -45,24 +73,51 @@ export default function AddMembersDialog({
             Add new mwmbers to this project via email.
           </DialogDescription>
         </DialogHeader>
-        <form onSubmit={submitEmail}>
-          <div className="flex items-center space-x-2">
-            <div className="grid flex-1 gap-2">
-              <Label htmlFor="email" className="sr-only">
-                Member Email
-              </Label>
-              <Input
-                ref={emailRef}
-                id="email"
-                type="email"
-                placeholder="Member Email..."
-              />
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)}>
+            <div className="flex items-center space-x-2">
+              <div className="grid gap-0">
+                <div className="flex-1 gap-2 hidden">
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            autoComplete="projectId"
+                            value={projectId}
+                            readOnly
+                          />
+                        </FormControl>
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div className="grid flex-1 gap-2">
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            autoComplete="email"
+                            error={!!form.formState.errors.email?.message}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              </div>
+              <Button type="submit">Add</Button>
             </div>
-            <Button type="submit" loading={loadingToSendEmail}>
-              Add
-            </Button>
-          </div>
-        </form>
+          </form>
+        </Form>
         <MembersList />
         <DialogFooter className="sm:justify-start">
           <DialogClose asChild>

@@ -17,34 +17,30 @@ import {
   LineChart,
   Menu,
   Package,
-  Search,
   ShoppingCart,
   Users,
 } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useTheme } from "@/providers/theme-provider";
 import { useTranslation } from "react-i18next";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Typography from "../ui/typography";
 import { HeaderProfileDrop } from "./header-prof-drop";
+import { SideNavItems } from "./nav-items";
 
 export default function Layout() {
   const { setTheme } = useTheme();
   const { t, i18n } = useTranslation();
-  const pageDirection = i18n.dir();
+  const currentPath = window.location.pathname;
+  const navigate = useNavigate();
   return (
     <div className="grid bg-background min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
-      <div
-        className={`hidden ${
-          pageDirection === "ltr" ? "border-r" : "border-l"
-        } bg-muted/40 md:block`}
-      >
+      <div className="hidden ltr:border-r rtl:border-l border-border bg-muted/40 md:block">
         <div className="flex h-full max-h-screen flex-col gap-2">
-          <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
+          <div className="flex h-14 items-center border-b border-border px-4 lg:h-[60px] lg:px-6">
             <a href="/" className="flex items-center gap-2 font-semibold">
               <Typography as={"h3"} element="h3" className="border-none">
                 TTS
@@ -53,57 +49,27 @@ export default function Layout() {
             <Button
               variant="ghost"
               size="icon"
-              className={`${pageDirection === "ltr" ? "ml-auto" : "mr-auto"}`}
+              className="ltr:ml-auto rtl:mr-auto"
             >
               <Bell size={20} />
               <span className="sr-only">Toggle notifications</span>
             </Button>
           </div>
           <div className="flex-1">
-            <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
-              <a
-                href="#"
-                className="flex items-center gap-3 rounded-lg px-2 py-3 text-muted-foreground transition-all hover:text-primary"
-              >
-                <Home size={20} />
-                Projects
-              </a>
-              <a
-                href="#"
-                className="flex items-center gap-3 rounded-lg px-2 py-3 text-muted-foreground transition-all hover:text-primary"
-              >
-                <ShoppingCart size={20} />
-                Orders
-                <Badge
-                  className={`${
-                    pageDirection === "ltr" ? "ml-auto" : "mr-auto"
-                  } flex h-6 w-6 shrink-0 items-center justify-center rounded-full`}
+            <nav className="grid items-start px-2 text-md font-medium lg:px-4">
+              {SideNavItems.map((item) => (
+                <a
+                  key={item.title}
+                  onClick={() => navigate(item.path)}
+                  className={`flex items-center gap-2 rounded-md cursor-pointer transition-all duration-300 ease-in-out px-1 py-2 text-muted-foreground hover:text-foreground hover:bg-muted ${
+                    currentPath === item.path ? "bg-muted text-foreground" : ""
+                  }`}
                 >
-                  6
-                </Badge>
-              </a>
-              <a
-                href="#"
-                className="flex items-center gap-3 rounded-lg bg-muted px-2 py-3 text-primary transition-all hover:text-primary"
-              >
-                <Package size={20} />
-                Projects
-              </a>
-              <a
-                href="#"
-                className="flex items-center gap-3 rounded-lg px-2 py-3 text-muted-foreground transition-all hover:text-primary"
-              >
-                <Users size={20} />
-                Customers
-              </a>
-              <a
-                href="#"
-                className="flex items-center gap-3 rounded-lg px-2 py-3 text-muted-foreground transition-all hover:text-primary"
-              >
-                <LineChart size={20} />
-                Analytics
-              </a>
-              <div className="flex flex-col gap-2">
+                  {item.icon}
+                  {t(item.title)}
+                </a>
+              ))}
+              {/* <div className="flex flex-col gap-2">
                 <Button
                   onClick={() => {
                     setTheme("dark");
@@ -132,13 +98,13 @@ export default function Layout() {
                 >
                   EN
                 </Button>
-              </div>
+              </div> */}
             </nav>
           </div>
         </div>
       </div>
       <div className="flex flex-col">
-        <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
+        <header className="flex h-14 items-center gap-4 border-b border-border bg-muted/40 px-4 lg:h-[60px] lg:px-6">
           <Sheet>
             <SheetTrigger asChild>
               <Button
@@ -162,42 +128,38 @@ export default function Layout() {
                 </a>
                 <a
                   href="#"
-                  className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-1 py-2 text-muted-foreground hover:text-foreground"
+                  className="mx-[-0.65rem] flex items-center gap-4 rounded-md px-1 py-2 text-muted-foreground hover:text-foreground"
                 >
                   <Home className="h-5 w-5" />
                   Dashboard
                 </a>
                 <a
                   href="#"
-                  className="mx-[-0.65rem] flex items-center gap-4 rounded-xl bg-muted px-1 py-2 text-foreground hover:text-foreground"
+                  className="mx-[-0.65rem] flex items-center gap-4 rounded-md bg-muted px-1 py-2 text-foreground hover:text-foreground"
                 >
                   <ShoppingCart className="h-5 w-5" />
                   Orders
-                  <Badge
-                    className={`${
-                      pageDirection === "ltr" ? "ml-auto" : "mr-auto"
-                    } flex h-6 w-6 shrink-0 items-center justify-center rounded-full`}
-                  >
+                  <Badge className="ltr:ml-auto rtl:mr-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
                     6
                   </Badge>
                 </a>
                 <a
                   href="#"
-                  className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-1 py-2 text-muted-foreground hover:text-foreground"
+                  className="mx-[-0.65rem] flex items-center gap-4 rounded-md px-1 py-2 text-muted-foreground hover:text-foreground"
                 >
                   <Package className="h-5 w-5" />
                   Products
                 </a>
                 <a
                   href="#"
-                  className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-1 py-2 text-muted-foreground hover:text-foreground"
+                  className="mx-[-0.65rem] flex items-center gap-4 rounded-md px-1 py-2 text-muted-foreground hover:text-foreground"
                 >
                   <Users className="h-5 w-5" />
                   Customers
                 </a>
                 <a
                   href="#"
-                  className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-1 py-2 text-muted-foreground hover:text-foreground"
+                  className="mx-[-0.65rem] flex items-center gap-4 rounded-md px-1 py-2 text-muted-foreground hover:text-foreground"
                 >
                   <LineChart className="h-5 w-5" />
                   Analytics
@@ -205,18 +167,9 @@ export default function Layout() {
               </nav>
             </SheetContent>
           </Sheet>
-          <div className="w-full flex-1">
-            {/* <form> */}
-            <Input
-              type="text"
-              placeholder={`${t("Search products")}`}
-              icon={<Search size={20} />}
-              iconPosition={`${pageDirection === "ltr" ? "left" : "right"}`}
-              className="w-full appearance-none bg-background pl-8 shadow-none md:w-2/3 lg:w-1/3"
-            />
-            {/* </form> */}
+          <div className="ltr:ml-auto rtl:mr-auto">
+            <HeaderProfileDrop />
           </div>
-          <HeaderProfileDrop />
         </header>
         <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
           <Outlet />

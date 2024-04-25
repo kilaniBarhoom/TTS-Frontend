@@ -34,4 +34,25 @@ export const registerSchema = z.object({
 export type RegisterSchemaType = z.infer<typeof registerSchema>;
 
 // schema for project creation
+export const ProjectFormSchema = z.object({
+  name: z.string().min(1, t("Name is required")),
+  description: z.string().min(1, t("Description is required")),
+  startDate: z.any({
+    required_error: "Start date is required",
+  }),
+  endDate: z.any({
+    required_error: "End date is required",
+  }),
+  projectStatus: z.string().min(1, t("Project status is required")),
+});
+
+export type ProjectFormSchemaType = z.infer<typeof ProjectFormSchema>;
 // shecma for ticket creation
+
+//schema for memer addition
+export const addMemberSchema = z.object({
+  projectId: z.string().min(1, t("Project ID is required")),
+  email: z.string().email().min(1, t("Email is required")),
+});
+
+export type AddMemberSchemaType = z.infer<typeof addMemberSchema>;

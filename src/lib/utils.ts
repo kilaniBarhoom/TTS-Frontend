@@ -1,6 +1,7 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import Cookies from "js-cookie";
+import { format } from "date-fns";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -41,3 +42,11 @@ export function getRefreshTokenFromCookies() {
 export function setRefreshTokenInCookies(refreshToken: string) {
   return Cookies.set("refreshToken", refreshToken, { expires: 7 });
 }
+
+export const dateToString = (date: any) => {
+  return format(Number(date), "y-LL-d");
+};
+
+export const stringToDate = (string: any) => {
+  return new Date(string);
+};

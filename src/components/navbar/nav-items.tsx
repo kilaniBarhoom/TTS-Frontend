@@ -1,12 +1,4 @@
-import {
-  Archive,
-  Receipt,
-  Landmark,
-  Users,
-  User,
-  Settings,
-  LogOut,
-} from "lucide-react";
+import { Home, Settings, Ticket } from "lucide-react";
 
 export type SideNavItem = {
   title: string;
@@ -16,40 +8,25 @@ export type SideNavItem = {
   subMenuItems?: SideNavItem[];
 };
 
-export const SIDENAV_ITEMS: SideNavItem[] = [
+export const SideNavItems: SideNavItem[] = [
   {
-    title: "Worksheets",
-    path: "/worksheets",
-    icon: <Archive className="h-5 w-5 mr-5" />,
+    title: "Projects",
+    path: "/projects",
+    icon: <Home className="size-5 mr-1" />,
   },
   {
-    title: "Bills",
-    path: "/bills",
-    icon: <Receipt className="h-5 w-5 mr-5" />,
+    title: "Tickets",
+    path: "/tickets",
+    icon: <Ticket className="size-5 mr-1" />,
   },
   {
-    title: "Cheques",
-    path: "/cheques",
-    icon: <Landmark className="h-5 w-5 mr-5" />,
-  },
-  {
-    title: "Users",
-    path: "/users",
-    icon: <Users className="h-5 w-5 mr-5" />,
-  },
-  {
-    title: "Payees",
-    path: "/payees",
-    icon: <User className="h-5 w-5 mr-5" />,
+    title: "Analytics",
+    path: "/analytics",
+    icon: <Home className="size-5 mr-1" />,
   },
   {
     title: "Settings",
     path: "/settings",
-    icon: <Settings className="h-5 w-5 mr-5" />,
-  },
-  {
-    title: "Logout",
-    path: "/logout",
-    icon: <LogOut className="h-5 w-5 mr-5" />,
+    icon: <Settings className="size-5 mr-1" />,
   },
 ];

@@ -194,7 +194,12 @@ const Login = () => {
           </CardContent>
           <CardFooter className="flex flex-col gap-1">
             <div className="w-full flex flex-col gap-2">
-              <Button className="w-full" type="submit" loading={loadingToLogin}>
+              <Button
+                className="w-full"
+                type="submit"
+                disabled={loadingToLogin}
+                loading={loadingToLogin}
+              >
                 {t("Login")}
               </Button>
               <Typography as="smallText" element="span">
