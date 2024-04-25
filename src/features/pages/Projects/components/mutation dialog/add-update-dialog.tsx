@@ -57,9 +57,9 @@ export default function MutationDialog({ children }: MutationDialogProps) {
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="sm:max-w-[700px]">
         <DialogHeader>
-          <DialogTitle>Create A New Project</DialogTitle>
+          <DialogTitle>{t("Create A New Project")}</DialogTitle>
           <DialogDescription>
-            Enter project details to create a new project
+            {t("Enter project details to create a new project")}
           </DialogDescription>
         </DialogHeader>
         <div className="p-6">

@@ -21,6 +21,7 @@ import Typography from "@/components/ui/typography";
 import { useToast } from "@/components/ui/use-toast";
 import { axios } from "@/hooks/use-axios";
 import { registerEndp } from "@/lib/constants";
+import { UserT } from "@/lib/types";
 import { passwordValidChecker } from "@/lib/utils";
 import { useAuth } from "@/providers/auth-provider";
 import { useError } from "@/providers/error-provider";
@@ -49,7 +50,6 @@ const Register = () => {
   const { toast } = useToast();
   const { user, setUser, setAccessToken } = useAuth();
   const { setError } = useError();
-  const [loadingToLogin, setLoadingToLogin] = useState(false);
 
   const form = useForm<RegisterSchemaType>({
     resolver: zodResolver(registerSchema),
@@ -61,23 +61,27 @@ const Register = () => {
   });
   async function onSubmit(values: RegisterSchemaType) {
     setError(undefined);
-    setLoadingToLogin(true);
     try {
       const { data: response } = await axios.post(registerEndp, values);
-      const { data } = response;
 
-      toast({
-        variant: "default",
-        title: t("Welcome back, {{name}}", { name: data.user.fullName }),
-        duration: 2500,
-      });
+      const { memberId, name, email, token } = response;
 
-      setUser(data.user);
-      setAccessToken(data.token);
+      const userData: UserT = {
+        id: memberId,
+        name,
+        email,
+      };
+
+      setUser(userData);
+      setAccessToken(token);
+
+      setUser(userData);
+      setAccessToken(token);
+      localStorage.setItem("accessToken", token);
       localStorage.setItem("isLoggedIn", "true");
       toast({
         variant: "default",
-        title: t("Welcome back, {{name}}", { name: data.user.fullName }),
+        title: t("Welcome To TTS, {{name}}", { name: name }),
         duration: 2500,
       });
       navigate(from, { replace: true });
@@ -93,7 +97,6 @@ const Register = () => {
         });
       }
     } finally {
-      setLoadingToLogin(false);
       setPasswordInputFocused(false);
     }
   }
@@ -211,7 +214,12 @@ const Register = () => {
           </CardContent>
           <CardFooter className="flex flex-col gap-1">
             <div className="w-full flex flex-col gap-2">
-              <Button className="w-full" type="submit" loading={loadingToLogin}>
+              <Button
+                className="w-full"
+                type="submit"
+                loading={form.formState.isSubmitting}
+                disabled={form.formState.isSubmitting}
+              >
                 {t("Register")}
               </Button>
               <Typography as="smallText" element="span">

@@ -49,5 +49,9 @@
   "Table": "Table",
   "Board": "Board",
   "Add Members": "Add Members",
-  "Set To Cancelled": "Set To Cancelled"
+  "Set To Cancelled": "Set To Cancelled",
+  "Search by project name...": "Search by project name...",
+  "New": "New",
+  "Settings": "Settings",
+  "Open": "Open"
 }

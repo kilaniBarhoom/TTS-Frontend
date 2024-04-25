@@ -13,7 +13,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import AddMembersDialog from "./Add members dialog/add-members-dialog";
 
-export const ActionsColumn = () => {
+export const ActionsColumn = ({ projectId }: { projectId: string }) => {
   const [openMembersDialog, setOpenMembersDialog] = useState<boolean>(false);
 
   const { t } = useTranslation();
@@ -23,6 +23,7 @@ export const ActionsColumn = () => {
       <AddMembersDialog
         open={openMembersDialog}
         setOpen={setOpenMembersDialog}
+        projectId={projectId}
       />
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="h-8 w-8 p-0">

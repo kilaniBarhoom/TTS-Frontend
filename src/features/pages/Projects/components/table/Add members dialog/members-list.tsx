@@ -11,8 +11,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { OwnerT } from "@/lib/types";
 
-export default function MembersList() {
-  const { data: members } = useGetMembersByProjectId();
+export default function MembersList({ projectId }: { projectId: string }) {
+  const { data: members } = useGetMembersByProjectId({ projectId });
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="w-56">

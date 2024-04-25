@@ -9,15 +9,12 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import React, { useRef, useState } from "react";
 import MembersList from "./members-list";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
@@ -26,26 +23,23 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMemberMutation } from "../../../api";
 import { toast } from "@/components/ui/use-toast";
 import { useTranslation } from "react-i18next";
-import { useSearchParams } from "react-router-dom";
 
 export default function AddMembersDialog({
   open,
   setOpen,
+  projectId,
 }: {
   open: boolean;
   setOpen: (open: boolean) => void;
+  projectId: string;
 }) {
-  const emailRef = useRef<HTMLInputElement>(null);
-
   const form = useForm<AddMemberSchemaType>({
     resolver: zodResolver(addMemberSchema),
     defaultValues: {
-      projectId: "",
       email: "",
     },
   });
-
-  const { mutateAsync } = useMemberMutation();
+  const { mutateAsync } = useMemberMutation({ projectId });
   async function onSubmit(data: AddMemberSchemaType) {
     try {
       await mutateAsync({ data });
@@ -61,41 +55,23 @@ export default function AddMembersDialog({
       //  });
     }
   }
-  const [searchParams] = useSearchParams();
-  const projectId = searchParams.get("projectId") || "";
+
+  const { t } = useTranslation();
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Add Member</DialogTitle>
+          <DialogTitle>{t("Add Member")}</DialogTitle>
           <DialogDescription>
-            Add new mwmbers to this project via email.
+            {t("Add new mwmbers to this project via email.")}
           </DialogDescription>
         </DialogHeader>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
-            <div className="flex items-center space-x-2">
-              <div className="grid gap-0">
-                <div className="flex-1 gap-2 hidden">
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <Input
-                            {...field}
-                            autoComplete="projectId"
-                            value={projectId}
-                            readOnly
-                          />
-                        </FormControl>
-                      </FormItem>
-                    )}
-                  />
-                </div>
-                <div className="grid flex-1 gap-2">
+        <div className="w-full p-6 flex flex-col gap-5">
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)}>
+              <div className="flex items-center gap-2">
+                <div className=" w-full">
                   <FormField
                     control={form.control}
                     name="email"
@@ -113,16 +89,16 @@ export default function AddMembersDialog({
                     )}
                   />
                 </div>
+                <Button type="submit">{t("Add")}</Button>
               </div>
-              <Button type="submit">Add</Button>
-            </div>
-          </form>
-        </Form>
-        <MembersList />
+            </form>
+          </Form>
+          <MembersList projectId={projectId} />
+        </div>
         <DialogFooter className="sm:justify-start">
           <DialogClose asChild>
             <Button type="button" variant="secondary">
-              Close
+              {t("Close")}
             </Button>
           </DialogClose>
         </DialogFooter>

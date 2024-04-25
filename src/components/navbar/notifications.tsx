@@ -10,7 +10,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Switch } from "@/components/ui/switch";
 
 const notifications = [
   {
@@ -43,11 +42,7 @@ export function CardDemo({ className, ...props }: CardProps) {
             <p className="text-sm font-medium leading-none">
               Push Notifications
             </p>
-            <p className="text-sm text-muted-foreground">
-              Send notifications to device.
-            </p>
           </div>
-          <Switch />
         </div>
         <div>
           {notifications.map((notification, index) => (

@@ -48,7 +48,7 @@ const Projects = () => {
         <>
           <div className="flex gap-2 w-full justify-between items-center my-2 flex-wrap sm:flex-wrap lg:flex-nowrap">
             <Input
-              placeholder="Search projects..."
+              placeholder={t("Search by project name...")}
               value={search}
               onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                 setSearch(event.target.value)
@@ -56,11 +56,11 @@ const Projects = () => {
             />
             <div className="flex gap-2">
               <CollapsibleTrigger className="max-w-[300px] w-full bg-secondary text-primary flex flex-row items-center justify-center h-9 rounded-md gap-2">
-                Advanced filtering <ChevronDown size={20} />
+                {t(" Advanced filtering")} <ChevronDown size={20} />
               </CollapsibleTrigger>
               <MutationDialog>
                 <Button variant={"default"} size={"sm"} className="px-8">
-                  New
+                  {t("New")}
                 </Button>
               </MutationDialog>
             </div>
@@ -84,7 +84,7 @@ const Projects = () => {
         </>
       </Collapsible>
       <Tabs defaultValue="table" className="w-full">
-        <TabsList className="border-b-[1px] w-full justify-start border-border">
+        <TabsList className="border-b-[1px] w-full justify-start rtl:flex-row-reverse border-border">
           <TabsTrigger value="table" className="gap-1 items-center flex">
             <Table size={20} /> {t("Table")}
           </TabsTrigger>

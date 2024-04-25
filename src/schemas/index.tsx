@@ -51,7 +51,6 @@ export type ProjectFormSchemaType = z.infer<typeof ProjectFormSchema>;
 
 //schema for memer addition
 export const addMemberSchema = z.object({
-  projectId: z.string().min(1, t("Project ID is required")),
   email: z.string().email().min(1, t("Email is required")),
 });
 

@@ -208,7 +208,7 @@ const ProjectForm = ({
         </div>
         <div className="w-full flex flex-col gap-2">
           <Button type="submit" loading={isLoading}>
-            Creare
+            Create
           </Button>
         </div>
       </form>

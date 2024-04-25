@@ -11,11 +11,12 @@ const RequireAuth = ({
   const { user } = useAuth();
   const location = useLocation();
   let authorized = true;
-  if (allowedRoles) {
-    authorized = allowedRoles?.includes(user?.role as any);
-  } else if (restrictedRoles) {
-    authorized = !restrictedRoles?.includes(user?.role as any);
-  }
+
+  // if (allowedRoles) {
+  //   authorized = allowedRoles?.includes(user?.role as any);
+  // } else if (restrictedRoles) {
+  //   authorized = !restrictedRoles?.includes(user?.role as any);
+  // }
   return user ? (
     // logged in? Check role
     authorized ? (

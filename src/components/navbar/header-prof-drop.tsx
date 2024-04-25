@@ -1,15 +1,10 @@
 import {
-  CreditCard,
-  Keyboard,
-  LifeBuoy,
+  Languages,
   LogOut,
-  Mail,
-  MessageSquare,
-  Plus,
-  PlusCircle,
+  Moon,
+  PersonStanding,
   Settings,
-  UserPlus,
-  Users,
+  Sun,
 } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -31,6 +26,7 @@ import { useAuth, useLogout } from "@/providers/auth-provider";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { UserAvatar } from "../component/user-avatar";
+import { useTheme } from "@/providers/theme-provider";
 
 export function HeaderProfileDrop() {
   const navigate = useNavigate();
@@ -41,7 +37,8 @@ export function HeaderProfileDrop() {
     await logout();
     navigate("/", { replace: true });
   };
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { setTheme } = useTheme();
 
   return (
     <DropdownMenu>
@@ -58,58 +55,56 @@ export function HeaderProfileDrop() {
           <DropdownMenuItem>
             <UserAvatar name={user?.name || ""} email={user?.email || ""} />
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            <CreditCard className="mr-2 h-4 w-4" />
-            <span>Billing</span>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Settings className="mr-2 h-4 w-4" />
-            <span>{t("Settings")}</span>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Keyboard className="mr-2 h-4 w-4" />
-            <span>Keyboard shortcuts</span>
-          </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <Users className="mr-2 h-4 w-4" />
-            <span>Team</span>
+            <PersonStanding className="mr-2 h-4 w-4" />
+            <span>{t("Account")}</span>
           </DropdownMenuItem>
           <DropdownMenuSub>
             <DropdownMenuSubTrigger>
-              <UserPlus className="mr-2 h-4 w-4" />
-              <span>Invite users</span>
+              <Settings className="mr-2 h-4 w-4" />
+              <span>{t("Settings")}</span>
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
-                <DropdownMenuItem>
-                  <Mail className="mr-2 h-4 w-4" />
-                  <span>{t("Email")}</span>
+                <DropdownMenuItem
+                  onClick={() => {
+                    setTheme("dark");
+                  }}
+                >
+                  <Moon className="mr-2 h-4 w-4" />
+                  <span>{t("Dark Mode")}</span>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <MessageSquare className="mr-2 h-4 w-4" />
-                  <span>Message</span>
+                <DropdownMenuItem
+                  onClick={() => {
+                    setTheme("light");
+                  }}
+                >
+                  <Sun className="mr-2 h-4 w-4" />
+                  <span>{t("Light Mode")}</span>
                 </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <PlusCircle className="mr-2 h-4 w-4" />
-                  <span>More...</span>
+                <DropdownMenuItem
+                  onClick={() => {
+                    i18n.changeLanguage("ar");
+                  }}
+                >
+                  <Languages className="mr-2 h-4 w-4" />
+                  <span>{t("AR")}</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => {
+                    i18n.changeLanguage("en");
+                  }}
+                >
+                  <Languages className="mr-2 h-4 w-4" />
+                  <span>{t("EN")}</span>
                 </DropdownMenuItem>
               </DropdownMenuSubContent>
             </DropdownMenuPortal>
           </DropdownMenuSub>
-          <DropdownMenuItem>
-            <Plus className="mr-2 h-4 w-4" />
-            <span>New Team</span>
-          </DropdownMenuItem>
         </DropdownMenuGroup>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <LifeBuoy className="mr-2 h-4 w-4" />
-          <span>Support</span>
-        </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={() => {

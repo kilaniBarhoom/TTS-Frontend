@@ -48,7 +48,6 @@ const Login = () => {
   const { toast } = useToast();
   const { user, setUser, setAccessToken } = useAuth();
   const { setError } = useError();
-  const [loadingToLogin, setLoadingToLogin] = useState(false);
 
   const form = useForm<LoginSchemaType>({
     resolver: zodResolver(loginSchema),
@@ -59,15 +58,8 @@ const Login = () => {
   });
   async function onSubmit(values: LoginSchemaType) {
     setError(undefined);
-    setLoadingToLogin(true);
     try {
       const { data: response } = await axios.post(loginEndp, values);
-
-      toast({
-        variant: "default",
-        title: t("Welcome back, {{name}}", { name: response.name }),
-        duration: 2500,
-      });
 
       const { memberId, name, email, token, refreshToken } = response;
 
@@ -81,6 +73,7 @@ const Login = () => {
       setAccessToken(token);
       setRefreshTokenInCookies(refreshToken);
       localStorage.setItem("accessToken", token);
+      localStorage.setItem("isLoggedIn", "true");
       toast({
         variant: "default",
         title: t("Welcome back, {{name}}", { name: name }),
@@ -98,8 +91,6 @@ const Login = () => {
           description: error.response.data[0],
         });
       }
-    } finally {
-      setLoadingToLogin(false);
     }
   }
   useEffect(() => {
@@ -197,8 +188,8 @@ const Login = () => {
               <Button
                 className="w-full"
                 type="submit"
-                disabled={loadingToLogin}
-                loading={loadingToLogin}
+                disabled={form.formState.isSubmitting}
+                loading={form.formState.isSubmitting}
               >
                 {t("Login")}
               </Button>
