@@ -44,7 +44,6 @@ const useAxios = () => {
       (response) => response,
       async (error) => {
         const original = error?.config;
-
         if (error.code === "ERR_NETWORK") {
           toast({
             variant: "destructive",
@@ -54,9 +53,8 @@ const useAxios = () => {
           });
         } else {
           const refreshNeeded =
-            error?.response.status === 403 &&
-            error?.response.data.message ===
-              "Token Expired, Please Refresh Token";
+            error?.response.status === 401 && !error?.response.data;
+
           if (refreshNeeded && !original.refreshed) {
             original.refreshed = true;
             try {
@@ -68,7 +66,10 @@ const useAxios = () => {
             } catch (error) {
               return Promise.reject(error);
             }
-          } else if (error.response.status === 401) {
+          } else if (
+            error.response.status === 401 &&
+            error.response.data[0] === "expired refresh token"
+          ) {
             await logout();
             setError({
               description: "Session expired please login again.",

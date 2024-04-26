@@ -1,5 +1,5 @@
 import { axios } from "@/hooks/use-axios";
-import { refreshEndp } from "@/lib/constants";
+import { logoutEndp, refreshEndp } from "@/lib/constants";
 import { UserT } from "@/lib/types";
 import { getAccessTokenFromLS } from "@/lib/utils";
 import { createContext, useContext, useState } from "react";
@@ -74,32 +74,43 @@ export const useRefreshToken = () => {
   const { setAccessToken, setUser } = useAuth();
   const refresh = async () => {
     const accessToken = getAccessTokenFromLS();
+    try {
+      const { data: response } = await axios.post(refreshEndp, null, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
 
-    const { data: response } = await axios.post(refreshEndp, null, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
+      const { token, memberId, name, email } = response;
 
-    const { token, memberId, name, email } = response;
-
-    setAccessToken(token);
-    setUser({
-      id: memberId,
-      name,
-      email,
-    });
-    return token;
+      setAccessToken(token);
+      localStorage.setItem("accessToken", token);
+      setUser({
+        id: memberId,
+        name,
+        email,
+      });
+      return token;
+    } catch {
+      console.log("Error refrshing token.....");
+    }
   };
   return refresh;
 };
 
 export const useLogout = () => {
   const { setUser, setAccessToken } = useAuth();
+  const accessToken = getAccessTokenFromLS();
   const logout = async (callEndpoint = true) => {
     try {
-      if (callEndpoint) await axios.delete("/auth/logout");
+      if (callEndpoint)
+        await axios.post(logoutEndp, null, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
     } catch (error) {
       console.log(error);
     } finally {
