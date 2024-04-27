@@ -53,7 +53,10 @@ export function HeaderProfileDrop() {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <UserAvatar name={user?.name || ""} email={user?.email || ""} />
+            <UserAvatar
+              name={user?.name || ""}
+              description={user?.email || ""}
+            />
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />

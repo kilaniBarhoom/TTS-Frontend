@@ -166,10 +166,8 @@ export const useProjectFormMutation = () => {
         queryKey: ["projects"],
       });
       toast({
-        title: data ? "Project Updated" : "Project Created",
-        description: data
-          ? "Your project has been updated successfuly"
-          : "A new project has been created successfuly",
+        title: "Project Created",
+        description: "A new project has been created successfuly",
       });
     },
     onError: (error: any) => {

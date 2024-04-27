@@ -56,7 +56,7 @@ const Projects = () => {
             />
             <div className="flex gap-2">
               <CollapsibleTrigger className="max-w-[300px] w-full bg-secondary text-primary flex flex-row items-center justify-center h-9 rounded-md gap-2">
-                {t(" Advanced filtering")} <ChevronDown size={20} />
+                {t("Advanced")} <ChevronDown size={20} />
               </CollapsibleTrigger>
               <MutationDialog>
                 <Button variant={"default"} size={"sm"} className="px-8">
