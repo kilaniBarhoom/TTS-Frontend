@@ -3,6 +3,7 @@ import { logoutEndp, refreshEndp } from "@/lib/constants";
 import { UserT } from "@/lib/types";
 import { getAccessTokenFromLS } from "@/lib/utils";
 import { createContext, useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 type AuthProviderState = {
   user: UserT | undefined;
@@ -72,6 +73,7 @@ export const getAuth = async (accessToken: string) => {
 
 export const useRefreshToken = () => {
   const { setAccessToken, setUser } = useAuth();
+  const navigate = useNavigate();
   const refresh = async () => {
     const accessToken = getAccessTokenFromLS();
     try {
@@ -93,7 +95,7 @@ export const useRefreshToken = () => {
       });
       return token;
     } catch {
-      console.log("Error refrshing token.....");
+      if (window.location.pathname !== "/") navigate("/");
     }
   };
   return refresh;
@@ -117,6 +119,7 @@ export const useLogout = () => {
       setUser(null);
       setAccessToken("");
       localStorage.removeItem("isLoggedIn");
+      localStorage.removeItem("accessToken");
     }
   };
   return logout;
