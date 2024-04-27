@@ -49,3 +49,11 @@ export interface OwnerT {
   id: string;
   name: string;
 }
+
+export type NotificationT = {
+  id: string;
+  message: string;
+  timeStamp: Date;
+  projectId: string;
+  ticketId: string;
+};
