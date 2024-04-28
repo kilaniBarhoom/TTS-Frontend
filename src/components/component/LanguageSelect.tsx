@@ -18,7 +18,7 @@ export default function LanguageSelectForm() {
       onValueChange={(e) => {
         logData(e);
       }}
-      defaultValue={localStorage.getItem("i18nextLng") || "en"}
+      defaultValue={"en"}
     >
       <SelectTrigger className="w-[8rem]">
         <SelectValue placeholder={t("English")} />
