@@ -1,8 +1,9 @@
 import { axios } from "@/hooks/use-axios";
-import { refreshEndp } from "@/lib/constants";
+import { logoutEndp, refreshEndp } from "@/lib/constants";
 import { UserT } from "@/lib/types";
 import { getAccessTokenFromLS } from "@/lib/utils";
 import { createContext, useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 type AuthProviderState = {
   user: UserT | undefined;
@@ -72,39 +73,52 @@ export const getAuth = async (accessToken: string) => {
 
 export const useRefreshToken = () => {
   const { setAccessToken, setUser } = useAuth();
+  const navigate = useNavigate();
   const refresh = async () => {
     const accessToken = getAccessTokenFromLS();
+    try {
+      const { data: response } = await axios.post(refreshEndp, null, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
 
-    const { data: response } = await axios.post(refreshEndp, null, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
+      const { token, memberId, name, email } = response;
 
-    const { token, memberId, name, email } = response;
-
-    setAccessToken(token);
-    setUser({
-      id: memberId,
-      name,
-      email,
-    });
-    return token;
+      setAccessToken(token);
+      localStorage.setItem("accessToken", token);
+      setUser({
+        id: memberId,
+        name,
+        email,
+      });
+      return token;
+    } catch {
+      if (window.location.pathname !== "/") navigate("/");
+    }
   };
   return refresh;
 };
 
 export const useLogout = () => {
   const { setUser, setAccessToken } = useAuth();
+  const accessToken = getAccessTokenFromLS();
   const logout = async (callEndpoint = true) => {
     try {
-      if (callEndpoint) await axios.delete("/auth/logout");
+      if (callEndpoint)
+        await axios.post(logoutEndp, null, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
     } catch (error) {
       console.log(error);
     } finally {
       setUser(null);
       setAccessToken("");
+      localStorage.removeItem("accessToken");
       localStorage.removeItem("isLoggedIn");
     }
   };
