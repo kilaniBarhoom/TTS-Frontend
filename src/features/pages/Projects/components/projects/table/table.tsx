@@ -27,7 +27,6 @@ const ProjectsTable = ({
       <TableHeader>
         <TableRow>
           <TableHead>Name</TableHead>
-          <TableHead className="hidden md:table-cell">Description</TableHead>
           <TableHead className="hidden md:table-cell">Start Date</TableHead>
           <TableHead className="hidden md:table-cell">End Date</TableHead>
           <TableHead className="hidden md:table-cell">Status</TableHead>
@@ -47,9 +46,6 @@ const ProjectsTable = ({
                 onClick={() => navigate(project.id.toString())}
               >
                 <div className="truncate">{project.name}</div>
-              </TableCell>
-              <TableCell className="hidden md:table-cell max-w-7">
-                <div className="truncate">{project.description}</div>
               </TableCell>
               <TableCell className="hidden md:table-cell">
                 {project.startDate}
