@@ -110,9 +110,7 @@ export const useMemberMutation = ({ projectId }: { projectId: string }) => {
       };
       console.log(payload);
 
-      return axios.post(addMemToProjEndp, {
-        payload,
-      });
+      return axios.post(addMemToProjEndp, payload);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
