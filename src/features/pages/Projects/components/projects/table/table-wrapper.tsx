@@ -1,4 +1,4 @@
-import { useGetAllProjectsQuery } from "../../api";
+import { useGetAllProjectsQuery } from "../../../api";
 import TablePagiation from "./pagination";
 import ProjectsTable from "./table";
 

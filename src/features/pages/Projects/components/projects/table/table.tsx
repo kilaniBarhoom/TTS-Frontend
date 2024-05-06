@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { ProjectT } from "@/lib/types";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ActionsColumn } from "./actons-dropdown";
 import ProjectsSkeleton from "./skeleton";
 
@@ -20,7 +20,7 @@ const ProjectsTable = ({
   isLoading: boolean;
 }) => {
   const dummyArray = Array.from({ length: 5 });
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <Table>
@@ -44,8 +44,7 @@ const ProjectsTable = ({
             <TableRow key={project.id}>
               <TableCell
                 className="font-medium hover:underline cursor-pointer max-w-6"
-                // onClick={() => navigate(project.id.toString())}
-                onClick={() => console.log(project.id)}
+                onClick={() => navigate(project.id.toString())}
               >
                 <div className="truncate">{project.name}</div>
               </TableCell>

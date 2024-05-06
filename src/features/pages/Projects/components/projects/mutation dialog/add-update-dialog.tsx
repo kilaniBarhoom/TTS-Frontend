@@ -12,7 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useProjectFormMutation } from "../../api";
+import { useProjectFormMutation } from "../../../api";
 import ProjectForm from "./form";
 
 type MutationDialogProps = {
@@ -52,6 +52,7 @@ export default function MutationDialog({ children }: MutationDialogProps) {
       console.log(error);
     }
   };
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>

@@ -20,12 +20,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
 import { cn, stringToDate } from "@/lib/utils";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { ar, enGB } from "date-fns/locale";
+import TiptapEditor from "./tiptqp-editor/tiptap-editor";
 
 const ProjectForm = ({
   projectForm,
@@ -42,7 +42,7 @@ const ProjectForm = ({
     <Form {...projectForm}>
       <form
         onSubmit={projectForm.handleSubmit(onSubmit)}
-        className="flex flex-col gap-5"
+        className="flex flex-col gap-10"
       >
         <div className="grid gap-2">
           <FormField
@@ -70,12 +70,16 @@ const ProjectForm = ({
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Textarea
+                  {/* <Textarea
                     {...field}
                     error={!!projectForm.formState.errors.description?.message}
                     autoComplete="description"
                     placeholder={t("Description")}
                     className="min-h-[100px] resize-none"
+                  /> */}
+                  <TiptapEditor
+                    discription={field.value}
+                    onChange={field.onChange}
                   />
                 </FormControl>
                 <FormMessage />
