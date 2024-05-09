@@ -28,7 +28,7 @@ export type CommentT = {
   member: OwnerT;
 };
 
-export interface ProjectT {
+export type ProjectT = {
   id: string;
   owner: OwnerT;
   name: string;
@@ -43,12 +43,13 @@ export interface ProjectT {
     | "UnderReview"
     | "Draft"
     | "OnHold";
-}
+  members?: OwnerT[];
+};
 
-export interface OwnerT {
+export type OwnerT = {
   id: string;
   name: string;
-}
+};
 
 export type NotificationT = {
   id: string;
