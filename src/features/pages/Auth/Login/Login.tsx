@@ -1,4 +1,3 @@
-import LanguageSelectForm from "@/components/component/LanguageSelect";
 import { Button } from "@/components/ui/button";
 import {
   CardContent,
@@ -103,7 +102,6 @@ const Login = () => {
       <CardHeader>
         <CardTitle className="text-2xl flex items-center justify-between">
           {t("Login")}
-          <LanguageSelectForm />
         </CardTitle>
         <CardDescription>
           {t("Enter your email below to login to your account")}.

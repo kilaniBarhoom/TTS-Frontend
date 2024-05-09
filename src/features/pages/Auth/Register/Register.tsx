@@ -1,4 +1,3 @@
-import LanguageSelectForm from "@/components/component/LanguageSelect";
 import PasswordChecker from "@/components/component/PasswordChecker";
 import { Button } from "@/components/ui/button";
 import {
@@ -110,7 +109,6 @@ const Register = () => {
       <CardHeader>
         <CardTitle className="text-2xl flex items-center justify-between">
           {t("Register")}
-          <LanguageSelectForm />
         </CardTitle>
         <CardDescription>
           {t("Enter your credentials below to register an account.")}

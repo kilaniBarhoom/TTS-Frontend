@@ -20,8 +20,8 @@ import {
 import { useForm } from "react-hook-form";
 import { AddMemberSchemaType, addMemberSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMemberMutation } from "../../../api";
-import { toast } from "@/components/ui/use-toast";
+import { useMemberMutation } from "../../../../api";
+// import { toast } from "@/components/ui/use-toast";
 import { useTranslation } from "react-i18next";
 
 export default function AddMembersDialog({
@@ -57,6 +57,7 @@ export default function AddMembersDialog({
   }
 
   const { t } = useTranslation();
+  const isLoading = form.formState.isSubmitting;
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -89,7 +90,9 @@ export default function AddMembersDialog({
                     )}
                   />
                 </div>
-                <Button type="submit">{t("Add")}</Button>
+                <Button type="submit" loading={isLoading} disabled={isLoading}>
+                  {t("Add")}
+                </Button>
               </div>
             </form>
           </Form>

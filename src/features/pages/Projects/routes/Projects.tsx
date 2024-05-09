@@ -17,10 +17,10 @@ import Typography from "@/components/ui/typography";
 import { ChevronDown, Columns3, Table } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
-import { DateRangeFilter } from "./components/filters/date-range-picker";
-import MutationDialog from "./components/mutation dialog/add-update-dialog";
-import TableWrapper from "./components/table/table-wrapper";
-
+import { DateRangeFilter } from "../components/projects/filters/date-range-picker";
+import MutationDialog from "../components/projects/mutation dialog/add-update-dialog";
+import TableWrapper from "../components/projects/table/table-wrapper";
+import { Helmet } from "react-helmet";
 const Projects = () => {
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams({
@@ -41,6 +41,9 @@ const Projects = () => {
 
   return (
     <div className="flex flex-col h-full max-h-screen">
+      <Helmet>
+        <title>Projects | TTS</title>
+      </Helmet>
       <Typography as="h2" element="h2">
         {t("Projects")}
       </Typography>
@@ -55,7 +58,7 @@ const Projects = () => {
               }
             />
             <div className="flex gap-2">
-              <CollapsibleTrigger className="max-w-[300px] w-full bg-secondary text-primary flex flex-row items-center justify-center h-9 rounded-md gap-2">
+              <CollapsibleTrigger className="px-3 bg-secondary text-primary flex flex-row items-center justify-center h-9 rounded-md gap-2">
                 {t("Advanced")} <ChevronDown size={20} />
               </CollapsibleTrigger>
               <MutationDialog>

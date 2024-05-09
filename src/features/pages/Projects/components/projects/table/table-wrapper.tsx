@@ -1,11 +1,11 @@
-import { useGetAllProjectsQuery } from "../../api";
+import { useGetAllProjectsQuery } from "../../../api";
 import TablePagiation from "./pagination";
 import ProjectsTable from "./table";
 
 export default function TableWrapper() {
   const { data: tableResponse, isLoading } = useGetAllProjectsQuery();
   return (
-    <div className="w-full border-border border-2 rounded-md">
+    <div className="w-full border-border border-2 bg-muted/20 rounded-md">
       <div className="dark:text-white">
         <ProjectsTable projects={tableResponse?.items} isLoading={isLoading} />
       </div>

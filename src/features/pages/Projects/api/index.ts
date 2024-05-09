@@ -1,18 +1,19 @@
+import { toast, useToast } from "@/components/ui/use-toast";
 import useAxios from "@/hooks/use-axios";
 import {
-  getProjEndp,
-  searchProjEndp,
-  getMemOfAProjEndp,
   addMemToProjEndp,
   createProjEndp,
   editProjEndp,
+  getMemOfAProjEndp,
+  getProjEndp,
+  searchProjEndp,
 } from "@/lib/constants";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useSearchParams } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { toast, useToast } from "@/components/ui/use-toast";
-import { AddMemberSchemaType, ProjectFormSchemaType } from "@/schemas";
 import { dateToString } from "@/lib/utils";
+import { AddMemberSchemaType, ProjectFormSchema } from "@/schemas";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
+import { useParams, useSearchParams } from "react-router-dom";
+import * as z from "zod";
 
 export const useGetAllProjectsQuery = () => {
   const axios = useAxios();
@@ -39,42 +40,26 @@ export const useGetAllProjectsQuery = () => {
   });
 };
 
-// export const getProjectByIdQuery = async () => {
-//   const axios = useAxios();
-//   const [searchParams] = useSearchParams();
-//   const search = searchParams.get("projectId");
-//   const { data: response } = await axios.get(getProjEndp, {
-//     params: { search },
-//   });
-//   console.log(response);
+export const useGetProjectByIdQuery = () => {
+  const axios = useAxios();
+  const { projectId } = useParams();
+  return useQuery({
+    queryKey: [
+      "project",
+      {
+        projectId,
+      },
+    ],
+    queryFn: async () => {
+      const { data: response } = await axios.get(getProjEndp, {
+        params: { projectId },
+      });
+      return response;
+    },
+  });
+};
 
-//   return response;
-// };
-
-// export const useAddProjectMutation = () => {
-//   const axios = useAxios();
-//   const queryClient = useQueryClient();
-
-//   const addProject = async (project: ProjectT) => {
-//     try {
-//       const { data: response } = await axios.post(searchProjEndp, project);
-//       queryClient.invalidateQueries("projects");
-//       return response;
-//     } catch (error) {
-//       throw new Error("Failed to add project");
-//     }
-//   };
-
-//   return useMutation(addProject);
-// };
-
-// get project by id
-
-export const useGetMembersByProjectId = ({
-  projectId,
-}: {
-  projectId: string;
-}) => {
+export const useGetMembersByProjectId = (projectId: string) => {
   const axios = useAxios();
 
   return useQuery({
@@ -110,9 +95,7 @@ export const useMemberMutation = ({ projectId }: { projectId: string }) => {
       };
       console.log(payload);
 
-      return axios.post(addMemToProjEndp, {
-        payload,
-      });
+      return axios.post(addMemToProjEndp, payload);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -137,26 +120,28 @@ export const useMemberMutation = ({ projectId }: { projectId: string }) => {
   });
 };
 
+// Update the useProjectFormMutation hook to accept form data object
 export const useProjectFormMutation = () => {
   const axios = useAxios();
   const queryClient = useQueryClient();
+  type PartialProjectFormData = Partial<z.infer<typeof ProjectFormSchema>>;
   return useMutation({
-    mutationFn: ({
-      data,
-      projectId,
-    }: {
-      data: ProjectFormSchemaType;
-      projectId?: string;
-    }) => {
+    mutationFn: (data: PartialProjectFormData & { projectId?: string }) => {
+      const { projectId, ...formData } = data;
+
       if (!projectId) {
         return axios.post(createProjEndp, {
-          ...data,
-          startDate: dateToString(data.startDate),
-          endDate: dateToString(data.endDate),
+          ...formData,
+          startDate: formData.startDate
+            ? dateToString(formData.startDate)
+            : undefined,
+          endDate: formData.endDate
+            ? dateToString(formData.endDate)
+            : undefined,
         });
       } else {
         return axios.put(editProjEndp, {
-          ...data,
+          ...formData,
           projectId,
         });
       }
@@ -167,7 +152,7 @@ export const useProjectFormMutation = () => {
       });
       toast({
         title: "Project Created",
-        description: "A new project has been created successfuly",
+        description: "A new project has been created successfully",
       });
     },
     onError: (error: any) => {

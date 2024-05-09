@@ -1,22 +1,58 @@
+// SideNav component
+import { useAuth } from "@/providers/auth-provider";
+import { Bell, Settings } from "lucide-react";
+import { Button } from "../ui/button";
 import Typography from "../ui/typography";
+import { CommandBox } from "./command-box";
+import { NotificationsPopover } from "./notifications/popover";
 import SideNavRender from "./side-nav-items-render";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function SideNav() {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const { t } = useTranslation();
   return (
-    <div className="hidden ltr:border-r rtl:border-l border-border bg-muted/40 md:block">
-      <div className="flex h-full max-h-screen flex-col gap-2">
-        <div className="flex h-14 items-center border-b border-border px-4 lg:h-[60px] lg:px-6">
-          <a href="/" className="flex items-center gap-2 font-semibold">
-            <Typography as={"h3"} element="h3" className="border-none">
+    <div className="ltr:border-r rtl:border-l border-border bg-background h-full flex flex-col">
+      <div className="flex items-center border-b border-border px-2 py-1">
+        {user && (
+          <>
+            <Typography as={"h5"} element="h5" className="border-none">
               TTS
             </Typography>
-          </a>
-        </div>
-        <div className="flex-1">
-          <nav className="grid items-start px-2 text-md font-medium lg:px-4">
-            <SideNavRender />
-          </nav>
-        </div>
+            <NotificationsPopover>
+              <Button
+                variant="hover"
+                size="xs"
+                className="ltr:ml-auto rtl:mr-auto"
+              >
+                <Bell size={16} />
+                <span className="sr-only">Toggle notifications</span>
+              </Button>
+            </NotificationsPopover>
+          </>
+        )}
+      </div>
+      <nav className="flex flex-col justify-start items-start text-md w-full gap-1 font-medium py-2 flex-1">
+        <CommandBox />
+        <SideNavRender />
+      </nav>
+      <div className="flex items-center border-t border-border py-2">
+        <Typography
+          as="smallText"
+          element="p"
+          onClick={() => navigate("/settings")}
+          className={`flex w-full items-center gap-2 cursor-pointer border-l-4 border-transparent transition-all duration-300 ease-in-out py-2 px-2 text-muted-foreground hover:text-secondary-foreground hover:bg-muted ${
+            pathname.includes("/settings")
+              ? "bg-muted text-secondary-foreground border-l-primary"
+              : ""
+          }`}
+        >
+          <Settings className="size-5 mr-1" />
+          {t("Settings")}
+        </Typography>
       </div>
     </div>
   );

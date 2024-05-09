@@ -16,22 +16,21 @@ const TablePagiation = ({ totalPages }: { totalPages: string }) => {
     PageSize: "",
     PageNumber: "",
   });
-
-  // auto set PageSize and PageNumber to the query params
   useEffect(() => {
-    setSearchParams(
-      (prev) => {
-        prev.delete("PageSize");
-        prev.delete("PageNumber");
-        prev.set("PageSize", "5");
-        prev.set("PageNumber", "1");
-        return prev;
-      },
-      { replace: true }
-    );
-  }, []);
+    if (!searchParams.get("PageNumber")) {
+      setSearchParams(
+        (prev) => {
+          prev.set("PageNumber", "1");
+          prev.set("PageSize", "5");
+          return prev;
+        },
+        { replace: true }
+      );
+    }
+  }, [searchParams]);
 
   const PageNumber = searchParams.get("PageNumber") || "1";
+  const PageSize = searchParams.get("PageSize") || "5";
   const setPageNumber = (value: string) => {
     setSearchParams(
       (prev) => {

@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { ProjectT } from "@/lib/types";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ActionsColumn } from "./actons-dropdown";
 import ProjectsSkeleton from "./skeleton";
 
@@ -20,14 +20,13 @@ const ProjectsTable = ({
   isLoading: boolean;
 }) => {
   const dummyArray = Array.from({ length: 5 });
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <Table>
       <TableHeader>
         <TableRow>
           <TableHead>Name</TableHead>
-          <TableHead className="hidden md:table-cell">Description</TableHead>
           <TableHead className="hidden md:table-cell">Start Date</TableHead>
           <TableHead className="hidden md:table-cell">End Date</TableHead>
           <TableHead className="hidden md:table-cell">Status</TableHead>
@@ -44,13 +43,9 @@ const ProjectsTable = ({
             <TableRow key={project.id}>
               <TableCell
                 className="font-medium hover:underline cursor-pointer max-w-6"
-                // onClick={() => navigate(project.id.toString())}
-                onClick={() => console.log(project.id)}
+                onClick={() => navigate(project.id.toString())}
               >
                 <div className="truncate">{project.name}</div>
-              </TableCell>
-              <TableCell className="hidden md:table-cell max-w-7">
-                <div className="truncate">{project.description}</div>
               </TableCell>
               <TableCell className="hidden md:table-cell">
                 {project.startDate}

@@ -1,20 +1,16 @@
-import { BellRing, Check } from "lucide-react";
+import { BellRing, Settings } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
+import Typography from "@/components/ui/typography";
 import { NotificationT } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { formatDistance } from "date-fns";
-import { useGetMemberNotifs } from "./api";
 import { useTranslation } from "react-i18next";
+import { useGetMemberNotifs } from "./api";
 
 type CardProps = React.ComponentProps<typeof Card>;
 
@@ -22,17 +18,25 @@ export default function NotificationsCard({ className, ...props }: CardProps) {
   const { data: notificationsResponse, isLoading } = useGetMemberNotifs();
   const { t } = useTranslation();
   return (
-    <Card className={cn("w-[340px] border-none", className)} {...props}>
-      <CardHeader>
-        <CardTitle>
-          <div className="flex gap-2 mb-5">
-            <BellRing />
+    <Card className={cn("border-none w-full p-0", className)} {...props}>
+      <CardHeader className="m-0 p-0">
+        <CardTitle className="flex items-center justify-between">
+          <Typography
+            as={"largeText"}
+            element="h5"
+            className="flex items-center gap-2"
+          >
+            <BellRing size={20} />
             {t("Notifications")}
-          </div>
+          </Typography>
+          <Button size="xs" variant="hover">
+            <Settings size={20} />
+          </Button>
         </CardTitle>
       </CardHeader>
-      <CardContent className="grid gap-4">
-        <ScrollArea className="h-72">
+      <Separator className="w-full border-border mt-2 mb-6" />
+      <CardContent className="grid gap-4 w-full p-0">
+        <ScrollArea className="h-52">
           <div>
             {isLoading ? (
               <div className="animate-pulse gap-3 flex flex-col ">
@@ -76,11 +80,6 @@ export default function NotificationsCard({ className, ...props }: CardProps) {
           </div>
         </ScrollArea>
       </CardContent>
-      <CardFooter>
-        <Button className="w-full">
-          Mark All As Read <Check size={20} className="ml-2" />
-        </Button>
-      </CardFooter>
     </Card>
   );
 }

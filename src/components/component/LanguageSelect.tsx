@@ -6,6 +6,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useTranslation } from "react-i18next";
+import Typography from "../ui/typography";
 
 export default function LanguageSelectForm() {
   const { t, i18n } = useTranslation();
@@ -20,12 +21,20 @@ export default function LanguageSelectForm() {
       }}
       defaultValue={"en"}
     >
-      <SelectTrigger className="w-[8rem]">
-        <SelectValue placeholder={t("English")} />
+      <SelectTrigger className="w-[5rem] py-1 px-2 h-fit">
+        <SelectValue />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="en">{t("English")}</SelectItem>
-        <SelectItem value="ar">{t("Arabic")}</SelectItem>
+        <SelectItem value="en">
+          <Typography element="p" as="extraSmallText">
+            {t("English")}
+          </Typography>
+        </SelectItem>
+        <SelectItem value="ar">
+          <Typography element="p" as="extraSmallText">
+            {t("Arabic")}
+          </Typography>
+        </SelectItem>
       </SelectContent>
     </Select>
   );

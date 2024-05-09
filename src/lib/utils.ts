@@ -8,7 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function getInitialsOfFullName(name: string | undefined) {
-  let initials = "";
+  let initials = " ";
   if (name) {
     const fullNameSplit = name.split(" ");
     const firstName = fullNameSplit[0];
