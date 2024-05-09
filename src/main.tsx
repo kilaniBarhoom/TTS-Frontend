@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import i18n from "./i18n";
 import App from "./App.tsx";
@@ -37,18 +37,16 @@ const queryClient = new QueryClient({
 });
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <ThemeProvider defaultTheme="dark">
-      <AuthProvider>
-        <ErrorProvider>
-          <QueryClientProvider client={queryClient}>
-            <Suspense fallback={<Loading />}>
-              <App />
-              <Toaster />
-            </Suspense>
-          </QueryClientProvider>
-        </ErrorProvider>
-      </AuthProvider>
-    </ThemeProvider>
-  </React.StrictMode>
+  <ThemeProvider defaultTheme="dark">
+    <AuthProvider>
+      <ErrorProvider>
+        <QueryClientProvider client={queryClient}>
+          <Suspense fallback={<Loading />}>
+            <App />
+            <Toaster />
+          </Suspense>
+        </QueryClientProvider>
+      </ErrorProvider>
+    </AuthProvider>
+  </ThemeProvider>
 );
