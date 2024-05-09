@@ -25,7 +25,7 @@ import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { ar, enGB } from "date-fns/locale";
-import TiptapEditor from "./tiptqp-editor/tiptap-editor";
+import TiptapEditor from "../../tiptqp-editor/tiptap-editor";
 
 const ProjectForm = ({
   projectForm,

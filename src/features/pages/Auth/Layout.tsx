@@ -1,15 +1,15 @@
+import Header from "@/components/navbar/header";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Card } from "@/components/ui/card";
 import { useError } from "@/providers/error-provider";
 import { useTranslation } from "react-i18next";
 import { Outlet } from "react-router-dom";
-import Header from "@/components/navbar/header";
 
 const Layout = () => {
   const { error } = useError();
   const { t } = useTranslation();
   return (
-    <div className="w-screen h-screen bg-background flex flex-col justify-between">
+    <div className="w-screen h-screen bg-background  flex flex-col justify-between">
       <header className="flex items-center gap-4 border-b border-border bg-muted/40">
         <Header />
       </header>
