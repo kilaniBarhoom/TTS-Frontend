@@ -7,7 +7,7 @@ const SideNavSheet = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="shrink-0 md:hidden">
+        <Button variant="hover" size="xs" className="shrink-0 md:hidden">
           <Menu size={20} />
           <span className="sr-only">Toggle navigation menu</span>
         </Button>

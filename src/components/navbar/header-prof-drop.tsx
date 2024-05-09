@@ -23,10 +23,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { getInitialsOfFullName } from "@/lib/utils";
 import { useAuth, useLogout } from "@/providers/auth-provider";
+import { useTheme } from "@/providers/theme-provider";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { UserAvatar } from "../component/user-avatar";
-import { useTheme } from "@/providers/theme-provider";
 
 export function HeaderProfileDrop() {
   const navigate = useNavigate();
@@ -42,13 +42,13 @@ export function HeaderProfileDrop() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="cursor-pointer" asChild>
+      <DropdownMenuTrigger className="cursor-pointer size-5" asChild>
         <Avatar>
-          <AvatarImage src={undefined} alt={user?.name} />
-          <AvatarFallback>{initials.toUpperCase()}</AvatarFallback>
+          <AvatarImage className="" src={undefined} alt={user?.name} />
+          <AvatarFallback className="">{initials.toUpperCase()}</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-64 mx-2">
+      <DropdownMenuContent className="w-64 mr-5">
         <DropdownMenuLabel>{t("My account")}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>

@@ -1,5 +1,3 @@
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   Popover,
   PopoverContent,
@@ -15,7 +13,7 @@ export function NotificationsPopover({
   return (
     <Popover>
       <PopoverTrigger asChild>{children}</PopoverTrigger>
-      <PopoverContent className="w-fit">
+      <PopoverContent className="w-[320px] ml-40 border-border">
         <NotificationsCard />
       </PopoverContent>
     </Popover>
