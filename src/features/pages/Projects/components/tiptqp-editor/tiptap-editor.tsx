@@ -1,7 +1,7 @@
-import { useEditor, EditorContent } from "@tiptap/react";
+import Heading from "@tiptap/extension-heading";
+import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import MenuBar from "./menubar";
-import Heading from "@tiptap/extension-heading";
 
 export default function TiptapEditor({
   discription,
@@ -23,7 +23,7 @@ export default function TiptapEditor({
     editorProps: {
       attributes: {
         class:
-          "rounded-md border border-border min-h-[100px] p-2 focus:ring-2 focus:ring-primary focus:ring-opacity-50 text-foreground",
+          "rounded-md border border-border min-h-[200px] p-2 focus:ring-2 focus:ring-primary focus:ring-opacity-50 text-foreground",
       },
     },
     onUpdate: ({ editor }) => {
