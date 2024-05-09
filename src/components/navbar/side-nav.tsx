@@ -1,13 +1,14 @@
 // SideNav component
 import { useAuth } from "@/providers/auth-provider";
 import { Bell, Settings } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
+import { ScrollArea } from "../ui/scroll-area";
 import Typography from "../ui/typography";
 import { CommandBox } from "./command-box";
 import { NotificationsPopover } from "./notifications/popover";
 import SideNavRender from "./side-nav-items-render";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
 export default function SideNav() {
   const { user } = useAuth();

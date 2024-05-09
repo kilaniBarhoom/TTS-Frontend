@@ -5,13 +5,14 @@ import { useGetMembersByProjectId } from "../../../../api";
 import { UserAvatar } from "@/components/component/user-avatar";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Skeleton } from "@/components/ui/skeleton";
 import { OwnerT } from "@/lib/types";
 import { Search } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export default function MembersList({ projectId }: { projectId: string }) {
-  const { data: members } = useGetMembersByProjectId(projectId);
+  const { data: members, isLoading } = useGetMembersByProjectId(projectId);
   const [search, setSearch] = useState("");
   const { t } = useTranslation();
   const filteredMembers = members?.filter((member: OwnerT) =>
@@ -33,22 +34,31 @@ export default function MembersList({ projectId }: { projectId: string }) {
           />
         </div>
       </div>
+
       <ScrollArea className="h-52">
-        {filteredMembers?.map((member: OwnerT, index: number) => (
-          <div
-            key={member.id}
-            className={`flex items-center justify-between py-2 px-4 ${
-              index === filteredMembers.length - 1
-                ? ""
-                : "border-b border-border"
-            }`}
-          >
-            <UserAvatar name={member.name} description="Owner" />
-            <Button variant="link" size="sm">
-              {t("Remove")}
-            </Button>
+        {isLoading ? (
+          <div className="flex flex-col gap-1 w-full p-4">
+            <Skeleton className="h-10" />
+            <Skeleton className="h-10" />
+            <Skeleton className="h-10" />
           </div>
-        ))}
+        ) : (
+          filteredMembers?.map((member: OwnerT, index: number) => (
+            <div
+              key={member.id}
+              className={`flex items-center justify-between py-2 px-4 ${
+                index === filteredMembers.length - 1
+                  ? ""
+                  : "border-b border-border"
+              }`}
+            >
+              <UserAvatar name={member.name} description="Owner" />
+              <Button variant="link" size="sm">
+                {t("Remove")}
+              </Button>
+            </div>
+          ))
+        )}
       </ScrollArea>
     </div>
   );
