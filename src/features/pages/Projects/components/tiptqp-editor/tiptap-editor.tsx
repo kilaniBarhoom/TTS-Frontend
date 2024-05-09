@@ -1,25 +1,17 @@
-import Heading from "@tiptap/extension-heading";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import MenuBar from "./menubar";
 
 export default function TiptapEditor({
-  discription,
+  description,
   onChange,
 }: {
-  discription: string;
+  description: string;
   onChange: (richText: string) => void;
 }) {
   const editor = useEditor({
-    extensions: [
-      StarterKit.configure({}),
-      Heading.configure({
-        HTMLAttributes: {
-          class: "text-2xl font-bold",
-        },
-      }),
-    ],
-    content: discription,
+    extensions: [StarterKit.configure({})],
+    content: description,
     editorProps: {
       attributes: {
         class:
