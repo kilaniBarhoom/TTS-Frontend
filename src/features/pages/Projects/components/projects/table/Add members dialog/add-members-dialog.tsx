@@ -90,7 +90,9 @@ export default function AddMembersDialog({
                     )}
                   />
                 </div>
-                <Button type="submit">{t("Add")}</Button>
+                <Button type="submit" loading={isLoading} disabled={isLoading}>
+                  {t("Add")}
+                </Button>
               </div>
             </form>
           </Form>
@@ -98,13 +100,7 @@ export default function AddMembersDialog({
         </div>
         <DialogFooter className="w-full">
           <DialogClose asChild>
-            <Button
-              loading={isLoading}
-              disabled={isLoading}
-              type="button"
-              variant="secondary"
-              className="w-full"
-            >
+            <Button type="button" variant="secondary" className="w-full">
               {t("Close")}
             </Button>
           </DialogClose>
