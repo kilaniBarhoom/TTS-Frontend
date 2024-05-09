@@ -14,13 +14,9 @@ const DescriptionMutate = () => {
       <Typography
         element="p"
         as={"smallText"}
-        className="text-neutral-500 w-2/4"
-      >
-        <div
-          className="leading-5 list-disc"
-          dangerouslySetInnerHTML={{ __html: project.description }}
-        />
-      </Typography>
+        dangerouslySetInnerHTML={{ __html: project.description }}
+        className="text-neutral-500 w-2/4 leading-5 list-disc"
+      ></Typography>
     </div>
   );
 };
