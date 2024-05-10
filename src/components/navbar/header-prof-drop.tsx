@@ -21,7 +21,6 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { getInitialsOfFullName } from "@/lib/utils";
 import { useAuth, useLogout } from "@/providers/auth-provider";
 import { useTheme } from "@/providers/theme-provider";
 import { useTranslation } from "react-i18next";
@@ -32,7 +31,6 @@ export function HeaderProfileDrop() {
   const navigate = useNavigate();
   const logout = useLogout();
   const { user } = useAuth();
-  const initials = getInitialsOfFullName(user?.name);
   const logoutUser = async () => {
     await logout();
     navigate("/", { replace: true });
@@ -42,13 +40,15 @@ export function HeaderProfileDrop() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="cursor-pointer size-5" asChild>
+      <DropdownMenuTrigger className="cursor-pointer size-6" asChild>
         <Avatar>
           <AvatarImage className="" src={undefined} alt={user?.name} />
-          <AvatarFallback className="">{initials.toUpperCase()}</AvatarFallback>
+          <AvatarFallback className="">
+            {user?.name[0].toUpperCase()}
+          </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-64 mr-5">
+      <DropdownMenuContent className="w-64 -mt-1 mr-5 border-border">
         <DropdownMenuLabel>{t("My account")}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
