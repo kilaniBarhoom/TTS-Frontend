@@ -1,16 +1,19 @@
 import { useAuth } from "@/providers/auth-provider";
 import { useTheme } from "@/providers/theme-provider";
-import { Menu, Moon, Sun } from "lucide-react";
+import { ArrowRightFromLine, Menu, Moon, Sun } from "lucide-react";
 import LanguageSelectForm from "../component/LanguageSelect";
 import { Button } from "../ui/button";
 import { HeaderProfileDrop } from "./header-prof-drop";
 import SideNavSheet from "./side-nav-sheet";
 import { useLocation } from "react-router-dom";
 import Typography from "../ui/typography";
+import { cn } from "@/lib/utils";
 
 const Header = ({
+  isSideNavVisible,
   setIsSideNavVisible,
 }: {
+  isSideNavVisible: boolean;
   setIsSideNavVisible?: (value: boolean) => void;
 }) => {
   const { user } = useAuth();
@@ -23,15 +26,18 @@ const Header = ({
         <>
           <SideNavSheet />
           <Button
-            variant="hover"
+            variant="secondary"
             size="xs"
             onClick={() => {
               setIsSideNavVisible &&
                 setIsSideNavVisible((prev: boolean) => !prev);
             }}
-            className="hidden md:block"
+            className={cn(
+              "hidden md:block transition-all duration-300 ease-in-out transform",
+              isSideNavVisible ? "rotate-180" : "rotate-0"
+            )}
           >
-            <Menu />
+            <ArrowRightFromLine size={16} />
           </Button>
         </>
       )}

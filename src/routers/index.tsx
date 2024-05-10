@@ -3,14 +3,14 @@ import PersistentLogin from "@/components/routing/PresistentLogin";
 import RequireAuth from "@/components/routing/RequiredAuth";
 import AuthLayout from "@/features/pages/Auth/Layout";
 import NavLayout from "@/components/navbar/layout";
-import Login from "@/features/pages/Auth/Login/Login";
-import Register from "@/features/pages/Auth/Register/Register";
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
 import ProjectsRoutes from "@/features/pages/Projects/routes";
+import Login from "@/features/pages/Auth/Login";
+import Register from "@/features/pages/Auth/Register";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
