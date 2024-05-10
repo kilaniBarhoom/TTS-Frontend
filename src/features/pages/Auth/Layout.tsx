@@ -14,7 +14,7 @@ const Layout = () => {
         <Header />
       </header>
       <div className="flex items-center justify-center m-auto shadow-md">
-        <Card className="w-full max-w-sm border-none bg-muted">
+        <Card className="w-full max-w-sm border border-border bg-background">
           {error && (
             <div className="p-5">
               <Alert variant="destructive" className="bg-red-300">
