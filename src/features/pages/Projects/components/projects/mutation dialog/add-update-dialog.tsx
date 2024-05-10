@@ -39,7 +39,7 @@ export default function MutationDialog({ children }: MutationDialogProps) {
 
   const onSubmit = async (data: ProjectFormSchemaType) => {
     try {
-      await mutateAsync({ data });
+      await mutateAsync(data);
       projectForm.reset();
       setOpen(false);
     } catch (error: any) {

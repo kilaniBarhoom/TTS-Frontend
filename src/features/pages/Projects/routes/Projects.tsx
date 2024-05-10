@@ -14,18 +14,29 @@ import {
 } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Typography from "@/components/ui/typography";
-import { ChevronDown, Columns3, Table } from "lucide-react";
+import { Columns3, Filter, Plus, Table } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
-import { DateRangeFilter } from "../components/projects/filters/date-range-picker";
+import ProjectFilters from "../components/projects/filters";
 import MutationDialog from "../components/projects/mutation dialog/add-update-dialog";
 import TableWrapper from "../components/projects/table/table-wrapper";
 import { Helmet } from "react-helmet";
+import { Separator } from "@/components/ui/separator";
+import { useEffect, useState } from "react";
 const Projects = () => {
   const { t } = useTranslation();
+  const [openFilters, setOpenFilters] = useState(false);
+
   const [searchParams, setSearchParams] = useSearchParams({
     ProjectName: "",
   });
+  useEffect(() => {
+    console.log(searchParams.has("Status"), searchParams.has("ProjectName"));
+
+    setOpenFilters(
+      searchParams.has("Status") || searchParams.has("ProjectName")
+    );
+  }, [searchParams]);
 
   const search = searchParams.get("ProjectName") || "";
   const setSearch = (value: string) => {
@@ -47,41 +58,38 @@ const Projects = () => {
       <Typography as="h2" element="h2">
         {t("Projects")}
       </Typography>
-      <Collapsible>
+      <Collapsible open={openFilters} onOpenChange={setOpenFilters}>
         <>
-          <div className="flex gap-2 w-full justify-between items-center my-2 flex-wrap sm:flex-wrap lg:flex-nowrap">
+          <div className="flex gap-2 w-full justify-between items-center my-2 flex-wrap sm:flex-wrap lg:flex-nowrap ">
             <Input
               placeholder={t("Search by project name...")}
               value={search}
               onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                 setSearch(event.target.value)
               }
+              className="h-fit"
             />
             <div className="flex gap-2">
-              <CollapsibleTrigger className="px-3 bg-secondary text-primary flex flex-row items-center justify-center h-9 rounded-md gap-2">
-                {t("Advanced")} <ChevronDown size={20} />
-              </CollapsibleTrigger>
+              <Button
+                onClick={() => setOpenFilters((p) => !p)}
+                className="h-fit gap-2"
+                variant={"secondary"}
+              >
+                <Filter size={20} />
+                {t("Filter")}
+              </Button>
               <MutationDialog>
-                <Button variant={"default"} size={"sm"} className="px-8">
+                <Button variant={"default"} className="h-fit gap-2">
+                  <Plus size={20} />
                   {t("New")}
                 </Button>
               </MutationDialog>
             </div>
           </div>
+          <Separator className="border-border w-full mb-2" />
           <div>
             <CollapsibleContent className="flex gap-2 flex-wrap">
-              <DateRangeFilter />
-              <Select>
-                <SelectTrigger className="w-28">
-                  <SelectValue placeholder="Status" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Pending">{t("Pending")}</SelectItem>
-                  <SelectItem value="Active">{t("Active")}</SelectItem>
-                  <SelectItem value="Completed">{t("Completed")}</SelectItem>
-                  <SelectItem value="Draft">{t("Draft")}</SelectItem>
-                </SelectContent>
-              </Select>
+              <ProjectFilters />
             </CollapsibleContent>
           </div>
         </>
