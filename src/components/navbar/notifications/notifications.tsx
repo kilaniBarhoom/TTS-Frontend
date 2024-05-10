@@ -1,7 +1,7 @@
 import { BellRing, Settings } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -20,7 +20,7 @@ export default function NotificationsCard({ className, ...props }: CardProps) {
   return (
     <Card className={cn("border-none w-full p-0", className)} {...props}>
       <CardHeader className="m-0 p-0">
-        <CardTitle className="flex items-center justify-between">
+        <div className="flex items-center justify-between">
           <Typography
             as={"largeText"}
             element="h5"
@@ -32,7 +32,7 @@ export default function NotificationsCard({ className, ...props }: CardProps) {
           <Button size="xs" variant="hover">
             <Settings size={20} />
           </Button>
-        </CardTitle>
+        </div>
       </CardHeader>
       <Separator className="w-full border-border mt-2 mb-6" />
       <CardContent className="grid gap-4 w-full p-0">
