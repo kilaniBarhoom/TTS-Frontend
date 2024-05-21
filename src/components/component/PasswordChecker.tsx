@@ -21,9 +21,9 @@ const PasswordChecker = ({ password }: { password: string }) => {
         className="flex gap-1 items-center"
       >
         {isAtLeast8CharactersLong ? (
-          <CircleCheckBig size={20} className="text-green-500" />
+          <CircleCheckBig size={16} className="text-green-500" />
         ) : (
-          <CircleX size={20} className="text-red-500" />
+          <CircleX size={16} className="text-red-500" />
         )}
         {t("At least 8 characters long")}
       </Typography>
@@ -33,9 +33,9 @@ const PasswordChecker = ({ password }: { password: string }) => {
         className="flex gap-1 items-center"
       >
         {hasUppercase ? (
-          <CircleCheckBig size={20} className="text-green-500" />
+          <CircleCheckBig size={16} className="text-green-500" />
         ) : (
-          <CircleX size={20} className="text-red-500" />
+          <CircleX size={16} className="text-red-500" />
         )}
         {t("At least 1 capital letter")}
       </Typography>
@@ -45,9 +45,9 @@ const PasswordChecker = ({ password }: { password: string }) => {
         className="flex gap-1 items-center"
       >
         {hasSpecialCharacter ? (
-          <CircleCheckBig size={20} className="text-green-500" />
+          <CircleCheckBig size={16} className="text-green-500" />
         ) : (
-          <CircleX size={20} className="text-red-500" />
+          <CircleX size={16} className="text-red-500" />
         )}
         {t("At least 1 special character")}
       </Typography>
@@ -57,9 +57,9 @@ const PasswordChecker = ({ password }: { password: string }) => {
         className="flex gap-1 items-center"
       >
         {hasNumber ? (
-          <CircleCheckBig size={20} className="text-green-500" />
+          <CircleCheckBig size={16} className="text-green-500" />
         ) : (
-          <CircleX size={20} className="text-red-500" />
+          <CircleX size={16} className="text-red-500" />
         )}
         {t("At least 1 number")}
       </Typography>

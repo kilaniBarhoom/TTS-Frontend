@@ -4,7 +4,7 @@ const Loading = () => {
       <img
         src="/assets/globals/TTSLogo.png"
         alt="logo"
-        className="h-72 w-96 bounce"
+        className="size-72 bounce"
       />
     </div>
   );
