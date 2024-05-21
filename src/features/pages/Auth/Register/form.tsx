@@ -17,6 +17,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import ErrorAlert from "../components/error-alert";
 const registerForm = ({
   onSubmit,
   registerForm,
@@ -137,6 +138,7 @@ const registerForm = ({
               )}
             />
           </div>
+          <ErrorAlert />
         </CardContent>
         <CardFooter className="flex flex-col gap-1">
           <div className="w-full flex flex-col gap-2">

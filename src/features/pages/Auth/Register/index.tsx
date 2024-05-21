@@ -88,23 +88,13 @@ const Register = () => {
   }, []);
   const loadingToRegister = registerForm.formState.isSubmitting;
   return (
-    <>
-      <CardHeader>
-        <CardTitle className="text-2xl flex items-center justify-between">
-          {t("Register")}
-        </CardTitle>
-        <CardDescription>
-          {t("Enter your credentials below to register an account.")}
-        </CardDescription>
-      </CardHeader>
-      <RegisterForm
-        onSubmit={onSubmit}
-        registerForm={registerForm}
-        loadingToRegister={loadingToRegister}
-        passwordInputFocused={passwordInputFocused}
-        setPasswordInputFocused={setPasswordInputFocused}
-      />
-    </>
+    <RegisterForm
+      onSubmit={onSubmit}
+      registerForm={registerForm}
+      loadingToRegister={loadingToRegister}
+      passwordInputFocused={passwordInputFocused}
+      setPasswordInputFocused={setPasswordInputFocused}
+    />
   );
 };
 

@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useError } from "@/providers/error-provider";
+import ErrorAlert from "../components/error-alert";
 
 const LoginForm = ({
   onSubmit,
@@ -97,6 +98,7 @@ const LoginForm = ({
               {t("forgot password?")}
             </Typography>
           </div>
+          <ErrorAlert />
         </CardContent>
         <CardFooter className="flex flex-col gap-1">
           <div className="w-full flex flex-col gap-2">

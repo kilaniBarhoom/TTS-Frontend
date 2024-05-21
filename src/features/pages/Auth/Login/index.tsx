@@ -1,5 +1,3 @@
-import { CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-
 import { useToast } from "@/components/ui/use-toast";
 import { axios } from "@/hooks/use-axios";
 import { loginEndp } from "@/lib/constants";
@@ -81,21 +79,11 @@ const Login = () => {
   }, []);
   const loadingToLogin = loginForm.formState.isSubmitting;
   return (
-    <>
-      <CardHeader>
-        <CardTitle className="text-2xl flex items-center justify-between">
-          {t("Login")}
-        </CardTitle>
-        <CardDescription>
-          {t("Enter your email below to login to your account")}.
-        </CardDescription>
-      </CardHeader>
-      <LoginForm
-        onSubmit={onSubmit}
-        loginForm={loginForm}
-        loadingToLogin={loadingToLogin}
-      />
-    </>
+    <LoginForm
+      onSubmit={onSubmit}
+      loginForm={loginForm}
+      loadingToLogin={loadingToLogin}
+    />
   );
 };
 
