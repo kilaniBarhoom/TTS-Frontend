@@ -4,7 +4,6 @@ import { Bell, Settings } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
-import { ScrollArea } from "../ui/scroll-area";
 import Typography from "../ui/typography";
 import { CommandBox } from "./command-box";
 import { NotificationsPopover } from "./notifications/popover";
@@ -25,7 +24,7 @@ export default function SideNav() {
             </Typography>
             <NotificationsPopover>
               <Button
-                variant="hover"
+                variant="ghost"
                 size="xs"
                 className="ltr:ml-auto rtl:mr-auto"
               >

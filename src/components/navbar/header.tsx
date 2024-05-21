@@ -13,7 +13,7 @@ const Header = ({
   isSideNavVisible,
   setIsSideNavVisible,
 }: {
-  isSideNavVisible: boolean;
+  isSideNavVisible?: boolean;
   setIsSideNavVisible?: (value: boolean) => void;
 }) => {
   const { user } = useAuth();
@@ -48,7 +48,7 @@ const Header = ({
       )}
       <div className="flex items-center ltr:ml-auto rtl:mr-auto gap-3">
         <Button
-          variant="hover"
+          variant="ghost"
           size="xs"
           onClick={() => {
             setTheme(theme === "dark" ? "light" : "dark");
