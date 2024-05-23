@@ -44,9 +44,9 @@ export default function SideNav() {
             as="smallText"
             element="p"
             onClick={() => navigate("/settings")}
-            className={`flex w-full items-center gap-2 cursor-pointer border-l-4 border-transparent transition-all duration-300 ease-in-out py-2 px-2 text-muted-foreground hover:text-secondary-foreground hover:bg-muted ${
+            className={`flex w-full items-center gap-2 cursor-pointer border-l-4 border-transparent transition-all duration-300 ease-in-out py-2 px-2 text-muted-foreground hover:text-secondary-foreground hover:bg-background ${
               pathname.includes("/settings")
-                ? "bg-muted text-secondary-foreground border-l-primary"
+                ? "bg-background text-secondary-foreground border-l-primary"
                 : ""
             }`}
           >
