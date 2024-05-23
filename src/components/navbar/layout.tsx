@@ -11,8 +11,8 @@ export default function Layout() {
     <div className="flex-1 flex">
       <div
         className={cn(
-          "bg-sidebar border-r border-border hidden md:block transition-all duration-300 ease-in-out overflow-y-auto",
-          isSideNavVisible ? "w-80" : "w-0"
+          "bg-sidebar border-r border-border hidden md:block min-w-64 transition-all duration-300 ease-in-out overflow-y-auto",
+          isSideNavVisible ? "w-72" : "w-0 min-w-0"
         )}
       >
         <SideNav />
