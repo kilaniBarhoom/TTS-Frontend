@@ -11,13 +11,13 @@ import Typography from "../ui/typography";
 export default function LanguageSelectForm() {
   const { t, i18n } = useTranslation();
 
-  const logData = (data: any) => {
+  const changeLanguage = (data: any) => {
     i18n.changeLanguage(data);
   };
   return (
     <Select
       onValueChange={(e) => {
-        logData(e);
+        changeLanguage(e);
       }}
       defaultValue={"en"}
     >
