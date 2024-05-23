@@ -35,7 +35,7 @@ export default function NotificationsCard({ className, ...props }: CardProps) {
         </div>
       </CardHeader>
       <Separator className="w-full border-border" />
-      <CardContent className="grid gap-4 w-full p-4">
+      <CardContent className="grid gap-4 w-full p-4 dark:bg-black bg-neutral-100">
         <ScrollArea className="h-52">
           <div>
             {isLoading ? (
