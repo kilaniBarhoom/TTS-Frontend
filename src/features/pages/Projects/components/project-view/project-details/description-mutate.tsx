@@ -13,7 +13,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import * as z from "zod";
-import TiptapEditor from "../../../../../../components/tiptap-editor";
+import TiptapEditor from "@/components/tiptap-editor";
 import { useProjectFormMutation } from "../../../api";
 import { useProject } from "../../../provider";
 
