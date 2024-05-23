@@ -19,7 +19,7 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost:
           "hover:bg-accent text-secondary-foreground hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+        link: "text-muted-foreground underline-offset-4 hover:underline",
         hover: "text-muted-foreground hover:text-secondary-foreground",
       },
       size: {
@@ -46,26 +46,31 @@ export interface ButtonProps
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    { className, variant, size, asChild = false, loading = false, ...props },
+    {
+      className,
+      variant,
+      size,
+      asChild = false,
+      loading = false,
+      children,
+      ...props
+    },
     ref
   ) => {
     const Comp = asChild ? Slot : "button";
-    props.children = loading ? (
-      <>
-        <Loader2 className={`${size !== "icon"} size-6 animate-spin`} />
-      </>
-    ) : (
-      props.children
-    );
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...props}
-      />
+      >
+        {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+        {children}
+      </Comp>
     );
   }
 );
+
 Button.displayName = "Button";
 
 export { Button, buttonVariants };
