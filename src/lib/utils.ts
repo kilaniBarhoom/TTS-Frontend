@@ -1,7 +1,7 @@
-import { type ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
-import Cookies from "js-cookie";
+import { clsx, type ClassValue } from "clsx";
 import { format } from "date-fns";
+import Cookies from "js-cookie";
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -10,10 +10,12 @@ export function cn(...inputs: ClassValue[]) {
 export function getInitialsOfFullName(name: string | undefined) {
   let initials = " ";
   if (name) {
-    const fullNameSplit = name.split(" ");
-    const firstName = fullNameSplit[0];
-    const lastName = fullNameSplit[fullNameSplit.length - 1];
-    initials = `${firstName.charAt(0) ?? ""} ${lastName.charAt(0) ?? ""}`;
+    const nameParts = name.split(" ");
+    if (nameParts.length === 2) {
+      initials = `${nameParts[0].charAt(0)} ${nameParts[1].charAt(0)}`;
+    } else {
+      initials = name.charAt(0);
+    }
   }
   return initials;
 }

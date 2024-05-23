@@ -19,6 +19,7 @@ export type TicketT = {
   dueDate: string;
   ticketPriority: "Low" | "High" | "Medium";
   ticketStatus: "Pending" | "Completed" | "Canceled" | "InProgress";
+  comments: CommentT[];
 };
 
 export type CommentT = {

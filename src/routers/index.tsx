@@ -11,6 +11,7 @@ import {
 import ProjectsRoutes from "@/features/pages/Projects/routes";
 import Login from "@/features/pages/Auth/Login";
 import Register from "@/features/pages/Auth/Register";
+import TicketsRoutes from "@/features/pages/Tickets/routes";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -34,6 +35,13 @@ const router = createBrowserRouter(
             <Route
               path="/projects/*"
               element={<ProjectsRoutes />}
+              errorElement={
+                <ErrorHandler status={500} title="Internal Server Error!" />
+              }
+            />
+            <Route
+              path="/tickets/*"
+              element={<TicketsRoutes />}
               errorElement={
                 <ErrorHandler status={500} title="Internal Server Error!" />
               }

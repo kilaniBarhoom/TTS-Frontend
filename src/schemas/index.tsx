@@ -55,3 +55,9 @@ export const addMemberSchema = z.object({
 });
 
 export type AddMemberSchemaType = z.infer<typeof addMemberSchema>;
+
+export const CommentFormSchema = z.object({
+  content: z.string().min(1, t("Comment is required")),
+});
+
+export type CommentFormSchemaType = z.infer<typeof CommentFormSchema>;
