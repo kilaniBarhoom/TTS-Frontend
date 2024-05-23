@@ -21,7 +21,7 @@ export default function LanguageSelectForm() {
       }}
       defaultValue={"en"}
     >
-      <SelectTrigger className="w-[5rem] py-1 px-2 h-fit">
+      <SelectTrigger size="sm">
         <SelectValue />
       </SelectTrigger>
       <SelectContent>
