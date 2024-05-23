@@ -34,6 +34,8 @@ export const getMemNotifsEndp = import.meta.env
 export const getTicketsByProjectId = import.meta.env
   .VITE_GET_TICKETS_BY_PROJECTID_ENDPOINT;
 export const getTicketById = import.meta.env.VITE_GET_TICKETS_BY_ID_ENDPOINT;
+export const createTicketEndp = import.meta.env.VITE_Create_TICKET_ENDPOINT;
+export const editTicketEndp = import.meta.env.VITE_EDIT_TICKET_ENDPOINT;
 
 export const addCommentEndp = import.meta.env.VITE_ADD_COMMENT_ENDPOINT;
 export const editCommentEndp = import.meta.env.VITE_EDIT_COMMENT_ENDPOINT;

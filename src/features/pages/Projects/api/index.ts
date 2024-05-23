@@ -59,7 +59,13 @@ export const useGetProjectByIdQuery = () => {
   });
 };
 
-export const useGetMembersByProjectId = (projectId: string) => {
+export const useGetMembersByProjectId = (projectId?: string) => {
+  if (!projectId) {
+    return {
+      data: [],
+      isLoading: false,
+    };
+  }
   const axios = useAxios();
 
   return useQuery({
