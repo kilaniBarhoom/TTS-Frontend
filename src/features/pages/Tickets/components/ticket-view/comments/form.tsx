@@ -12,6 +12,8 @@ import { useForm } from "react-hook-form";
 import { useCommentMutation } from "../../../api";
 import TiptapEditor from "@/features/pages/Projects/components/tiptqp-editor/tiptap-editor";
 import { CommentT } from "@/lib/types";
+import { useState, useRef, useEffect } from "react";
+import { Input } from "@/components/ui/input";
 
 const CommentForm = ({
   comment,
@@ -20,6 +22,9 @@ const CommentForm = ({
   comment?: CommentT;
   setIsEditingComment?: (value: boolean) => void;
 }) => {
+  const [isWritingANewComment, setIsWritingANewComment] = useState(false);
+  const formRef = useRef(null);
+
   const commentForm = useForm<CommentFormSchemaType>({
     resolver: zodResolver(CommentFormSchema),
     defaultValues: {
@@ -41,8 +46,28 @@ const CommentForm = ({
       console.log(error);
     } finally {
       setIsEditingComment?.(false);
+      setIsWritingANewComment(false);
     }
   };
+
+  const handleClickOutside = (event) => {
+    if (formRef.current && !formRef.current.contains(event.target)) {
+      setIsEditingComment?.(false);
+      setIsWritingANewComment(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isWritingANewComment || comment) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isWritingANewComment, comment]);
 
   const submitButton = comment ? (
     <div className="flex space-x-2 items-center">
@@ -66,42 +91,54 @@ const CommentForm = ({
       </Button>
     </div>
   ) : (
-    <Button
-      type="submit"
-      size="sm"
-      className="mt-4"
-      loading={isLoading}
-      disabled={isLoading}
-    >
-      Add Comment
-    </Button>
+    <div className="flex space-x-2 items-center mt-4">
+      <Button type="submit" size="sm" loading={isLoading} disabled={isLoading}>
+        Add Comment
+      </Button>
+      <Button
+        size="sm"
+        variant="secondary"
+        disabled={isLoading}
+        onClick={() => setIsWritingANewComment(false)}
+      >
+        Cancel
+      </Button>
+    </div>
   );
 
   return (
     <Form {...commentForm}>
       <form
+        ref={formRef}
         onSubmit={commentForm.handleSubmit(onSubmit)}
         className="flex flex-col gap-3 w-full items-start"
       >
         <div className="grid gap-2 w-full">
-          <FormField
-            control={commentForm.control}
-            name="content"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <TiptapEditor
-                    content={field.value}
-                    onChange={field.onChange}
-                    error={!!commentForm.formState.errors.content?.message}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          {comment || isWritingANewComment ? (
+            <FormField
+              control={commentForm.control}
+              name="content"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <TiptapEditor
+                      content={field.value}
+                      onChange={field.onChange}
+                      error={!!commentForm.formState.errors.content?.message}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          ) : (
+            <Input
+              placeholder="Add a comment..."
+              onFocus={() => setIsWritingANewComment(true)}
+            />
+          )}
         </div>
-        {submitButton}
+        {(isWritingANewComment || comment) && submitButton}
       </form>
     </Form>
   );

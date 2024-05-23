@@ -10,7 +10,7 @@ const ErrorAlert = () => {
     <>
       {error && (
         <div className="w-full">
-          <Alert variant="destructive" className="bg-red-100 border-none p-2">
+          <Alert variant="destructive" className="bg-red-200 border-none p-2">
             {error?.description && (
               <AlertDescription className="dark:text-secondary text-secondary-foreground flex items-center gap-2">
                 <CircleX size={16} className="text-red-500" />

@@ -16,7 +16,7 @@ export default function TiptapEditor({
     content: content,
     editorProps: {
       attributes: {
-        class: `rounded-md rounded-t-none outline-none ring-0  min-h-[200px] p-2 text-foreground ${
+        class: `rounded-md rounded-t-none outline-0 focus:ring-2 focus:ring-ring  min-h-[200px] p-2 text-foreground ${
           error && "ring-2 ring-destructive/50"
         }`,
       },
