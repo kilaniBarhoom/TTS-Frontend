@@ -3,19 +3,22 @@ import StarterKit from "@tiptap/starter-kit";
 import MenuBar from "./menubar";
 
 export default function TiptapEditor({
-  description,
+  content,
   onChange,
+  error,
 }: {
-  description: string;
+  content: string;
   onChange: (richText: string) => void;
+  error?: boolean;
 }) {
   const editor = useEditor({
     extensions: [StarterKit.configure({})],
-    content: description,
+    content: content,
     editorProps: {
       attributes: {
-        class:
-          "rounded-md border border-border min-h-[200px] p-2 focus:ring-2 focus:ring-primary focus:ring-opacity-50 text-foreground",
+        class: `rounded-md rounded-t-none outline-none ring-0  min-h-[200px] p-2 text-foreground ${
+          error && "ring-2 ring-destructive/50"
+        }`,
       },
     },
     onUpdate: ({ editor }) => {
@@ -24,7 +27,7 @@ export default function TiptapEditor({
   });
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="grid border border-border rounded-md">
       <MenuBar editor={editor} />
       <EditorContent editor={editor} />
     </div>

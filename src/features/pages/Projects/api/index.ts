@@ -1,4 +1,4 @@
-import { toast, useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/components/ui/use-toast";
 import useAxios from "@/hooks/use-axios";
 import {
   addMemToProjEndp,
@@ -104,7 +104,7 @@ export const useMemberMutation = ({ projectId }: { projectId: string }) => {
       toast({
         variant: "default",
         title: t("Success"),
-        description: t("Project was added successfully"),
+        description: t("New member was added successfully"),
       });
     },
     onError: (error: any) => {
@@ -146,13 +146,9 @@ export const useProjectFormMutation = () => {
         });
       }
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["projects"],
-      });
-      toast({
-        title: "Project Created",
-        description: "A new project has been created successfully",
+        queryKey: ["project"],
       });
     },
     onError: (error: any) => {

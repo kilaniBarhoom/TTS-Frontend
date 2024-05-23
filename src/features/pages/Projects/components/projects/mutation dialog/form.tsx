@@ -70,15 +70,8 @@ const ProjectForm = ({
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  {/* <Textarea
-                    {...field}
-                    error={!!projectForm.formState.errors.description?.message}
-                    autoComplete="description"
-                    placeholder={t("Description")}
-                    className="min-h-[100px] resize-none"
-                  /> */}
                   <TiptapEditor
-                    discription={field.value}
+                    content={field.value}
                     onChange={field.onChange}
                   />
                 </FormControl>

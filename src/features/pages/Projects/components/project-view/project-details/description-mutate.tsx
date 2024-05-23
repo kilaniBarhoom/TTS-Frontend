@@ -1,22 +1,109 @@
+import { useState } from "react";
 import Typography from "@/components/ui/typography";
-import { useProject } from "../provider";
 import { useTranslation } from "react-i18next";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useProject } from "../../../provider";
+import { useProjectFormMutation } from "../../../api";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form";
+import { Button } from "@/components/ui/button";
+import TiptapEditor from "../../tiptqp-editor/tiptap-editor";
+import { Check, X } from "lucide-react";
 
 const DescriptionMutate = () => {
   const { project } = useProject();
   const { t } = useTranslation();
+  const [isEditing, setIsEditing] = useState(false);
+
+  const DescriptionSchema = z.object({
+    description: z.string().min(3, "Description must be at least 3 characters"),
+  });
+
+  type DescriptionSchemaType = z.infer<typeof DescriptionSchema>;
+
+  const descriptionForm = useForm<DescriptionSchemaType>({
+    resolver: zodResolver(DescriptionSchema),
+    defaultValues: {
+      description: project?.description || "",
+    },
+  });
+
+  const { mutateAsync } = useProjectFormMutation();
+
+  const onSubmit = async (data: DescriptionSchemaType) => {
+    try {
+      await mutateAsync({ ...data, projectId: project?.id });
+      setIsEditing(false);
+    } catch (error) {
+      // Handle submission error
+    }
+  };
+
+  const isLoading = descriptionForm.formState.isSubmitting;
+
+  const handleCancel = () => {
+    descriptionForm.reset();
+    setIsEditing(false);
+  };
+
   return (
     <div className="grid gap-2">
       <Typography element="p" as="smallText" className="font-bold">
         {t("Description")}:
       </Typography>
-      {/* <TiptapEditor discription={project.discription} /> */}
-      <Typography
-        element="p"
-        as={"smallText"}
-        dangerouslySetInnerHTML={{ __html: project.description }}
-        className="text-neutral-500 w-2/4 leading-5 list-disc"
-      ></Typography>
+      <Form {...descriptionForm}>
+        <form onSubmit={descriptionForm.handleSubmit(onSubmit)}>
+          <FormField
+            control={descriptionForm.control}
+            name="description"
+            render={({ field }) => (
+              <FormItem>
+                {isEditing ? (
+                  <>
+                    <FormControl>
+                      <TiptapEditor
+                        content={field.value}
+                        onChange={field.onChange}
+                      />
+                    </FormControl>
+                    <div className="flex space-x-2 mt-2">
+                      <Button
+                        type="submit"
+                        size={"xs"}
+                        loading={isLoading}
+                        disabled={isLoading}
+                      >
+                        <Check size={16} />
+                      </Button>
+                      <Button
+                        size={"xs"}
+                        variant="secondary"
+                        onClick={handleCancel}
+                      >
+                        <X size={16} />
+                      </Button>
+                    </div>
+                  </>
+                ) : (
+                  <div
+                    className="text-neutral-500 w-2/4 leading-5 list-disc cursor-text"
+                    onClick={() => setIsEditing(true)}
+                    dangerouslySetInnerHTML={{ __html: field.value }}
+                  />
+                )}
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </form>
+      </Form>
     </div>
   );
 };

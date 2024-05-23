@@ -1,13 +1,24 @@
 import Typography from "@/components/ui/typography";
 import { Ticket } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import { useProject } from "../../../provider";
 
 const ToolCard = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const { project } = useProject();
+
   return (
-    <div className="flex border border-border cursor-pointer hover:bg-muted transition-all duration-200 ease-in-out rounded-md items-center w-fit h-24">
+    <div
+      onClick={() => {
+        navigate(`/tickets?projectId=${project?.id.toString()}`, {
+          replace: true,
+        });
+      }}
+      className="flex border border-border cursor-pointer hover:bg-muted transition-all duration-200 ease-in-out rounded-md items-center w-fit h-24"
+    >
       <div className="flex-[0.2] bg-primary h-full rounded-l-md flex items-center justify-center">
-        {/* icon */}
         <Ticket size={30} className="-rotate-45" />
       </div>
       <div className="p-2 flex-1">
