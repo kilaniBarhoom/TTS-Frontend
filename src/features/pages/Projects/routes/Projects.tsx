@@ -31,7 +31,7 @@ const Projects = () => {
     ProjectName: "",
   });
   useEffect(() => {
-    console.log(searchParams.has("Status"), searchParams.has("ProjectName"));
+    // console.log(searchParams.has("Status"), searchParams.has("ProjectName"));
 
     setOpenFilters(
       searchParams.has("Status") || searchParams.has("ProjectName")
@@ -96,10 +96,10 @@ const Projects = () => {
       </Collapsible>
       <Tabs defaultValue="table" className="w-full">
         <TabsList className="border-b-[1px] w-full justify-start rtl:flex-row-reverse border-border">
-          <TabsTrigger value="table" className="gap-1 items-center flex">
+          <TabsTrigger value="table">
             <Table size={20} /> {t("Table")}
           </TabsTrigger>
-          <TabsTrigger value="board" className="gap-1 items-center flex">
+          <TabsTrigger value="board">
             <Columns3 size={20} /> {t("Board")}
           </TabsTrigger>
         </TabsList>
