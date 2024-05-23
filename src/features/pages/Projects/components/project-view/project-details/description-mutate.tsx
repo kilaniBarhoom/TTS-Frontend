@@ -1,11 +1,4 @@
-import { useState } from "react";
-import Typography from "@/components/ui/typography";
-import { useTranslation } from "react-i18next";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useProject } from "../../../provider";
-import { useProjectFormMutation } from "../../../api";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -13,9 +6,16 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
-import TiptapEditor from "../../tiptqp-editor/tiptap-editor";
+import Typography from "@/components/ui/typography";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Check, X } from "lucide-react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import * as z from "zod";
+import TiptapEditor from "../../../../../../components/tiptap-editor";
+import { useProjectFormMutation } from "../../../api";
+import { useProject } from "../../../provider";
 
 const DescriptionMutate = () => {
   const { project } = useProject();
