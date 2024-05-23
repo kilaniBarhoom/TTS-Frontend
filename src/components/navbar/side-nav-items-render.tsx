@@ -10,7 +10,7 @@ const SideNavRender = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   return (
-    <>
+    <div className="grid gap-2">
       {SideNavItems.map((item) => (
         <Typography
           as="smallText"
@@ -27,7 +27,7 @@ const SideNavRender = () => {
           {t(item.title)}
         </Typography>
       ))}
-    </>
+    </div>
   );
 };
 

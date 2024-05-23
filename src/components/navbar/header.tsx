@@ -1,6 +1,6 @@
 import { useAuth } from "@/providers/auth-provider";
 import { useTheme } from "@/providers/theme-provider";
-import { ArrowRightFromLine, Menu, Moon, Sun } from "lucide-react";
+import { ArrowRightFromLine, Moon, Sun } from "lucide-react";
 import LanguageSelectForm from "../component/LanguageSelect";
 import { Button } from "../ui/button";
 import { HeaderProfileDrop } from "./header-prof-drop";
@@ -21,7 +21,7 @@ const Header = ({
   const { pathname } = useLocation();
 
   return (
-    <div className="flex items-center justify-between w-full py-1 ltr:pr-4 rtl:pl-4 max-w-screen-2xl mx-auto px-2">
+    <div className="flex items-center justify-between w-full py-2 ltr:pr-4 rtl:pl-4 max-w-screen-2xl mx-auto px-2">
       {user && (
         <>
           <SideNavSheet />

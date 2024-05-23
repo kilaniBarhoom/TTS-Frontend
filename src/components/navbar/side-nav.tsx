@@ -1,4 +1,3 @@
-// SideNav component
 import { useAuth } from "@/providers/auth-provider";
 import { Bell, Settings } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -15,8 +14,8 @@ export default function SideNav() {
   const { pathname } = useLocation();
   const { t } = useTranslation();
   return (
-    <div className="ltr:border-r rtl:border-l border-border bg-background h-full flex flex-col">
-      <div className="flex items-center border-b border-border px-2 py-1">
+    <div className="ltr:border-r rtl:border-l border-border dark:bg-black bg-neutral-100 flex flex-col w-full h-full">
+      <div className="flex items-center px-2 py-2">
         {user && (
           <>
             <Typography as={"h5"} element="h5" className="border-none">
@@ -35,25 +34,27 @@ export default function SideNav() {
           </>
         )}
       </div>
-      <nav className="flex flex-col justify-start items-start text-md w-full gap-1 font-medium py-2 flex-1">
-        <CommandBox />
-        <SideNavRender />
+      <nav className="flex flex-col justify-start items-start text-md w-full gap-1 font-medium py-2 flex-1 overflow-y-auto">
+        <div className="lg:flex-1 w-full">
+          <CommandBox />
+          <SideNavRender />
+        </div>
+        <div className="flex items-center border-t border-border py-2 w-full">
+          <Typography
+            as="smallText"
+            element="p"
+            onClick={() => navigate("/settings")}
+            className={`flex w-full items-center gap-2 cursor-pointer border-l-4 border-transparent transition-all duration-300 ease-in-out py-2 px-2 text-muted-foreground hover:text-secondary-foreground hover:bg-muted ${
+              pathname.includes("/settings")
+                ? "bg-muted text-secondary-foreground border-l-primary"
+                : ""
+            }`}
+          >
+            <Settings className="size-5 mr-1" />
+            {t("Settings")}
+          </Typography>
+        </div>
       </nav>
-      <div className="flex items-center border-t border-border py-2">
-        <Typography
-          as="smallText"
-          element="p"
-          onClick={() => navigate("/settings")}
-          className={`flex w-full items-center gap-2 cursor-pointer border-l-4 border-transparent transition-all duration-300 ease-in-out py-2 px-2 text-muted-foreground hover:text-secondary-foreground hover:bg-muted ${
-            pathname.includes("/settings")
-              ? "bg-muted text-secondary-foreground border-l-primary"
-              : ""
-          }`}
-        >
-          <Settings className="size-5 mr-1" />
-          {t("Settings")}
-        </Typography>
-      </div>
     </div>
   );
 }

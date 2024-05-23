@@ -12,13 +12,13 @@ export default function Layout() {
       <div
         className={cn(
           "bg-sidebar border-r border-border hidden md:block transition-all duration-300 ease-in-out overflow-y-auto",
-          isSideNavVisible ? "w-64" : "w-0"
+          isSideNavVisible ? "w-80" : "w-0"
         )}
       >
         <SideNav />
       </div>
       <div className="bg-background min-h-screen w-full flex flex-col">
-        <header className="flex items-center gap-4 border-b border-border bg-muted/40 ">
+        <header className="flex items-center gap-4 border-b border-border dark:bg-black bg-neutral-100 ">
           <Header
             isSideNavVisible={isSideNavVisible}
             setIsSideNavVisible={setIsSideNavVisible}
