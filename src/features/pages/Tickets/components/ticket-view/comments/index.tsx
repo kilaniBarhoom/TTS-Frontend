@@ -6,6 +6,7 @@ import { useAuth } from "@/providers/auth-provider";
 import { useTicket } from "../provider";
 import CommentForm from "./form";
 import Comment from "./comment";
+import Typography from "@/components/ui/typography";
 
 const Comments = () => {
   const { user } = useAuth();
@@ -22,12 +23,18 @@ const Comments = () => {
         <CommentForm />
       </div>
       <div className="grid gap-2 p-4">
-        {ticket?.comments.map((comment: CommentT) => (
-          <div key={comment.id} className="grid gap-2">
-            <Comment comment={comment} />
-            <Separator className="w-11/12 mx-auto" />
-          </div>
-        ))}
+        {ticket?.comments.length ? (
+          ticket?.comments.map((comment: CommentT) => (
+            <div key={comment.id} className="grid gap-2">
+              <Comment comment={comment} />
+              <Separator className="w-11/12 mx-auto" />
+            </div>
+          ))
+        ) : (
+          <Typography className="text-center" as={"largeText"} element="p">
+            No comments yet
+          </Typography>
+        )}
       </div>
     </div>
   );

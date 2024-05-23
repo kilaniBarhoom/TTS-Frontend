@@ -2,7 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import Typography from "@/components/ui/typography";
 import { CommentT } from "@/lib/types";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDeleteCommentMutation } from "../../../api";
 import DeleteAlertDialog from "./delete-alert-dialog";
 import CommentForm from "./form";
@@ -11,10 +11,6 @@ const Comment = ({ comment }: { comment: CommentT }) => {
   const [isEditingComment, setIsEditingComment] = useState(false);
 
   const { mutate: deleteComment } = useDeleteCommentMutation();
-
-  useEffect(() => {
-    console.log("isEditingComment", isEditingComment);
-  }, [isEditingComment]);
 
   return isEditingComment ? (
     <CommentForm comment={comment} setIsEditingComment={setIsEditingComment} />
