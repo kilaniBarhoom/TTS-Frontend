@@ -24,6 +24,19 @@
     --input: 20 5.9% 90%;
     --ring: 20 14.3% 4.1%;
     --radius: 0.3rem;
+
+    --status-active: 217.2 91.2% 59.8%; /* Blue */
+    --status-completed: 120 57% 40%; /* Green */
+    --status-onhold: 30 100% 50%; /* Orange */
+    --status-canceled: 0 100% 50%; /* Red */
+    --status-pending: 60 100% 50%; /* Yellow */
+    --status-delayed: 45 100% 50%; /* Amber */
+    --status-underreview: 270 60% 70%; /* Light Purple */
+    --status-draft: 300 60% 70%; /* Pink */
+
+    --priority-high: 0 100% 50%; /* Red */
+    --priority-medium: 39 100% 50%; /* Orange */
+    --priority-low: 120 60% 70%; /* Light Green */
   }
 
   .dark {
@@ -46,6 +59,19 @@
     --border: 300 1% 22%;
     --input: 12 6.5% 15.1%;
     --ring: 24 5.7% 82.9%;
+
+    --status-active: 217.2 91.2% 59.8%; /* Blue */
+    --status-completed: 120 57% 40%; /* Green */
+    --status-onhold: 30 100% 50%; /* Orange */
+    --status-canceled: 0 100% 50%; /* Red */
+    --status-pending: 60 100% 50%; /* Yellow */
+    --status-delayed: 45 100% 50%; /* Amber */
+    --status-underreview: 270 60% 70%; /* Light Purple */
+    --status-draft: 300 60% 70%; /* Pink */
+
+    --priority-high: 0 100% 50%; /* Red */
+    --priority-medium: 39 100% 50%; /* Orange */
+    --priority-low: 120 60% 70%; /* Light Green */
   }
 }
 

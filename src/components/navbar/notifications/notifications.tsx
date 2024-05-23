@@ -19,7 +19,7 @@ export default function NotificationsCard({ className, ...props }: CardProps) {
   const { t } = useTranslation();
   return (
     <Card className={cn("border-none w-full p-0", className)} {...props}>
-      <CardHeader className="m-0 p-0">
+      <CardHeader className="m-0 p-0 bg-muted">
         <div className="flex items-center justify-between px-4 py-2">
           <Typography
             as={"largeText"}
@@ -35,7 +35,7 @@ export default function NotificationsCard({ className, ...props }: CardProps) {
         </div>
       </CardHeader>
       <Separator className="w-full border-border" />
-      <CardContent className="grid gap-4 w-full p-4 dark:bg-black bg-neutral-100">
+      <CardContent className="grid gap-4 w-full p-4 bg-background">
         <ScrollArea className="h-52">
           <div>
             {isLoading ? (

@@ -12,6 +12,7 @@ import { TicketT } from "@/lib/types";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import TicketDialog from "../../ticket-view/ticket-dialog";
 import TicketsSkeleton from "./skeleton";
+import { cn } from "@/lib/utils";
 
 const TicketsTable = ({
   tickets,
@@ -79,12 +80,38 @@ const TicketsTable = ({
               </TableCell>
 
               <TableCell>
-                <Badge variant="default" size="sm">
+                <Badge
+                  variant="leftBordered"
+                  size="sm"
+                  className={cn(
+                    ticket.ticketPriority === "Low"
+                      ? "border-l-priority-low text-primary-foreground hover:bg-primary/30"
+                      : ticket.ticketPriority === "Medium"
+                      ? "border-l-priority-medium text-secondary-foreground hover:bg-secondary/30"
+                      : ticket.ticketPriority === "High"
+                      ? "border-l-priority-high text-destructive-foreground hover:bg-destructive/30"
+                      : ""
+                  )}
+                >
                   {ticket.ticketPriority}
                 </Badge>
               </TableCell>
               <TableCell>
-                <Badge variant="outline" size="sm">
+                <Badge
+                  variant="outline"
+                  size="sm"
+                  className={cn(
+                    ticket.ticketStatus === "InProgress"
+                      ? "border-status-active bg-status-active/40 text-status-active-foreground hover:bg-status-active/30"
+                      : ticket.ticketStatus === "Pending"
+                      ? "border-status-pending bg-status-pending/40 text-status-pending-foreground hover:bg-status-pending/30"
+                      : ticket.ticketStatus === "Completed"
+                      ? "border-status-completed bg-status-completed/40 text-status-completed-foreground hover:bg-status-completed/30"
+                      : ticket.ticketStatus === "Canceled"
+                      ? "border-status-canceled bg-status-canceled/40 text-status-canceled-foreground hover:bg-status-canceled/30"
+                      : ""
+                  )}
+                >
                   {ticket.ticketStatus}
                 </Badge>
               </TableCell>

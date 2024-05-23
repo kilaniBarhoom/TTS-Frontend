@@ -54,6 +54,23 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Add status colors
+        status: {
+          active: "hsl(var(--status-active))",
+          completed: "hsl(var(--status-completed))",
+          onhold: "hsl(var(--status-onhold))",
+          canceled: "hsl(var(--status-canceled))",
+          pending: "hsl(var(--status-pending))",
+          delayed: "hsl(var(--status-delayed))",
+          underreview: "hsl(var(--status-underreview))",
+          draft: "hsl(var(--status-draft))",
+        },
+        // Add priority colors
+        priority: {
+          high: "hsl(var(--priority-high))",
+          medium: "hsl(var(--priority-medium))",
+          low: "hsl(var(--priority-low))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -66,8 +83,8 @@ module.exports = {
           to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: 0 },
+          from: { height: 0 },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "collapsible-down": {
           from: { height: 0 },
@@ -81,8 +98,8 @@ module.exports = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        'collapsible-down': 'collapsible-down 0.2s ease-out',
-        'collapsible-up': 'collapsible-up 0.2s ease-out',
+        "collapsible-down": "collapsible-down 0.2s ease-out",
+        "collapsible-up": "collapsible-up 0.2s ease-out",
       },
     },
   },

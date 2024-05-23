@@ -20,6 +20,7 @@ export type TicketT = {
   ticketPriority: "Low" | "High" | "Medium";
   ticketStatus: "Pending" | "Completed" | "Canceled" | "InProgress";
   comments: CommentT[];
+  watchers: OwnerT[];
 };
 
 export type CommentT = {
@@ -38,12 +39,13 @@ export type ProjectT = {
   endDate: string;
   projectStatus:
     | "Active"
-    | "Pending"
-    | "Canceled"
     | "Completed"
+    | "OnHold"
+    | "Canceled"
+    | "Pending"
+    | "Delayed"
     | "UnderReview"
-    | "Draft"
-    | "OnHold";
+    | "Draft";
   members?: OwnerT[];
 };
 
