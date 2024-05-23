@@ -18,7 +18,7 @@ import { Columns3, Filter, Plus, Table } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 import ProjectFilters from "../components/projects/filters";
-import MutationDialog from "../components/projects/mutation dialog/add-update-dialog";
+import MutationDialog from "../components/projects/mutation dialog/mutation-dialog";
 import TableWrapper from "../components/projects/table/table-wrapper";
 import { Helmet } from "react-helmet";
 import { Separator } from "@/components/ui/separator";
