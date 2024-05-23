@@ -1,3 +1,4 @@
+import TiptapEditor from "@/components/tiptap-editor";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -6,14 +7,13 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { CommentT } from "@/lib/types";
 import { CommentFormSchema, CommentFormSchemaType } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useCommentMutation } from "../../../api";
-import TiptapEditor from "@/features/pages/Projects/components/tiptqp-editor/tiptap-editor";
-import { CommentT } from "@/lib/types";
-import { useState, useRef, useEffect } from "react";
-import { Input } from "@/components/ui/input";
 
 const CommentForm = ({
   comment,

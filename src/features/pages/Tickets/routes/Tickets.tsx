@@ -24,6 +24,7 @@ import { Separator } from "@/components/ui/separator";
 import { useEffect, useState } from "react";
 import TableWrapper from "../components/tickets/table/table-wrapper";
 import { TicketProvider } from "../components/ticket-view/provider";
+import AddTicketDialog from "../components/tickets/add-ticket-dialog";
 const Projects = () => {
   const { t } = useTranslation();
   const [openFilters, setOpenFilters] = useState(false);
@@ -79,12 +80,12 @@ const Projects = () => {
                 <Filter size={20} />
                 {t("Filter")}
               </Button>
-              {/* <MutationDialog> */}
-              <Button variant={"default"} className="h-fit gap-2">
-                <Plus size={20} />
-                {t("New")}
-              </Button>
-              {/* </MutationDialog> */}
+              <AddTicketDialog>
+                <Button variant={"default"} className="h-fit gap-2">
+                  <Plus size={20} />
+                  {t("New")}
+                </Button>
+              </AddTicketDialog>
             </div>
           </div>
           <Separator className="border-border w-full mb-2" />

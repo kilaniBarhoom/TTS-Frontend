@@ -56,6 +56,23 @@ export const addMemberSchema = z.object({
 
 export type AddMemberSchemaType = z.infer<typeof addMemberSchema>;
 
+export const TicketFormSchema = z.object({
+  name: z.string().min(1, t("Name is required")),
+  description: z.string().min(1, t("Description is required")),
+  startDate: z.any({
+    required_error: "Start date is required",
+  }),
+  dueDate: z.any({
+    required_error: "Due date is required",
+  }),
+  ticketStatus: z.string().min(1, t("Ticket status is required")),
+  ticketPriority: z.string().min(1, t("Ticket priority is required")),
+  projectId: z.string().min(1, t("Project is required")),
+  assigneeId: z.string().min(1, t("Assignee is required")),
+});
+
+export type TicketFormSchemaType = z.infer<typeof TicketFormSchema>;
+
 export const CommentFormSchema = z.object({
   content: z.string().min(1, t("Comment is required")),
 });

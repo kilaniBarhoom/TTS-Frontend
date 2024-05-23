@@ -9,7 +9,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { TicketT } from "@/lib/types";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import TicketDialog from "../../ticket-view/ticket-dialog";
 import TicketsSkeleton from "./skeleton";
 
@@ -38,14 +38,12 @@ const TicketsTable = ({
     );
   };
 
-  const { projectId } = useParams();
-
   return (
     <Table>
       <TableHeader>
         <TableRow>
           <TableHead className="min-w-52">Name</TableHead>
-          {projectId && <TableHead className="min-w-52">Project</TableHead>}
+          <TableHead className="min-w-52">Project</TableHead>
           <TableHead>Priority</TableHead>
           <TableHead>Status</TableHead>
           <TableHead>Assignee</TableHead>
@@ -69,25 +67,26 @@ const TicketsTable = ({
                   </div>
                 </TicketDialog>
               </TableCell>
-              {projectId && (
-                <TableCell
-                  className="font-medium hover:underline cursor-pointer min-w-fit"
-                  onClick={() =>
-                    navigate(`/projects/${ticket.project?.id?.toString()}`, {
-                      replace: true,
-                    })
-                  }
-                >
-                  {ticket.project.name}
-                </TableCell>
-              )}
+              <TableCell
+                className="font-medium hover:underline cursor-pointer min-w-fit"
+                onClick={() =>
+                  navigate(`/projects/${ticket.project?.id?.toString()}`, {
+                    replace: true,
+                  })
+                }
+              >
+                {ticket.project.name}
+              </TableCell>
+
               <TableCell>
-                <Badge variant="default" className="rounded-full">
+                <Badge variant="default" size="sm">
                   {ticket.ticketPriority}
                 </Badge>
               </TableCell>
               <TableCell>
-                <Badge variant="outline">{ticket.ticketStatus}</Badge>
+                <Badge variant="outline" size="sm">
+                  {ticket.ticketStatus}
+                </Badge>
               </TableCell>
               <TableCell>
                 <UserAvatar name={ticket.assignee.name} avatarSize="size-6" />
