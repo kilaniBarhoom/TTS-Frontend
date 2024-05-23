@@ -6,6 +6,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { Slash } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 type TreeT = {
@@ -34,7 +35,9 @@ const BreadcrumbComponent = ({
                 {item.title}
               </BreadcrumbLink>
             </BreadcrumbItem>
-            <BreadcrumbSeparator />
+            <BreadcrumbSeparator className="ml-2">
+              <Slash className="-rotate-12" size={16} />
+            </BreadcrumbSeparator>
           </div>
         ))}
         <BreadcrumbItem>
