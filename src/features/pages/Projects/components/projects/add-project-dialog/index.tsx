@@ -15,12 +15,12 @@ import { useTranslation } from "react-i18next";
 import { useProjectFormMutation } from "../../../api";
 import ProjectForm from "./form";
 
-type MutationDialogProps = {
+type AddProjectDialogProps = {
   children: React.ReactNode;
   project?: ProjectT;
 };
 
-export default function MutationDialog({ children }: MutationDialogProps) {
+export default function AddProjectDialog({ children }: AddProjectDialogProps) {
   const projectForm = useForm<ProjectFormSchemaType>({
     resolver: zodResolver(ProjectFormSchema),
     defaultValues: {

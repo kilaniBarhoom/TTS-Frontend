@@ -18,7 +18,7 @@ import { Columns3, Filter, Plus, Table } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 import ProjectFilters from "../components/projects/filters";
-import MutationDialog from "../components/projects/mutation dialog/mutation-dialog";
+import AddProjectDialog from "../components/projects/add-project-dialog";
 import TableWrapper from "../components/projects/table/table-wrapper";
 import { Helmet } from "react-helmet";
 import { Separator } from "@/components/ui/separator";
@@ -78,12 +78,12 @@ const Projects = () => {
                 <Filter size={20} />
                 {t("Filter")}
               </Button>
-              <MutationDialog>
+              <AddProjectDialog>
                 <Button variant={"default"} className="h-fit gap-2">
                   <Plus size={20} />
                   {t("New")}
                 </Button>
-              </MutationDialog>
+              </AddProjectDialog>
             </div>
           </div>
           <Separator className="border-border w-full mb-2" />
