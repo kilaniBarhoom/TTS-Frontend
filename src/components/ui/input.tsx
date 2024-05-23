@@ -21,11 +21,10 @@ export interface InputProps
     VariantProps<typeof InputVariants> {
   icon?: JSX.Element;
   error?: boolean;
-  noRing?: boolean;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, icon, iconPosition, error, noRing, ...props }, ref) => {
+  ({ className, type, icon, iconPosition, error, ...props }, ref) => {
     return (
       <>
         {icon ? (
@@ -38,11 +37,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             <input
               type={type}
               className={cn(
-                "flex h-10 w-full rounded-md border border-input hover:bg-muted bg-background px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground text-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
+                "flex h-10 w-full rounded-md border border-input hover:bg-muted/30 bg-background px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground text-foreground focus-visible:outline-none focus-visible:border-secondary-foreground disabled:cursor-not-allowed disabled:opacity-50",
                 className,
                 iconPosition !== "right" ? "pl-10 pr-4" : "pl-4 pr-10",
-                error ? "border-destructive" : "",
-                noRing ? "" : "focus-visible:border-secondary-foreground"
+                error ? "border-destructive" : ""
               )}
               ref={ref}
               {...props}
@@ -57,10 +55,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           <input
             type={type}
             className={cn(
-              "flex h-10 w-full rounded-md border border-input hover:bg-muted bg-background px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground text-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
+              "flex h-10 w-full rounded-md border border-input hover:bg-muted/30 bg-background px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground text-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 focus-visible:border-secondary-foreground",
               className,
-              error ? "border-destructive" : "",
-              noRing ? "" : "focus-visible:border-secondary-foreground"
+              error ? "border-destructive" : ""
             )}
             ref={ref}
             {...props}
