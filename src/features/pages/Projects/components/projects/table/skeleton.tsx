@@ -13,9 +13,6 @@ const ProjectsSkeleton = () => {
       <TableCell className="hidden md:table-cell">
         <Skeleton className="h-8 rounded-md w-full" />
       </TableCell>
-      <TableCell className="hidden md:table-cell">
-        <Skeleton className="h-8 rounded-md w-full" />
-      </TableCell>
       <TableCell>
         <Skeleton className="h-8 rounded-md w-full" />
       </TableCell>

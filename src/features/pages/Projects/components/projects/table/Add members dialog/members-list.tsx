@@ -52,7 +52,7 @@ export default function MembersList({ projectId }: { projectId: string }) {
                   : "border-b border-border"
               }`}
             >
-              <UserAvatar name={member.name} description="Owner" />
+              <UserAvatar name={member.name} />
               <Button variant="link" size="sm">
                 {t("Remove")}
               </Button>

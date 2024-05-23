@@ -68,7 +68,7 @@ export default function AddMembersDialog({
             {t("Add new mwmbers to this project via email.")}
           </DialogDescription>
         </DialogHeader>
-        <div className="w-full p-6 pb-0 flex flex-col gap-5">
+        <div className="w-full p-2 pb-0 flex flex-col gap-5">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="flex items-center gap-2">
@@ -98,7 +98,7 @@ export default function AddMembersDialog({
           </Form>
           <MembersList projectId={projectId} />
         </div>
-        <DialogFooter className="w-full">
+        <DialogFooter className="w-full px-2">
           <DialogClose asChild>
             <Button type="button" variant="secondary" className="w-full">
               {t("Close")}

@@ -43,7 +43,9 @@ const ProjectsTable = ({
             <TableRow key={project.id}>
               <TableCell
                 className="font-medium hover:underline cursor-pointer max-w-6"
-                onClick={() => navigate(project.id.toString())}
+                onClick={() =>
+                  navigate(project.id.toString(), { replace: true })
+                }
               >
                 <div className="truncate">{project.name}</div>
               </TableCell>

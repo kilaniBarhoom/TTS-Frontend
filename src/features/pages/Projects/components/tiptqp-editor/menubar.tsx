@@ -12,7 +12,7 @@ const MenuBar = ({ editor }: MenuBarProps) => {
   }
 
   return (
-    <div className="flex gap-2">
+    <div className="flex border-b p-2 border-border gap-2">
       <Toggle
         size="sm"
         pressed={editor.isActive("bold")}
@@ -20,7 +20,7 @@ const MenuBar = ({ editor }: MenuBarProps) => {
           editor.chain().focus().toggleBold().run();
         }}
       >
-        <Bold size={20}></Bold>
+        <Bold size={20} />
       </Toggle>
       <Toggle
         size="sm"
@@ -29,7 +29,7 @@ const MenuBar = ({ editor }: MenuBarProps) => {
           editor.chain().focus().toggleItalic().run();
         }}
       >
-        <Italic size={20}></Italic>
+        <Italic size={20} />
       </Toggle>
       <Toggle
         size="sm"
@@ -38,7 +38,7 @@ const MenuBar = ({ editor }: MenuBarProps) => {
           editor.chain().focus().toggleStrike().run();
         }}
       >
-        <Strikethrough size={20}></Strikethrough>
+        <Strikethrough size={20} />
       </Toggle>
       <Toggle
         size="sm"
@@ -56,7 +56,7 @@ const MenuBar = ({ editor }: MenuBarProps) => {
           editor.chain().focus().toggleHeading({ level: 1 }).run();
         }}
       >
-        <Heading size={20}></Heading>
+        <Heading size={20} />
       </Toggle>
       <Toggle
         size="sm"
@@ -65,7 +65,7 @@ const MenuBar = ({ editor }: MenuBarProps) => {
           editor.chain().focus().toggleBulletList().run();
         }}
       >
-        <List size={20}></List>
+        <List size={20} />
       </Toggle>
     </div>
   );
