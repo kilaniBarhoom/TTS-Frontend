@@ -1,4 +1,3 @@
-import { Badge } from "@/components/ui/badge"; // Assuming you have a Badge component
 import {
   Form,
   FormControl,
@@ -21,6 +20,7 @@ import { useTranslation } from "react-i18next";
 import * as z from "zod";
 import { useProjectFormMutation } from "../../../api";
 import { useProject } from "../../../provider";
+import ProjectStatusBadge from "../../component/project-status-badge";
 
 const StatusMutate = () => {
   const { project } = useProject();
@@ -100,12 +100,11 @@ const StatusMutate = () => {
                     </SelectContent>
                   </Select>
                 ) : (
-                  <Badge
-                    className="font-bold cursor-pointer"
-                    onClick={handleBadgeClick}
-                  >
-                    {t(field.value)}
-                  </Badge>
+                  <ProjectStatusBadge
+                    status={field.value}
+                    className="cursor-pointer "
+                    onAction={() => handleBadgeClick()}
+                  />
                 )}
                 <FormMessage />
               </FormItem>

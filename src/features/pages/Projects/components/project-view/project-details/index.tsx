@@ -39,17 +39,13 @@ const ProjectDetails = () => {
               tree={[{ title: "Projects", link: "/projects" }]}
               currentPage={project?.name}
             />
-            <div className="grid gap-1">
-              <div>
-                <NameMutate />
-              </div>
-              <div className=" grid gap-5">
-                <StatusMutate />
-                <DateMutate />
-                <Owner />
-                <MembersMutate />
-                <DescriptionMutate />
-              </div>
+            <div className="grid gap-5">
+              <NameMutate />
+              <StatusMutate />
+              <DateMutate />
+              <Owner />
+              <MembersMutate />
+              <DescriptionMutate />
             </div>
           </div>
         )
