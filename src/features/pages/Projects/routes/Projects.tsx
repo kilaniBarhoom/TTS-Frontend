@@ -43,7 +43,7 @@ const Projects = () => {
       <Typography as="h2" element="h2">
         {t("Projects")}
       </Typography>
-      <div className="flex gap-2 justify-between items-center flex-wrap md:flex-nowrap my-2 mb-5">
+      <div className="flex gap-2 justify-between items-center flex-wrap md:flex-nowrap my-5">
         <Input
           placeholder={t("Search by project name...")}
           value={search}
@@ -67,7 +67,7 @@ const Projects = () => {
           </Button>
           <AddProjectDialog>
             <Button variant={"default"} size={"sm"} className="h-full gap-2">
-              <Plus size={20} />
+              <Plus size={15} />
               {t("New")}
             </Button>
           </AddProjectDialog>
@@ -78,15 +78,19 @@ const Projects = () => {
           <TabsTrigger value="table">
             <Table size={20} /> {t("Table")}
           </TabsTrigger>
-          <TabsTrigger value="board">
-            <Columns3 size={20} /> {t("Board")}
+          <TabsTrigger value="kanban">
+            <Columns3 size={20} /> {t("Kanban")}
           </TabsTrigger>
         </TabsList>
 
         <TabsContent value="table">
           <TableWrapper />
         </TabsContent>
-        <TabsContent value="board">Change your password here.</TabsContent>
+        <TabsContent value="kanban">
+          <Typography element="h4" as={"h4"}>
+            {t("Comming soon.")}
+          </Typography>
+        </TabsContent>
       </Tabs>
     </div>
   );
