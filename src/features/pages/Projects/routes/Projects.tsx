@@ -36,7 +36,7 @@ const Projects = () => {
   };
 
   return (
-    <div className="flex flex-col h-full max-h-screen">
+    <div className="flex flex-col h-full">
       <Helmet>
         <title>Projects | TTS</title>
       </Helmet>
@@ -56,12 +56,12 @@ const Projects = () => {
         />
         <div className="flex gap-2">
           <ProjectFiltersPopover>
-            <Button className="h-full gap-2" size={"sm"} variant="ghost">
+            <Button className="h-full gap-2" size={"sm"} variant="outline">
               <Filter size={15} />
               {t("Filter")}
             </Button>
           </ProjectFiltersPopover>
-          <Button className="h-full gap-2" size={"sm"} variant="ghost">
+          <Button className="h-full gap-2" size={"sm"} variant="outline">
             <AlignJustify size={15} />
             {t("Group By")}
           </Button>

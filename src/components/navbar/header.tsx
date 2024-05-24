@@ -16,34 +16,14 @@ import { HeaderProfileDrop } from "./header-prof-drop";
 import { NotificationsPopover } from "./notifications/popover";
 import SideNavSheet from "./side-nav-sheet";
 
-const Header = ({
-  isSideNavVisible,
-  setIsSideNavVisible,
-}: {
-  isSideNavVisible?: boolean;
-  setIsSideNavVisible?: (value: boolean) => void;
-}) => {
+const Header = () => {
   const { user } = useAuth();
   const { theme, setTheme } = useTheme();
   const { pathname } = useLocation();
 
   return (
     <div className="flex items-center justify-between w-full py-2 ltr:pr-4 rtl:pl-4 max-w-screen-2xl mx-auto px-2">
-      {user && (
-        <>
-          <SideNavSheet />
-          <Button
-            variant="ghostOnNav"
-            size="xs"
-            onClick={() => {
-              setIsSideNavVisible && setIsSideNavVisible(true);
-            }}
-            className={cn(isSideNavVisible ? "hidden" : "md:block hidden")}
-          >
-            <PanelRightClose size={16} />
-          </Button>
-        </>
-      )}
+      {user && <SideNavSheet />}
       {["/", "/register"].includes(pathname) && (
         <Typography as={"h5"} element="h5" className="border-none">
           TTS

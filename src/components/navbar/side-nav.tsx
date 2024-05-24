@@ -15,7 +15,7 @@ export default function SideNav({
   const { pathname } = useLocation();
   const { t } = useTranslation();
   return (
-    <div className="ltr:border-r rtl:border-l border-border dark:bg-black bg-neutral-100 flex flex-col w-full h-full">
+    <div className="ltr:border-r rtl:border-l border-border bg-muted flex flex-col w-full h-full">
       <div className="flex items-center px-2 py-2">
         <Typography as={"h5"} element="h5" className="border-none">
           TTS
