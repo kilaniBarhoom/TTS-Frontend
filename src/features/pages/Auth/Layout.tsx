@@ -32,7 +32,7 @@ const Layout = () => {
             />
           </div>
 
-          <CardHeader>
+          <CardHeader className="mt-5">
             <CardTitle className="text-2xl flex items-center justify-between">
               {cardTitle}
             </CardTitle>
