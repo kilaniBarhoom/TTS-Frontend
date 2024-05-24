@@ -1,13 +1,20 @@
+import { cn } from "@/lib/utils";
 import { useAuth } from "@/providers/auth-provider";
 import { useTheme } from "@/providers/theme-provider";
-import { ArrowRightFromLine, Moon, Sun } from "lucide-react";
+import {
+  ArrowRightFromLine,
+  Bell,
+  Moon,
+  PanelRightClose,
+  Sun,
+} from "lucide-react";
+import { useLocation } from "react-router-dom";
 import LanguageSelectForm from "../component/LanguageSelect";
 import { Button } from "../ui/button";
-import { HeaderProfileDrop } from "./header-prof-drop";
-import SideNavSheet from "./side-nav-sheet";
-import { useLocation } from "react-router-dom";
 import Typography from "../ui/typography";
-import { cn } from "@/lib/utils";
+import { HeaderProfileDrop } from "./header-prof-drop";
+import { NotificationsPopover } from "./notifications/popover";
+import SideNavSheet from "./side-nav-sheet";
 
 const Header = ({
   isSideNavVisible,
@@ -26,18 +33,14 @@ const Header = ({
         <>
           <SideNavSheet />
           <Button
-            variant="secondary"
+            variant="ghostOnNav"
             size="xs"
             onClick={() => {
-              setIsSideNavVisible &&
-                setIsSideNavVisible((prev: boolean) => !prev);
+              setIsSideNavVisible && setIsSideNavVisible(true);
             }}
-            className={cn(
-              "hidden md:block transition-all duration-300 ease-in-out transform",
-              isSideNavVisible ? "rotate-180" : "rotate-0"
-            )}
+            className={cn(isSideNavVisible ? "hidden" : "md:block hidden")}
           >
-            <ArrowRightFromLine size={16} />
+            <PanelRightClose size={16} />
           </Button>
         </>
       )}
@@ -46,9 +49,21 @@ const Header = ({
           TTS
         </Typography>
       )}
-      <div className="flex items-center ltr:ml-auto rtl:mr-auto gap-3">
+      <div className="flex items-center ltr:ml-auto rtl:mr-auto gap-2">
+        {user && (
+          <NotificationsPopover>
+            <Button
+              variant="ghostOnNav"
+              size="xs"
+              className="ltr:ml-auto rtl:mr-auto"
+            >
+              <Bell size={16} />
+              <span className="sr-only">Toggle notifications</span>
+            </Button>
+          </NotificationsPopover>
+        )}
         <Button
-          variant="ghost"
+          variant="ghostOnNav"
           size="xs"
           onClick={() => {
             setTheme(theme === "dark" ? "light" : "dark");

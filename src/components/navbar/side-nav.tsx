@@ -1,38 +1,35 @@
-import { useAuth } from "@/providers/auth-provider";
-import { Bell, Settings } from "lucide-react";
+import { PanelLeftClose, Settings } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Button } from "../ui/button";
 import Typography from "../ui/typography";
 import { CommandBox } from "./command-box";
-import { NotificationsPopover } from "./notifications/popover";
 import SideNavRender from "./side-nav-items-render";
+import { Button } from "../ui/button";
 
-export default function SideNav() {
-  const { user } = useAuth();
+export default function SideNav({
+  setIsSideNavVisible,
+}: {
+  setIsSideNavVisible?: (value: boolean) => void;
+}) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { t } = useTranslation();
   return (
     <div className="ltr:border-r rtl:border-l border-border dark:bg-black bg-neutral-100 flex flex-col w-full h-full">
       <div className="flex items-center px-2 py-2">
-        {user && (
-          <>
-            <Typography as={"h5"} element="h5" className="border-none">
-              TTS
-            </Typography>
-            <NotificationsPopover>
-              <Button
-                variant="ghost"
-                size="xs"
-                className="ltr:ml-auto rtl:mr-auto"
-              >
-                <Bell size={16} />
-                <span className="sr-only">Toggle notifications</span>
-              </Button>
-            </NotificationsPopover>
-          </>
-        )}
+        <Typography as={"h5"} element="h5" className="border-none">
+          TTS
+        </Typography>
+        <Button
+          variant={"ghostOnNav"}
+          size="xs"
+          onClick={() => {
+            setIsSideNavVisible && setIsSideNavVisible(false);
+          }}
+          className="ltr:ml-auto rtl:mr-auto"
+        >
+          <PanelLeftClose size={16} />
+        </Button>
       </div>
       <nav className="flex flex-col justify-start items-start text-md w-full gap-1 font-medium py-2 flex-1 overflow-y-auto">
         <div className="lg:flex-1 w-full">

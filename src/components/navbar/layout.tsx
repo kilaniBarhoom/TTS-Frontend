@@ -15,7 +15,7 @@ export default function Layout() {
           isSideNavVisible ? "w-72" : "w-0 min-w-0"
         )}
       >
-        <SideNav />
+        <SideNav setIsSideNavVisible={setIsSideNavVisible} />
       </div>
       <div className="bg-background min-h-screen w-full flex flex-col">
         <header className="flex items-center gap-4 border-b border-border dark:bg-black bg-neutral-100 ">
