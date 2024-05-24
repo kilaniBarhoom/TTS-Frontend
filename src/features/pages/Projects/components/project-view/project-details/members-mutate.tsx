@@ -55,8 +55,11 @@ const MembersMutate = () => {
                 ))}
               </div>
             </HoverCardTrigger>
-            <HoverCardContent className="relative mt-3 w-fit border border-border grid gap-4 h-fit p-2">
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 transform  w-0 h-0 border-solid border-8 border-r-transparent border-l-transparent border-t-transparent border-b-border" />
+            <HoverCardContent
+              align="start"
+              className="relative mt-2 w-fit border border-border grid gap-4 h-fit p-2"
+            >
+              <div className="absolute -top-4 left-0 translate-x-1 transform  w-0 h-0 border-solid border-8 border-r-transparent border-l-transparent border-t-transparent border-b-border" />
 
               <Typography element="p" as={"smallText"}>
                 Members:

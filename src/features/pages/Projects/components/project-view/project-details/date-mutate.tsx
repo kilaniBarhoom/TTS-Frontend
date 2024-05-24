@@ -51,7 +51,7 @@ const DateMutate = () => {
     }
   };
 
-  const handleDateChange = async (field, date) => {
+  const handleDateChange = async (field, date?: Date) => {
     field.onChange(date.toISOString());
     await dateForm.handleSubmit(onSubmit)();
   };

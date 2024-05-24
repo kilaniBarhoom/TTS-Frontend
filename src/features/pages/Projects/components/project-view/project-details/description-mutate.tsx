@@ -71,6 +71,7 @@ const DescriptionMutate = () => {
                       <TiptapEditor
                         content={field.value}
                         onChange={field.onChange}
+                        placeholder="Description"
                       />
                     </FormControl>
                     <div className="flex space-x-2 mt-2">
@@ -93,7 +94,7 @@ const DescriptionMutate = () => {
                   </>
                 ) : (
                   <div
-                    className="text-neutral-500 w-2/4 leading-5 list-disc cursor-text"
+                    className="text-neutral-500 w-2/4 leading-5 list-disc cursor-text hover:bg-muted/30"
                     onClick={() => setIsEditing(true)}
                     dangerouslySetInnerHTML={{ __html: field.value }}
                   />
