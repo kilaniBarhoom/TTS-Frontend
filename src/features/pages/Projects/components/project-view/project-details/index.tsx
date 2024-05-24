@@ -40,10 +40,10 @@ const ProjectDetails = () => {
               currentPage={project?.name}
             />
             <div className="grid gap-1">
-              <div className="mt-4">
+              <div>
                 <NameMutate />
               </div>
-              <div className="px-4 grid gap-5">
+              <div className=" grid gap-5">
                 <StatusMutate />
                 <DateMutate />
                 <Owner />

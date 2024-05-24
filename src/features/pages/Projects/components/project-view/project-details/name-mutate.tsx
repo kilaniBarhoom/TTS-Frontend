@@ -6,6 +6,8 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
+import { Textarea } from "@/components/ui/textarea";
+import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Check, X } from "lucide-react";
 import { useState } from "react";
@@ -13,7 +15,6 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { useProjectFormMutation } from "../../../api";
 import { useProject } from "../../../provider";
-import { Textarea } from "@/components/ui/textarea";
 
 const NameMutate = () => {
   const { project } = useProject();
@@ -70,7 +71,10 @@ const NameMutate = () => {
                 <FormControl>
                   <Textarea
                     {...field}
-                    className="text-3xl font-extrabold resize-none border-0 focus-visible:border-2 h-fit w-1/2"
+                    className={cn(
+                      "text-3xl font-extrabold resize-none border-0 focus-visible:border-2 h-fit w-[980px] pl-0",
+                      isFocused && "pl-4"
+                    )}
                     onFocus={() => setIsFocused(true)}
                     onBlur={() => {
                       setTimeout(() => {
@@ -83,6 +87,8 @@ const NameMutate = () => {
                         }
                       }, 100); // Adjust the timeout as needed
                     }}
+                    rows={1}
+                    maxLength={50}
                     autoComplete="name"
                     error={!!nameForm.formState.errors.name?.message}
                   />
