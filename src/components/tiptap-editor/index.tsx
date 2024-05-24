@@ -1,18 +1,28 @@
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+import Placeholder from "@tiptap/extension-placeholder";
 import MenuBar from "./menubar";
 
 export default function TiptapEditor({
   content,
   onChange,
   error,
+  placeholder,
 }: {
   content: string;
   onChange: (richText: string) => void;
   error?: boolean;
+  placeholder?: string;
 }) {
   const editor = useEditor({
-    extensions: [StarterKit.configure({})],
+    extensions: [
+      StarterKit.configure({}),
+      Placeholder.configure({
+        placeholder,
+        emptyNodeClass:
+          "cursor-text before:content-[attr(data-placeholder)] before:absolute before:top-2 before:left-2 before:text-mauve-11 before:opacity-50 before-pointer-events-none",
+      }),
+    ],
     content: content,
     editorProps: {
       attributes: {
