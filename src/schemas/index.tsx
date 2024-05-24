@@ -37,12 +37,21 @@ export type RegisterSchemaType = z.infer<typeof registerSchema>;
 export const ProjectFormSchema = z.object({
   name: z.string().min(1, t("Name is required")),
   description: z.string().min(1, t("Description is required")),
-  startDate: z.any({
-    required_error: "Start date is required",
-  }),
-  endDate: z.any({
-    required_error: "End date is required",
-  }),
+  startDate: z
+    .date({
+      required_error: "Start date is required",
+    })
+    .refine((date) => {
+      return date >= new Date();
+    }, "Start date cannot be in the past"),
+
+  endDate: z
+    .date({
+      required_error: "End date is required",
+    })
+    .refine((date) => {
+      return date > new Date();
+    }, "End date must be in the future"),
   projectStatus: z.string().min(1, t("Project status is required")),
 });
 

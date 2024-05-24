@@ -80,6 +80,7 @@ const TicketForm = ({
                   <TiptapEditor
                     content={field.value}
                     onChange={field.onChange}
+                    placeholder="Description"
                   />
                 </FormControl>
                 <FormMessage />
