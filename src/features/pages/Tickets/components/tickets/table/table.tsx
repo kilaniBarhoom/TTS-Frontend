@@ -9,10 +9,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { TicketT } from "@/lib/types";
+import { cn } from "@/lib/utils";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import TicketDialog from "../../ticket-view/ticket-dialog";
 import TicketsSkeleton from "./skeleton";
-import { cn } from "@/lib/utils";
 
 const TicketsTable = ({
   tickets,
@@ -54,7 +54,7 @@ const TicketsTable = ({
       <TableBody>
         {isLoading ? (
           dummyArray.map((_, index) => <TicketsSkeleton key={index} />)
-        ) : tickets.length ? (
+        ) : tickets && tickets.length ? (
           tickets.map((ticket: TicketT) => (
             <TableRow key={ticket.id}>
               <TableCell className="font-medium hover:underline cursor-pointer min-w-fit">
@@ -85,11 +85,11 @@ const TicketsTable = ({
                   size="sm"
                   className={cn(
                     ticket.ticketPriority === "Low"
-                      ? "border-l-priority-low text-primary-foreground hover:bg-primary/30"
+                      ? "border-l-priority-low text-primary-foreground hover:bg-priority-low/30"
                       : ticket.ticketPriority === "Medium"
-                      ? "border-l-priority-medium text-secondary-foreground hover:bg-secondary/30"
+                      ? "border-l-priority-medium text-secondary-foreground hover:bg-priority-medium/30"
                       : ticket.ticketPriority === "High"
-                      ? "border-l-priority-high text-destructive-foreground hover:bg-destructive/30"
+                      ? "border-l-priority-high text-destructive-foreground hover:bg-priority-high/30"
                       : ""
                   )}
                 >

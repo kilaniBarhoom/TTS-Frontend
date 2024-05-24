@@ -1,10 +1,10 @@
-import { useGetTicketsByProjectId } from "../../../api";
+import { useGetTicketsQuery } from "../../../api";
 import TicketsTable from "./table";
 
 export default function TableWrapper() {
-  const { data: tickets, isLoading } = useGetTicketsByProjectId();
+  const { data: tickets, isLoading } = useGetTicketsQuery();
   return (
-    <div className="w-full border-border border-2 bg-muted/20 rounded-md">
+    <div className="w-full border-border border bg-muted/20 rounded-md">
       <div className="dark:text-white">
         <TicketsTable tickets={tickets} isLoading={isLoading} />
       </div>

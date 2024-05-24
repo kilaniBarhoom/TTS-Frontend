@@ -31,6 +31,7 @@ export const addMemToProjEndp = import.meta.env
 export const getMemNotifsEndp = import.meta.env
   .VITE_GET_MEMBER_NOTIFICATIONS_ENDPOINT as string;
 
+export const getTicketsEndp = import.meta.env.VITE_GET_TICKETS_ENDPOINT;
 export const getTicketsByProjectId = import.meta.env
   .VITE_GET_TICKETS_BY_PROJECTID_ENDPOINT;
 export const getTicketById = import.meta.env.VITE_GET_TICKETS_BY_ID_ENDPOINT;

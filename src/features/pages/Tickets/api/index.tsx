@@ -2,43 +2,51 @@ import { toast, useToast } from "@/components/ui/use-toast";
 import useAxios from "@/hooks/use-axios";
 import {
   addCommentEndp,
-  editCommentEndp,
+  createTicketEndp,
   deleteCommentEndp,
+  editCommentEndp,
+  editTicketEndp,
   getTicketById,
   getTicketsByProjIdEndp,
-  createTicketEndp,
-  editTicketEndp,
+  getTicketsEndp,
+  watchTicketEndp,
 } from "@/lib/constants";
 import { TicketT } from "@/lib/types";
 import { dateToString } from "@/lib/utils";
 import { CommentFormSchemaType, TicketFormSchema } from "@/schemas";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import * as z from "zod";
 
-export const useGetTicketsByProjectId = () => {
+export const useGetTicketsQuery = () => {
   const axios = useAxios();
   const [searchParams] = useSearchParams();
   const projectId = searchParams.get("projectId" || "");
+  const TicketName = searchParams.get("TicketName") || "";
 
   return useQuery({
     queryKey: [
       "tickets",
       {
         projectId,
+        TicketName,
       },
     ],
     queryFn: async () => {
-      const { data: response } = await axios.get(getTicketsByProjIdEndp, {
-        params: { projectId },
-      });
-      return response?.tickets;
+      const { data: response } = await axios.get(
+        projectId ? getTicketsByProjIdEndp : getTicketsEndp,
+        {
+          params: { projectId, TicketName },
+        }
+      );
+      const tickets = projectId ? response?.tickets : response?.items;
+      return tickets as TicketT[];
     },
   });
 };
 
-export const useGetTicketById = () => {
+export const useGetTicketByIdQuery = () => {
   const axios = useAxios();
   const [searchParams] = useSearchParams();
   const ticketId = searchParams.get("selectedTicket") || "";
@@ -61,8 +69,12 @@ export const useTicketFormMutation = () => {
   const { toast } = useToast();
   type PartialTicketFormData = Partial<z.infer<typeof TicketFormSchema>>;
   return useMutation({
-    mutationFn: (data: PartialTicketFormData & { ticketId?: string }) => {
-      const { ticketId, ...formData } = data;
+    mutationFn: (
+      data: PartialTicketFormData & { ticketId?: string } & {
+        projectId?: string;
+      }
+    ) => {
+      const { ticketId, projectId, ...formData } = data;
       if (!ticketId) {
         return axios.post(createTicketEndp, {
           ...formData,
@@ -77,6 +89,7 @@ export const useTicketFormMutation = () => {
         return axios.put(editTicketEndp, {
           ...formData,
           ticketId,
+          projectId,
         });
       }
     },
@@ -163,6 +176,35 @@ export const useDeleteCommentMutation = () => {
       toast({
         title: t("Success"),
         description: t("Comment was deleted successfully"),
+      });
+    },
+    onError: (error: any) => {
+      toast({
+        variant: "destructive",
+        title: t("Error"),
+        description: error?.response?.data?.message
+          ? t(error?.response?.data?.message)
+          : t("Something went wrong"),
+      });
+    },
+  });
+};
+
+export const useTicketWatchMutation = () => {
+  const axios = useAxios();
+  const queryClient = useQueryClient();
+  const { t } = useTranslation();
+  const { toast } = useToast();
+  return useMutation({
+    mutationFn: (ticketId: string) =>
+      axios.post(`${watchTicketEndp}?ticketId=${ticketId}`),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["ticket"],
+      });
+      toast({
+        title: t("Success"),
+        description: t("You are now watching this ticket"),
       });
     },
     onError: (error: any) => {
