@@ -23,28 +23,30 @@ const BreadcrumbComponent = ({
 }) => {
   const navigate = useNavigate();
   return (
-    <Breadcrumb>
-      <BreadcrumbList>
-        {tree?.map((item, index) => (
-          <div className="flex items-center" key={index}>
-            <BreadcrumbItem>
-              <BreadcrumbLink
-                className="cursor-pointer"
-                onClick={() => navigate(item.link)}
-              >
-                {item.title}
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator className="ml-2">
-              <Slash className="-rotate-12" size={16} />
-            </BreadcrumbSeparator>
-          </div>
-        ))}
-        <BreadcrumbItem>
-          <BreadcrumbPage>{currentPage}</BreadcrumbPage>
-        </BreadcrumbItem>
-      </BreadcrumbList>
-    </Breadcrumb>
+    <div className="mb-4">
+      <Breadcrumb>
+        <BreadcrumbList>
+          {tree?.map((item, index) => (
+            <div className="flex items-center" key={index}>
+              <BreadcrumbItem>
+                <BreadcrumbLink
+                  className="cursor-pointer"
+                  onClick={() => navigate(item.link)}
+                >
+                  {item.title}
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator className="ml-2">
+                <Slash className="-rotate-12" size={16} />
+              </BreadcrumbSeparator>
+            </div>
+          ))}
+          <BreadcrumbItem>
+            <BreadcrumbPage>{currentPage}</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+    </div>
   );
 };
 

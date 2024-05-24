@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Typography from "@/components/ui/typography";
@@ -9,37 +10,51 @@ import {
   Search,
   Table,
 } from "lucide-react";
+import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
-import { Helmet } from "react-helmet";
-import { Separator } from "@/components/ui/separator";
-import { useEffect, useState } from "react";
-import TableWrapper from "../components/tickets/table/table-wrapper";
 import { TicketProvider } from "../components/ticket-view/provider";
 import AddTicketDialog from "../components/tickets/add-ticket-dialog";
-import { Button } from "@/components/ui/button";
+import TableWrapper from "../components/tickets/table/table-wrapper";
+import { useGetProjectByIdQuery } from "../../Projects/api";
+import BreadcrumbComponent from "@/components/component/bread-crumb";
 const Projects = () => {
   const { t } = useTranslation();
-  const [openFilters, setOpenFilters] = useState(false);
 
   const [searchParams, setSearchParams] = useSearchParams({
-    ProjectName: "",
+    TicketName: "",
   });
 
-  const search = searchParams.get("ProjectName") || "";
+  const projectId = searchParams.get("projectId") || "";
+  const { data: project } = useGetProjectByIdQuery(projectId);
+
+  const search = searchParams.get("TicketName") || "";
   const setSearch = (value: string) => {
     setSearchParams(
       (prev) => {
-        prev.delete("ProjectName");
-        if (value) prev.set("ProjectName", value);
+        prev.delete("TicketName");
+        if (value) prev.set("TicketName", value);
         return prev;
       },
       { replace: true }
     );
   };
 
+  const {} = useGetProjectByIdQuery();
+
   return (
     <div className="flex flex-col h-full max-h-screen">
+      {project && (
+        <BreadcrumbComponent
+          tree={[
+            {
+              title: `Project: ${project.name}`,
+              link: `/projects/${project.id}`,
+            },
+          ]}
+          currentPage={t("Tickets")}
+        />
+      )}
       <Helmet>
         <title>Tickets | TTS</title>
       </Helmet>
