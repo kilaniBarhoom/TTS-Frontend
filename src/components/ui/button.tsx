@@ -21,14 +21,14 @@ const buttonVariants = cva(
           "hover:bg-muted text-muted-foreground hover:text-secondary-foreground",
         ghostOnNav:
           "hover:bg-background text-muted-foreground hover:text-secondary-foreground",
-        link: "text-muted-foreground underline-offset-4 hover:underline",
+        link: "text-primary-foreground underline-offset-4 hover:underline",
         hover: "text-muted-foreground hover:text-secondary-foreground",
       },
       size: {
         xs: "h-7 rounded-md p-2",
         sm: "h-9 py-2 rounded-md px-4",
         default: "h-10 px-4 py-2",
-        lg: "h-11 rounded-md py-4 px-8",
+        lg: "h-11 text-2xl rounded-md py-4 px-8",
         icon: "h-10 w-10 p-0",
       },
     },

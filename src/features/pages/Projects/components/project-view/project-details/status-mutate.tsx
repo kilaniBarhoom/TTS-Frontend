@@ -102,7 +102,7 @@ const StatusMutate = () => {
                 ) : (
                   <ProjectStatusBadge
                     status={field.value}
-                    className="cursor-pointer "
+                    className="cursor-pointer"
                     onAction={() => handleBadgeClick()}
                   />
                 )}
