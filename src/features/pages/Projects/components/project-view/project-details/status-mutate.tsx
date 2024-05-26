@@ -21,6 +21,8 @@ import * as z from "zod";
 import { useProjectFormMutation } from "../../../api";
 import { useProject } from "../../../provider";
 import ProjectStatusBadge from "../../component/project-status-badge";
+import { Button } from "@/components/ui/button";
+import { X } from "lucide-react";
 
 const StatusMutate = () => {
   const { project } = useProject();
@@ -74,31 +76,55 @@ const StatusMutate = () => {
             render={({ field }) => (
               <FormItem>
                 {isEditing ? (
-                  <Select
-                    onValueChange={async (value) => {
-                      field.onChange(value);
-                      await statusForm.handleSubmit(onSubmit)();
-                      setIsEditing(false);
-                    }}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger
-                        ref={selectRef}
-                        className="text-sm py-1 px-2 h-fit gap-2"
-                      >
-                        <SelectValue placeholder={t("Select a status")} />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="Pending">{t("Pending")}</SelectItem>
-                      <SelectItem value="Active">{t("Active")}</SelectItem>
-                      <SelectItem value="Completed">
-                        {t("Completed")}
-                      </SelectItem>
-                      <SelectItem value="Draft">{t("Draft")}</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  <div className="inline-flex gap-2">
+                    <Select
+                      defaultOpen
+                      onValueChange={async (value) => {
+                        field.onChange(value);
+                        await statusForm.handleSubmit(onSubmit)();
+                        setIsEditing(false);
+                      }}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger
+                          ref={selectRef}
+                          className="text-sm py-1 px-2 h-fit gap-2"
+                        >
+                          <SelectValue placeholder={t("Select a status")} />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="Pending">{t("Pending")}</SelectItem>
+                        <SelectItem value="Active">{t("Active")}</SelectItem>
+                        <SelectItem value="Completed">
+                          {t("Completed")}
+                        </SelectItem>
+                        <SelectItem value="Draft">{t("Draft")}</SelectItem>
+                        <SelectItem value="OnHold">{t("OnHold")}</SelectItem>
+                        <SelectItem value="Canceled">
+                          {t("Canceled")}
+                        </SelectItem>
+                        <SelectItem value="Delayed">{t("Delayed")}</SelectItem>
+                        <SelectItem value="UnderReview">
+                          {t("UnderReview")}
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <Button
+                      size={"xs"}
+                      variant="secondary"
+                      onClick={() => {
+                        setIsEditing(false);
+                        statusForm.setValue(
+                          "projectStatus",
+                          project?.projectStatus
+                        );
+                      }}
+                    >
+                      <X size={16} />
+                    </Button>
+                  </div>
                 ) : (
                   <ProjectStatusBadge
                     status={field.value}
