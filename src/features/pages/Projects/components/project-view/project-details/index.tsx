@@ -10,6 +10,8 @@ import MembersMutate from "./members-mutate";
 import NameMutate from "./name-mutate";
 import Owner from "./owner";
 import StatusMutate from "./status-mutate";
+import ProjectDetailsSkeleton from "./skeleton";
+import Tools from "../tools";
 
 const ProjectDetails = () => {
   const { project, isLoading } = useProject();
@@ -17,21 +19,7 @@ const ProjectDetails = () => {
   return (
     <>
       {isLoading ? (
-        <div className="flex flex-col gap-5">
-          <Skeleton className="h-16" />
-          <Separator className="w-full border-border" />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 m-5">
-            <div className="flex-1 flex flex-col gap-5">
-              <Skeleton className="h-5 w-1/2" />
-              <Skeleton className="h-5 w-1/4" />
-              <Skeleton className="h-5 w-1/4" />
-              <Skeleton className="h-5 w-1/4" />
-              <Skeleton className="h-5 w-1/4" />
-              <Skeleton className="h-5 w-1/4" />
-              <Skeleton className="h-5 w-1/4" />
-            </div>
-          </div>
-        </div>
+        <ProjectDetailsSkeleton />
       ) : (
         project && (
           <div>
@@ -40,12 +28,16 @@ const ProjectDetails = () => {
               currentPage={project?.name}
             />
             <div className="grid gap-5">
-              <NameMutate />
-              <StatusMutate />
-              <DateMutate />
-              <Owner />
-              <MembersMutate />
-              <DescriptionMutate />
+              <div className="grid gap-5">
+                <NameMutate />
+                <StatusMutate />
+                <DateMutate />
+                <Owner />
+                <MembersMutate />
+                <DescriptionMutate />
+              </div>
+              <Separator className="w-full border-border" />
+              <Tools />
             </div>
           </div>
         )
