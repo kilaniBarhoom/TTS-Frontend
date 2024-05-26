@@ -16,7 +16,7 @@ import { useSearchParams } from "react-router-dom";
 import FiltersPopover from "../components/projects/actions/filters-popover";
 import AddProjectDialog from "../components/projects/add-project-dialog";
 import TableWrapper from "../components/projects/table/table-wrapper";
-import GroupByDropDown from "../components/projects/actions/groupby-dialog";
+import GroupByDropDown from "../components/projects/actions/groupby-dropdown";
 const Projects = () => {
   const { t } = useTranslation();
 

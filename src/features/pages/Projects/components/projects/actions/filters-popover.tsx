@@ -1,20 +1,20 @@
 import {
   Popover,
-  PopoverContent,
+  // PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
 import * as React from "react";
 // import { CalendarIcon } from "lucide-react";
 // import { useTranslation } from "react-i18next";
-import { useSearchParams } from "react-router-dom";
+// import { useSearchParams } from "react-router-dom";
 
-import { Button } from "@/components/ui/button";
-import Typography from "@/components/ui/typography";
-import ProjectStatusBadge from "../../component/project-status-badge";
-import { Calendar, MoveRight } from "lucide-react";
-import { format, parseISO } from "date-fns";
-import { useTranslation } from "react-i18next";
-import { Calendar as DatePicker } from "@/components/ui/calendar";
+// import { Button } from "@/components/ui/button";
+// import Typography from "@/components/ui/typography";
+// import ProjectStatusBadge from "../../component/project-status-badge";
+// import { Calendar, MoveRight } from "lucide-react";
+// import { format, parseISO } from "date-fns";
+// import { useTranslation } from "react-i18next";
+// import { Calendar as DatePicker } from "@/components/ui/calendar";
 
 export const projectStatuses = [
   "Active",
@@ -32,60 +32,60 @@ export default function FiltersPopover({
 }: {
   children: React.ReactNode;
 }) {
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
 
-  const [searchParams, setSearchParams] = useSearchParams({
-    Status: "",
-    StartDate: "",
-    EndDate: "",
-  });
+  // const [searchParams, setSearchParams] = useSearchParams({
+  //   Status: "",
+  //   StartDate: "",
+  //   EndDate: "",
+  // });
 
-  const Status = searchParams.get("Status");
-  const StartDate = searchParams.get("StartDate");
-  const EndDate = searchParams.get("EndDate");
+  // const Status = searchParams.get("Status");
+  // const StartDate = searchParams.get("StartDate");
+  // const EndDate = searchParams.get("EndDate");
 
-  const setStartDate = (value?: Date) => {
-    const startDate = value?.toDateString();
-    console.log(value);
-    console.log(startDate);
+  // const setStartDate = (value?: Date) => {
+  //   const startDate = value?.toDateString();
+  //   console.log(value);
+  //   console.log(startDate);
 
-    setSearchParams(
-      (prev) => {
-        prev.delete("StartDate");
-        if (startDate) prev.set("StartDate", startDate);
-        return prev;
-      },
-      { replace: true }
-    );
-  };
+  //   setSearchParams(
+  //     (prev) => {
+  //       prev.delete("StartDate");
+  //       if (startDate) prev.set("StartDate", startDate);
+  //       return prev;
+  //     },
+  //     { replace: true }
+  //   );
+  // };
 
-  const setEndDate = (value?: Date) => {
-    const endDate = value?.toDateString();
-    setSearchParams(
-      (prev) => {
-        prev.delete("EndDate");
-        if (endDate) prev.set("EndDate", endDate);
-        return prev;
-      },
-      { replace: true }
-    );
-  };
+  // const setEndDate = (value?: Date) => {
+  //   const endDate = value?.toDateString();
+  //   setSearchParams(
+  //     (prev) => {
+  //       prev.delete("EndDate");
+  //       if (endDate) prev.set("EndDate", endDate);
+  //       return prev;
+  //     },
+  //     { replace: true }
+  //   );
+  // };
 
-  const handleStatusChange = async (status: string) => {
-    setSearchParams(
-      (prev) => {
-        prev.delete("Status");
-        if (status) prev.set("Status", status);
-        return prev;
-      },
-      { replace: true }
-    );
-  };
+  // const handleStatusChange = async (status: string) => {
+  //   setSearchParams(
+  //     (prev) => {
+  //       prev.delete("Status");
+  //       if (status) prev.set("Status", status);
+  //       return prev;
+  //     },
+  //     { replace: true }
+  //   );
+  // };
 
   return (
     <Popover>
       <PopoverTrigger>{children}</PopoverTrigger>
-      <PopoverContent align="end" className="w-fit">
+      {/* <PopoverContent align="end" className="w-fit">
         <Typography as="h3" element="h3">
           Status
         </Typography>
@@ -150,28 +150,7 @@ export default function FiltersPopover({
             </Popover>
           </div>
         </div>
-      </PopoverContent>
+      </PopoverContent> */}
     </Popover>
   );
 }
-
-// }) {
-//   const [searchParams, setSearchParams] = useSearchParams({
-//     Status: "",
-//   });
-
-//   const handleStatusChange = async (status: string) => {
-//     setSearchParams(
-//       (prev) => {
-//         prev.delete("Status");
-//         if (status) prev.set("Status", status);
-//         return prev;
-//       },
-//       { replace: true }
-//     );
-//   };
-
-//   const { t } = useTranslation();
-
-//   return <div className={cn("grid gap-2", className)}></div>;
-// }

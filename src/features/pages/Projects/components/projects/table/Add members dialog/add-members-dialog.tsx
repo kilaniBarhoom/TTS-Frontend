@@ -100,7 +100,7 @@ export default function AddMembersDialog({
         </div>
         <DialogFooter className="w-full px-2">
           <DialogClose asChild>
-            <Button type="button" variant="secondary" className="w-full">
+            <Button type="button" variant="outline" className="w-full">
               {t("Close")}
             </Button>
           </DialogClose>

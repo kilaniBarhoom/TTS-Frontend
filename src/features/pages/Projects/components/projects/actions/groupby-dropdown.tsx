@@ -23,16 +23,10 @@ export default function GroupByDropDown({
   const { t } = useTranslation();
 
   const [searchParams, setSearchParams] = useSearchParams({
-    Status: "",
-    StartDate: "",
-    EndDate: "",
+    groupBy: "",
   });
 
   const groupBy = searchParams.get("groupBy");
-
-  React.useEffect(() => {
-    console.log(groupBy);
-  }, [groupBy]);
 
   const setGroupBy = (value: string) => {
     setSearchParams(
