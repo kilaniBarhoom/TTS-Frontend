@@ -6,6 +6,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { cn } from "@/lib/utils";
 import { Slash } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -17,13 +18,15 @@ type TreeT = {
 const BreadcrumbComponent = ({
   tree,
   currentPage,
+  className,
 }: {
   tree: TreeT[];
   currentPage?: string;
+  className?: string;
 }) => {
   const navigate = useNavigate();
   return (
-    <div className="mb-4">
+    <div className={cn("mb-4", className)}>
       <Breadcrumb>
         <BreadcrumbList>
           {tree?.map((item, index) => (
