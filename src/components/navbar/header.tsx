@@ -1,15 +1,8 @@
-import { cn } from "@/lib/utils";
 import { useAuth } from "@/providers/auth-provider";
 import { useTheme } from "@/providers/theme-provider";
-import {
-  ArrowRightFromLine,
-  Bell,
-  Moon,
-  PanelRightClose,
-  Sun,
-} from "lucide-react";
+import { Bell, Moon, Sun } from "lucide-react";
 import { useLocation } from "react-router-dom";
-import LanguageSelectForm from "../component/LanguageSelect";
+// import LanguageSelectForm from "../component/LanguageSelect";
 import { Button } from "../ui/button";
 import Typography from "../ui/typography";
 import { HeaderProfileDrop } from "./header-prof-drop";
@@ -51,7 +44,7 @@ const Header = () => {
         >
           {theme === "dark" ? <Moon size={16} /> : <Sun size={16} />}
         </Button>
-        <LanguageSelectForm />
+        {/* <LanguageSelectForm /> */}
         {user && <HeaderProfileDrop />}
       </div>
     </div>
