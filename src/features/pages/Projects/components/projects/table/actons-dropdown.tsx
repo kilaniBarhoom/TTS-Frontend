@@ -13,7 +13,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import AddMembersDialog from "./Add members dialog/add-members-dialog";
 
-export const ActionsColumn = ({ projectId }: { projectId: string }) => {
+const ActionsDropDown = ({ projectId }: { projectId: string }) => {
   const [openMembersDialog, setOpenMembersDialog] = useState<boolean>(false);
 
   const { t } = useTranslation();
@@ -53,3 +53,5 @@ export const ActionsColumn = ({ projectId }: { projectId: string }) => {
     </DropdownMenu>
   );
 };
+
+export default ActionsDropDown;

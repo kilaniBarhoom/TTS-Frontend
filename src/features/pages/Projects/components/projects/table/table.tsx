@@ -7,10 +7,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { ProjectT } from "@/lib/types";
-import { useNavigate } from "react-router-dom";
-import { ActionsColumn } from "./actons-dropdown";
 import ProjectsSkeleton from "./skeleton";
-import ProjectStatusBadge from "../../component/project-status-badge";
+import TableRows from "./table-rows-format/normal";
+import { useSearchParams } from "react-router-dom";
+import TableGroupedRows from "./table-rows-format/grouped";
 
 const ProjectsTable = ({
   projects,
@@ -20,8 +20,8 @@ const ProjectsTable = ({
   isLoading: boolean;
 }) => {
   const dummyArray = Array.from({ length: 5 });
-  const navigate = useNavigate();
-
+  const [searchParams] = useSearchParams();
+  const groupBy = searchParams.get("groupBy");
   return (
     <Table>
       <TableHeader>
@@ -39,30 +39,11 @@ const ProjectsTable = ({
         {isLoading ? (
           dummyArray.map((_, index) => <ProjectsSkeleton key={index} />)
         ) : projects.length ? (
-          projects.map((project: ProjectT) => (
-            <TableRow key={project.id}>
-              <TableCell
-                className="font-medium hover:underline cursor-pointer max-w-6"
-                onClick={() =>
-                  navigate(project.id.toString(), { replace: true })
-                }
-              >
-                <div className="truncate">{project.name}</div>
-              </TableCell>
-              <TableCell className="hidden md:table-cell">
-                {project.startDate}
-              </TableCell>
-              <TableCell className="hidden md:table-cell">
-                {project.endDate}
-              </TableCell>
-              <TableCell className="hidden md:table-cell">
-                <ProjectStatusBadge status={project.projectStatus} />
-              </TableCell>
-              <TableCell className="flex justify-end">
-                <ActionsColumn projectId={project.id} />
-              </TableCell>
-            </TableRow>
-          ))
+          groupBy ? (
+            <TableGroupedRows projects={projects} />
+          ) : (
+            <TableRows projects={projects} />
+          )
         ) : (
           <TableRow>
             <TableCell
@@ -73,7 +54,6 @@ const ProjectsTable = ({
             </TableCell>
           </TableRow>
         )}
-        {/* <TableGroutRow /> */}
       </TableBody>
     </Table>
   );
