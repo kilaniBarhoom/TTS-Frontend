@@ -40,9 +40,11 @@ export const useGetAllProjectsQuery = () => {
   });
 };
 
-export const useGetProjectByIdQuery = () => {
+export const useGetProjectByIdQuery = (projectId?: string) => {
   const axios = useAxios();
-  const { projectId } = useParams();
+  if (!projectId) {
+    projectId = useParams().projectId;
+  }
   return useQuery({
     queryKey: [
       "project",
