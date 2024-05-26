@@ -13,9 +13,10 @@ import {
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
+import FiltersPopover from "../components/projects/actions/filters-popover";
 import AddProjectDialog from "../components/projects/add-project-dialog";
 import TableWrapper from "../components/projects/table/table-wrapper";
-import ProjectFiltersPopover from "../components/projects/filters-popover";
+import GroupByDropDown from "../components/projects/actions/groupby-dialog";
 const Projects = () => {
   const { t } = useTranslation();
 
@@ -55,16 +56,18 @@ const Projects = () => {
           className="h-fit w-full md:w-60"
         />
         <div className="flex gap-2">
-          <ProjectFiltersPopover>
+          <FiltersPopover>
             <Button className="h-full gap-2" size={"sm"} variant="outline">
               <Filter size={15} />
               {t("Filter")}
             </Button>
-          </ProjectFiltersPopover>
-          <Button className="h-full gap-2" size={"sm"} variant="outline">
-            <AlignJustify size={15} />
-            {t("Group By")}
-          </Button>
+          </FiltersPopover>
+          <GroupByDropDown>
+            <Button className="h-full gap-2" size={"sm"} variant="outline">
+              <AlignJustify size={15} />
+              {t("Group By")}
+            </Button>
+          </GroupByDropDown>
           <AddProjectDialog>
             <Button variant={"default"} size={"sm"} className="h-full gap-2">
               <Plus size={15} />

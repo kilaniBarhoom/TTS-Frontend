@@ -27,7 +27,7 @@ export const projectStatuses = [
   "Draft",
 ];
 
-export default function ProjectFiltersPopover({
+export default function FiltersPopover({
   children,
 }: {
   children: React.ReactNode;
@@ -40,9 +40,9 @@ export default function ProjectFiltersPopover({
     EndDate: "",
   });
 
-  const Status = searchParams.get("Status") || "";
-  const StartDate = searchParams.get("StartDate") || "";
-  const EndDate = searchParams.get("EndDate") || "";
+  const Status = searchParams.get("Status");
+  const StartDate = searchParams.get("StartDate");
+  const EndDate = searchParams.get("EndDate");
 
   const setStartDate = (value?: Date) => {
     const startDate = value?.toDateString();
