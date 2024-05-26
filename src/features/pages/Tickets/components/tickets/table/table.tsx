@@ -24,21 +24,6 @@ const TicketsTable = ({
   const dummyArray = Array.from({ length: 5 });
   const navigate = useNavigate();
 
-  const [_, setSearchParams] = useSearchParams({
-    selectedTicket: "",
-  });
-
-  const setSelectedTicket = (value: string) => {
-    setSearchParams(
-      (prev) => {
-        prev.delete("selectedTicket");
-        if (value) prev.set("selectedTicket", value);
-        return prev;
-      },
-      { replace: true }
-    );
-  };
-
   return (
     <Table>
       <TableHeader>
@@ -58,11 +43,8 @@ const TicketsTable = ({
           tickets.map((ticket: TicketT) => (
             <TableRow key={ticket.id}>
               <TableCell className="font-medium hover:underline cursor-pointer min-w-fit">
-                <TicketDialog>
+                <TicketDialog ticketId={ticket.id}>
                   <div
-                    onClick={() => {
-                      setSelectedTicket(ticket.id);
-                    }}
                   >
                     {ticket.name}
                   </div>
