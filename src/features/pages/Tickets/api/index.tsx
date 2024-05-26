@@ -16,7 +16,7 @@ import { dateToString } from "@/lib/utils";
 import { CommentFormSchemaType, TicketFormSchema } from "@/schemas";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
-import { useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import * as z from "zod";
 
 export const useGetTicketsQuery = () => {
@@ -49,7 +49,7 @@ export const useGetTicketsQuery = () => {
 export const useGetTicketByIdQuery = () => {
   const axios = useAxios();
   const [searchParams] = useSearchParams();
-  const ticketId = searchParams.get("selectedTicket") || "";
+  const ticketId = searchParams.get("selectedTicket") || useParams().ticketId;
 
   return useQuery({
     queryKey: ["ticket", { ticketId }],
@@ -84,6 +84,7 @@ export const useTicketFormMutation = () => {
           dueDate: formData.dueDate
             ? dateToString(formData.dueDate)
             : undefined,
+          projectId,
         });
       } else {
         return axios.put(editTicketEndp, {

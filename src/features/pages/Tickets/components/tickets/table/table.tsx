@@ -1,5 +1,4 @@
 import { UserAvatar } from "@/components/component/user-avatar";
-import { Badge } from "@/components/ui/badge";
 import {
   Table,
   TableBody,
@@ -9,9 +8,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { TicketT } from "@/lib/types";
-import { cn } from "@/lib/utils";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import TicketDialog from "../../ticket-view/ticket-dialog";
+import TicketPriorityBadge from "../../component/ticket-priority-badge";
+import TicketStatusBadge from "../../component/ticket-status-badge";
+import TicketDialog from "../../ticket-view/ticket-details/ticket-dialog";
 import TicketsSkeleton from "./skeleton";
 
 const TicketsTable = ({
@@ -80,40 +80,10 @@ const TicketsTable = ({
               </TableCell>
 
               <TableCell>
-                <Badge
-                  variant="leftBordered"
-                  size="sm"
-                  className={cn(
-                    ticket.ticketPriority === "Low"
-                      ? "border-l-priority-low text-primary-foreground hover:bg-priority-low/30"
-                      : ticket.ticketPriority === "Medium"
-                      ? "border-l-priority-medium text-secondary-foreground hover:bg-priority-medium/30"
-                      : ticket.ticketPriority === "High"
-                      ? "border-l-priority-high text-destructive-foreground hover:bg-priority-high/30"
-                      : ""
-                  )}
-                >
-                  {ticket.ticketPriority}
-                </Badge>
+                <TicketPriorityBadge priority={ticket.ticketPriority} />
               </TableCell>
               <TableCell>
-                <Badge
-                  variant="outline"
-                  size="sm"
-                  className={cn(
-                    ticket.ticketStatus === "InProgress"
-                      ? "border-status-active bg-status-active/40 text-status-active-foreground hover:bg-status-active/30"
-                      : ticket.ticketStatus === "Pending"
-                      ? "border-status-pending bg-status-pending/40 text-status-pending-foreground hover:bg-status-pending/30"
-                      : ticket.ticketStatus === "Completed"
-                      ? "border-status-completed bg-status-completed/40 text-status-completed-foreground hover:bg-status-completed/30"
-                      : ticket.ticketStatus === "Canceled"
-                      ? "border-status-canceled bg-status-canceled/40 text-status-canceled-foreground hover:bg-status-canceled/30"
-                      : ""
-                  )}
-                >
-                  {ticket.ticketStatus}
-                </Badge>
+                <TicketStatusBadge status={ticket.ticketStatus} />
               </TableCell>
               <TableCell>
                 <UserAvatar name={ticket.assignee.name} avatarSize="size-6" />

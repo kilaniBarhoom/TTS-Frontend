@@ -1,6 +1,6 @@
 import { Skeleton } from "@/components/ui/skeleton";
 
-const TicketsSkeleton = () => {
+const TicketSkeleton = () => {
   return (
     <div className="grid gap-2">
       <div className="my-4">
@@ -15,4 +15,4 @@ const TicketsSkeleton = () => {
   );
 };
 
-export default TicketsSkeleton;
+export default TicketSkeleton;

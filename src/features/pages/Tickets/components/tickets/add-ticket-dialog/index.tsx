@@ -23,7 +23,7 @@ type AddTicketDialogProps = {
 
 export default function AddTicketDialog({ children }: AddTicketDialogProps) {
   const [searchParams] = useSearchParams();
-  const projectId = searchParams.get("projectId") || "";
+  const projectId = searchParams.get("projectId");
 
   const ticketForm = useForm<TicketFormSchemaType>({
     resolver: zodResolver(TicketFormSchema),
@@ -34,7 +34,7 @@ export default function AddTicketDialog({ children }: AddTicketDialogProps) {
       dueDate: "",
       ticketStatus: "",
       ticketPriority: "",
-      projectId: projectId || "123",
+      projectId: projectId || "",
       assigneeId: "",
     },
   });

@@ -1,12 +1,12 @@
 // ticket and isLoading context provder component
 import { TicketT } from "@/lib/types";
 import { createContext, useContext } from "react";
-import { useGetTicketById } from "../../../api";
+import { useGetTicketByIdQuery } from "../../../api";
 
 const TicketProviderContext = createContext<any>(null);
 
 export const TicketProvider = ({ children }: { children: React.ReactNode }) => {
-  const { data: ticket, isLoading } = useGetTicketById();
+  const { data: ticket, isLoading } = useGetTicketByIdQuery();
 
   const value: {
     ticket?: TicketT;

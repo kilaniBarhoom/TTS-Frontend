@@ -9,6 +9,7 @@ import {
   Plus,
   Search,
   Table,
+  User,
 } from "lucide-react";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
@@ -43,7 +44,7 @@ const Projects = () => {
   const {} = useGetProjectByIdQuery();
 
   return (
-    <div className="flex flex-col h-full max-h-screen">
+    <div className="flex flex-col h-full">
       {project && (
         <BreadcrumbComponent
           tree={[
@@ -73,13 +74,17 @@ const Projects = () => {
           className="h-fit w-full md:w-60"
         />
         <div className="flex gap-2">
-          <Button className="h-fit gap-2" variant={"ghost"} size={"sm"}>
+          <Button className="h-fit gap-2" variant={"outline"} size={"sm"}>
             <Filter size={15} />
             {t("Filter")}
           </Button>
-          <Button className="h-fit gap-2" variant={"ghost"} size={"sm"}>
+          <Button className="h-fit gap-2" variant={"outline"} size={"sm"}>
             <AlignJustify size={15} />
             {t("Group By")}
+          </Button>
+          <Button variant={"outline"} className="h-fit gap-2" size={"sm"}>
+            <User size={15} />
+            {t("Assigned To")}
           </Button>
           <AddTicketDialog>
             <Button variant={"default"} className="h-fit gap-2" size={"sm"}>
