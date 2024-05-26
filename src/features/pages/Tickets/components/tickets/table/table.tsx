@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { TicketT } from "@/lib/types";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import TicketPriorityBadge from "../../component/ticket-priority-badge";
 import TicketStatusBadge from "../../component/ticket-status-badge";
 import TicketDialog from "../../ticket-view/ticket-details/ticket-dialog";
@@ -18,26 +18,11 @@ const TicketsTable = ({
   tickets,
   isLoading,
 }: {
-  tickets: any;
+  tickets: TicketT[];
   isLoading: boolean;
 }) => {
   const dummyArray = Array.from({ length: 5 });
   const navigate = useNavigate();
-
-  const [_, setSearchParams] = useSearchParams({
-    selectedTicket: "",
-  });
-
-  const setSelectedTicket = (value: string) => {
-    setSearchParams(
-      (prev) => {
-        prev.delete("selectedTicket");
-        if (value) prev.set("selectedTicket", value);
-        return prev;
-      },
-      { replace: true }
-    );
-  };
 
   return (
     <Table>
@@ -58,11 +43,8 @@ const TicketsTable = ({
           tickets.map((ticket: TicketT) => (
             <TableRow key={ticket.id}>
               <TableCell className="font-medium hover:underline cursor-pointer min-w-fit">
-                <TicketDialog>
+                <TicketDialog ticketId={ticket.id}>
                   <div
-                    onClick={() => {
-                      setSelectedTicket(ticket.id);
-                    }}
                   >
                     {ticket.name}
                   </div>

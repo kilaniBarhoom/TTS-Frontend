@@ -9,14 +9,42 @@ import MainDetails from "../main-details";
 import OtherDetails from "../other-details";
 import TicketSkeleton from "../skeleton";
 import Header from "./header";
+import { useSearchParams } from "react-router-dom";
 
-const TicketDialog = ({ children }: { children: React.ReactNode }) => {
+
+const TicketDialog = ({ children, ticketId }: { children: React.ReactNode, ticketId: string }) => {
   const { t } = useTranslation();
-  const [openDialog, setOpenDialog] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const selectedTicket = searchParams.get("selectedTicket");
+  const [openDialog, setOpenDialog] = useState(ticketId === selectedTicket);
 
+  const setSelectedTicket = (value: string) => {
+    setSearchParams(
+      (prev) => {
+        prev.delete("selectedTicket");
+        if (value) prev.set("selectedTicket", value);
+        return prev;
+      },
+      { replace: true }
+    );
+  };
+
+const handleChange = (isOpen: boolean) => {
+    setOpenDialog(isOpen);
+    if (isOpen) {
+      setSelectedTicket(ticketId);
+    } else
+    if (!isOpen) {
+      setSearchParams((prev) => {
+        prev.delete("selectedTicket");
+        return prev;
+      }, { replace: true });
+    }
+}
+  
   const { isLoading } = useTicket();
   return (
-    <Dialog open={openDialog} onOpenChange={setOpenDialog}>
+    <Dialog open={openDialog} onOpenChange={handleChange}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="sm:max-w-screen-xl">
         {isLoading ? (
