@@ -39,11 +39,11 @@ const TicketForm = ({
   ticketForm: any;
   onSubmit: any;
   isLoading: boolean;
-  projectId: string;
+  projectId: string | null;
 }) => {
   const { t } = useTranslation();
 
-  const { data: members } = useGetMembersByProjectId(projectId);
+  const { data: members } = projectId ? useGetMembersByProjectId(projectId) : { data: null };
 
   return (
     <Form {...ticketForm}>
@@ -257,7 +257,7 @@ const TicketForm = ({
                             name={name}
                             avatarSize="size-5"
                             nameSize="text-xs"
-                            // className="hover:bg-muted/40 cursor-pointer py-1 px-2 rounded-md transition-all duration-200 ease-in-out"
+                          // className="hover:bg-muted/40 cursor-pointer py-1 px-2 rounded-md transition-all duration-200 ease-in-out"
                           />
                         </SelectItem>
                       );

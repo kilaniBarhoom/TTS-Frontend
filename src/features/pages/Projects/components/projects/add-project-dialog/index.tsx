@@ -26,8 +26,8 @@ export default function AddProjectDialog({ children }: AddProjectDialogProps) {
     defaultValues: {
       name: "",
       description: "",
-      startDate: "",
-      endDate: "",
+      startDate: new Date(),
+      endDate: new Date(), // Change the type from string to Date
       projectStatus: "",
     },
   });

@@ -143,7 +143,7 @@ export const useCommentMutation = () => {
         });
       }
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["ticket"],
       });

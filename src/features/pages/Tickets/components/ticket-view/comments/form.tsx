@@ -23,7 +23,7 @@ const CommentForm = ({
   setIsEditingComment?: (value: boolean) => void;
 }) => {
   const [isWritingANewComment, setIsWritingANewComment] = useState(false);
-  const formRef = useRef(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const commentForm = useForm<CommentFormSchemaType>({
     resolver: zodResolver(CommentFormSchema),
@@ -50,8 +50,8 @@ const CommentForm = ({
     }
   };
 
-  const handleClickOutside = (event) => {
-    if (formRef.current && !formRef.current.contains(event.target)) {
+  const handleClickOutside = (event: MouseEvent) => {
+    if (formRef.current && !formRef.current.contains(event.target as Node)) {
       setIsEditingComment?.(false);
       setIsWritingANewComment(false);
     }

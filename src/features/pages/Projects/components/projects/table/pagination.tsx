@@ -30,7 +30,6 @@ const TablePagiation = ({ totalPages }: { totalPages: string }) => {
   }, [searchParams]);
 
   const PageNumber = searchParams.get("PageNumber") || "1";
-  const PageSize = searchParams.get("PageSize") || "5";
   const setPageNumber = (value: string) => {
     setSearchParams(
       (prev) => {
@@ -52,11 +51,10 @@ const TablePagiation = ({ totalPages }: { totalPages: string }) => {
                 setPageNumber((parseInt(PageNumber) - 1).toString());
               }
             }}
-            className={`${
-              parseInt(PageNumber) === 1
+            className={`${parseInt(PageNumber) === 1
                 ? "pointer-events-none cursor-not-allowed"
                 : ""
-            }`}
+              }`}
           />
         </PaginationItem>
         {parseInt(totalPages) > 4 && parseInt(PageNumber) > 2 && (
@@ -95,11 +93,10 @@ const TablePagiation = ({ totalPages }: { totalPages: string }) => {
                 setPageNumber((parseInt(PageNumber) + 1).toString());
               }
             }}
-            className={`${
-              parseInt(PageNumber) === parseInt(totalPages)
+            className={`${parseInt(PageNumber) === parseInt(totalPages)
                 ? "pointer-events-none cursor-not-allowed"
                 : ""
-            }`}
+              }`}
           />
         </PaginationItem>
       </PaginationContent>
