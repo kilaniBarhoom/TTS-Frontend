@@ -3,7 +3,6 @@ import { useProject } from "../../../provider";
 
 // import TiptapEditor from "../components/projects/mutation dialog/tiptqp-editor/tiptap-editor";
 import BreadcrumbComponent from "@/components/component/bread-crumb";
-import { Skeleton } from "@/components/ui/skeleton";
 import DateMutate from "./date-mutate";
 import DescriptionMutate from "./description-mutate";
 import MembersMutate from "./members-mutate";

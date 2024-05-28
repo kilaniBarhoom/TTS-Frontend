@@ -28,7 +28,7 @@ const StatusMutate = () => {
   const { ticket } = useTicket();
   const { t } = useTranslation();
   const [isEditing, setIsEditing] = useState(false);
-  const selectRef = useRef(null);
+  const selectRef = useRef<HTMLButtonElement>(null);
 
   const StatusSchema = z.object({
     ticketStatus: z.string(),

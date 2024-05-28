@@ -6,7 +6,7 @@ export default function TableWrapper() {
   return (
     <div className="w-full border-border border bg-muted/20 rounded-md">
       <div className="dark:text-white">
-        <TicketsTable tickets={tickets} isLoading={isLoading} />
+        <TicketsTable tickets={tickets || []} isLoading={isLoading} />
       </div>
       {/* <div className="flex items-center border-t border-border py-2">
         <div className="space-x-2 ml-auto pr-2">

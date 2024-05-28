@@ -45,14 +45,14 @@ const DateMutate = () => {
 
   const onSubmit = async (data: DateSchemaType) => {
     try {
-      await mutateAsync({ ...data, projectId: project?.id });
+      await mutateAsync({ ...data, projectId: project?.id, startDate: new Date(data.startDate), endDate: new Date(data.endDate) });
     } catch (error) {
       // Handle submission error
     }
   };
 
-  const handleDateChange = async (field, date?: Date) => {
-    field.onChange(date.toISOString());
+  const handleDateChange = async (field: any, date?: Date) => {
+    field.onChange(date?.toISOString());
     await dateForm.handleSubmit(onSubmit)();
   };
 

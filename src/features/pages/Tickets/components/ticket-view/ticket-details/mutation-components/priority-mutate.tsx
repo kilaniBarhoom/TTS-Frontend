@@ -28,7 +28,7 @@ const PriorityMutate = () => {
   const { ticket } = useTicket();
   const { t } = useTranslation();
   const [isEditing, setIsEditing] = useState(false);
-  const selectRef = useRef(null);
+  const selectRef = useRef<HTMLButtonElement>(null);
 
   const PrioritySchema = z.object({
     ticketPriority: z.string(),
@@ -64,6 +64,7 @@ const PriorityMutate = () => {
       }
     }, 0);
   };
+
   return (
     <div className="flex gap-2 items-center">
       <Typography as="smallText" element="p" className="flex-[0.5]">

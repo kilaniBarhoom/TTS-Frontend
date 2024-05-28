@@ -1,13 +1,7 @@
 import { useLocation, Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "@/providers/auth-provider";
 
-const RequireAuth = ({
-  allowedRoles,
-  restrictedRoles,
-}: {
-  allowedRoles?: string[];
-  restrictedRoles?: string[];
-}) => {
+const RequireAuth = () => {
   const { user } = useAuth();
   const location = useLocation();
   let authorized = true;
