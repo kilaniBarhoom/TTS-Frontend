@@ -1,4 +1,3 @@
-
 import { useToast } from "@/components/ui/use-toast";
 import { axios } from "@/hooks/use-axios";
 import { registerEndp } from "@/lib/constants";
@@ -82,7 +81,7 @@ const Register = () => {
   }
   useEffect(() => {
     if (user) {
-      navigate("/projects", { replace: true });
+      navigate("/projects");
     }
   }, []);
   const loadingToRegister = registerForm.formState.isSubmitting;

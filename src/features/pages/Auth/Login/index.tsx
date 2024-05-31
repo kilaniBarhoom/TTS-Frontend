@@ -74,7 +74,7 @@ const Login = () => {
   }
   useEffect(() => {
     if (user) {
-      navigate("/projects", { replace: true });
+      navigate("/projects");
     }
   }, []);
   const loadingToLogin = loginForm.formState.isSubmitting;

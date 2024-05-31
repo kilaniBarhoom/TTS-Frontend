@@ -44,18 +44,13 @@ const TicketsTable = ({
             <TableRow key={ticket.id}>
               <TableCell className="font-medium hover:underline cursor-pointer min-w-fit">
                 <TicketDialog ticketId={ticket.id}>
-                  <div
-                  >
-                    {ticket.name}
-                  </div>
+                  <div>{ticket.name}</div>
                 </TicketDialog>
               </TableCell>
               <TableCell
                 className="font-medium hover:underline cursor-pointer min-w-fit"
                 onClick={() =>
-                  navigate(`/projects/${ticket.project?.id?.toString()}`, {
-                    replace: true,
-                  })
+                  navigate(`/projects/${ticket.project?.id?.toString()}`)
                 }
               >
                 {ticket.project.name}
