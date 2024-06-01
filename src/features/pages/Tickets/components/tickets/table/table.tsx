@@ -11,7 +11,7 @@ import { TicketT } from "@/lib/types";
 import { useNavigate } from "react-router-dom";
 import TicketPriorityBadge from "../../component/ticket-priority-badge";
 import TicketStatusBadge from "../../component/ticket-status-badge";
-import TicketDialog from "../../ticket-view/ticket-details/ticket-dialog";
+import TicketDialogDrawer from "../../ticket-view/ticket-details/ticket-dialog-drawer";
 import TicketsSkeleton from "./skeleton";
 
 const TicketsTable = ({
@@ -43,9 +43,9 @@ const TicketsTable = ({
           tickets.map((ticket: TicketT) => (
             <TableRow key={ticket.id}>
               <TableCell className="font-medium hover:underline cursor-pointer min-w-fit">
-                <TicketDialog ticketId={ticket.id}>
+                <TicketDialogDrawer ticketId={ticket.id}>
                   <div>{ticket.name}</div>
-                </TicketDialog>
+                </TicketDialogDrawer>
               </TableCell>
               <TableCell
                 className="font-medium hover:underline cursor-pointer min-w-fit"

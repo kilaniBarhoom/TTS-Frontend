@@ -14,7 +14,7 @@ import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 import FiltersPopover from "../components/projects/actions/filters-popover";
-import AddProjectDialog from "../components/projects/add-project-dialog";
+import AddProjectDialogDrawer from "../components/projects/add-project-dialog-drawer";
 import TableWrapper from "../components/projects/table/table-wrapper";
 import GroupByDropDown from "../components/projects/actions/groupby-dropdown";
 const Projects = () => {
@@ -68,12 +68,12 @@ const Projects = () => {
               {t("Group By")}
             </Button>
           </GroupByDropDown>
-          <AddProjectDialog>
+          <AddProjectDialogDrawer>
             <Button variant={"default"} size={"sm"} className="h-full gap-2">
               <Plus size={15} />
               {t("New")}
             </Button>
-          </AddProjectDialog>
+          </AddProjectDialogDrawer>
         </div>
       </div>
       <Tabs defaultValue="table" className="w-full">

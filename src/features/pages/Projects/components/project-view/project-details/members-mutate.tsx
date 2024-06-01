@@ -11,19 +11,22 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useGetMembersByProjectId } from "../../../api";
 import { useProject } from "../../../provider";
-import AddMembersDialog from "../../projects/table/Add members dialog/add-members-dialog";
+import AddMembersDialogDrawer from "../../projects/table/add-members-dialog-drawer";
 
 const MembersMutate = () => {
   const { project } = useProject();
   const { data: members } = useGetMembersByProjectId(project?.id);
   const [openAddMemberDialog, setOpenAddMemberDialog] = useState(false);
+  const [openAddMemberDrawer, setOpenAddMemberDrawer] = useState(false);
   const { t } = useTranslation();
   return (
     <div className="flex gap-2 items-center">
-      <AddMembersDialog
+      <AddMembersDialogDrawer
         projectId={project.id}
-        open={openAddMemberDialog}
-        setOpen={setOpenAddMemberDialog}
+        openDialog={openAddMemberDialog}
+        openDrawer={openAddMemberDrawer}
+        setOpenDialog={setOpenAddMemberDialog}
+        setOpenDrawer={setOpenAddMemberDrawer}
       />
       <Typography element="p" as={"smallText"} className="font-bold">
         {t("Members")}:
@@ -82,8 +85,16 @@ const MembersMutate = () => {
       <Typography
         element="p"
         as={"extraSmallText"}
-        className="ml-1 text-neutral-500 cursor-pointer hover:text-foreground transition-all duration-200 ease-in-out"
+        className="ml-1 text-muted-foreground hidden md:inline-flex cursor-pointer hover:text-foreground transition-all duration-200 ease-in-out"
         onClick={() => setOpenAddMemberDialog(true)}
+      >
+        + Add/Remove Members
+      </Typography>
+      <Typography
+        element="p"
+        as={"extraSmallText"}
+        className="ml-1 text-muted-foreground inline-flex md:hidden cursor-pointer hover:text-foreground transition-all duration-200 ease-in-out"
+        onClick={() => setOpenAddMemberDrawer(true)}
       >
         + Add/Remove Members
       </Typography>

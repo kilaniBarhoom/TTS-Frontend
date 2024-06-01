@@ -15,7 +15,7 @@ import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 import { TicketProvider } from "../components/ticket-view/provider";
-import AddTicketDialog from "../components/tickets/add-ticket-dialog";
+import AddTicketDialogDrawer from "../components/tickets/add-ticket-dialog-drawer";
 import TableWrapper from "../components/tickets/table/table-wrapper";
 import { useGetProjectByIdQuery } from "../../Projects/api";
 import BreadcrumbComponent from "@/components/component/bread-crumb";
@@ -86,12 +86,12 @@ const Projects = () => {
             <User size={15} />
             {t("Assigned To")}
           </Button>
-          <AddTicketDialog>
+          <AddTicketDialogDrawer>
             <Button variant={"default"} className="h-fit gap-2" size={"sm"}>
               <Plus size={15} />
               {t("New")}
             </Button>
-          </AddTicketDialog>
+          </AddTicketDialogDrawer>
         </div>
       </div>
       <Tabs defaultValue="table" className="w-full">

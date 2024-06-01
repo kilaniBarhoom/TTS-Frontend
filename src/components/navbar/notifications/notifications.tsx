@@ -17,6 +17,9 @@ type CardProps = React.ComponentProps<typeof Card>;
 export default function NotificationsCard({ className, ...props }: CardProps) {
   const { data: notificationsResponse, isLoading } = useGetMemberNotifs();
   const { t } = useTranslation();
+
+  const dummyArray = Array.from({ length: 5 });
+
   return (
     <Card className={cn("border-none w-full p-0", className)} {...props}>
       <CardHeader className="m-0 p-0 bg-muted">
@@ -40,12 +43,9 @@ export default function NotificationsCard({ className, ...props }: CardProps) {
           <div>
             {isLoading ? (
               <div className="animate-pulse gap-3 flex flex-col ">
-                <Skeleton className="h-10 w-full rounded-md" />
-                <Skeleton className="h-10 w-full rounded-md" />
-                <Skeleton className="h-10 w-full rounded-md" />
-                <Skeleton className="h-10 w-full rounded-md" />
-                <Skeleton className="h-10 w-full rounded-md" />
-                <Skeleton className="h-10 w-full rounded-md" />
+                {dummyArray.map((_, index) => (
+                  <Skeleton key={index} className="h-10 w-full rounded-md" />
+                ))}
               </div>
             ) : notificationsResponse && notificationsResponse.items.length ? (
               notificationsResponse.items.map((notification: NotificationT) => {
