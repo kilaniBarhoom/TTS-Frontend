@@ -27,7 +27,7 @@ const Projects = () => {
   });
 
   const projectId = searchParams.get("projectId") || "";
-  const { data: project } = useGetProjectByIdQuery(projectId);
+  const { data: project } = useGetProjectByIdQuery(projectId) || {};
 
   const search = searchParams.get("TicketName") || "";
   const setSearch = (value: string) => {
@@ -40,8 +40,6 @@ const Projects = () => {
       { replace: true }
     );
   };
-
-  const {} = useGetProjectByIdQuery();
 
   return (
     <div className="flex flex-col h-full">

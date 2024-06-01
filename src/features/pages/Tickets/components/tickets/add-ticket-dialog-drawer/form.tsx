@@ -43,7 +43,9 @@ const TicketForm = ({
 }) => {
   const { t } = useTranslation();
 
-  const { data: members } = projectId ? useGetMembersByProjectId(projectId) : { data: null };
+  const { data: members } = projectId
+    ? useGetMembersByProjectId(projectId)
+    : { data: null };
 
   return (
     <Form {...ticketForm}>
@@ -106,7 +108,7 @@ const TicketForm = ({
                           )}
                         >
                           {field.value ? (
-                            format(stringToDate(field.value), "EEE, dd/LL/y", {
+                            format(stringToDate(field.value), "dd/LL/y", {
                               locale:
                                 document.documentElement.lang === "ar"
                                   ? ar
@@ -153,7 +155,7 @@ const TicketForm = ({
                           )}
                         >
                           {field.value ? (
-                            format(stringToDate(field.value), "EEE, dd/LL/y", {
+                            format(stringToDate(field.value), "dd/LL/y", {
                               locale:
                                 document.documentElement.lang === "ar"
                                   ? ar
@@ -257,7 +259,7 @@ const TicketForm = ({
                             name={name}
                             avatarSize="size-5"
                             nameSize="text-xs"
-                          // className="hover:bg-muted/40 cursor-pointer py-1 px-2 rounded-md transition-all duration-200 ease-in-out"
+                            // className="hover:bg-muted/40 cursor-pointer py-1 px-2 rounded-md transition-all duration-200 ease-in-out"
                           />
                         </SelectItem>
                       );

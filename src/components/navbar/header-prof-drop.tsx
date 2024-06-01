@@ -33,7 +33,7 @@ export function HeaderProfileDrop() {
   const { user } = useAuth();
   const logoutUser = async () => {
     await logout();
-    navigate("/", { replace: true });
+    navigate("/");
   };
   const { t, i18n } = useTranslation();
   const { setTheme } = useTheme();
@@ -48,7 +48,7 @@ export function HeaderProfileDrop() {
           </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-64 -mt-1 mr-5 border-border">
+      <DropdownMenuContent align="end" className="w-64 border-border">
         <DropdownMenuLabel>{t("My account")}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>

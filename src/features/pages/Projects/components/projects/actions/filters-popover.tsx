@@ -84,7 +84,7 @@ export default function FiltersPopover({
 
   return (
     <Popover>
-      <PopoverTrigger>{children}</PopoverTrigger>
+      <PopoverTrigger asChild>{children}</PopoverTrigger>
       {/* <PopoverContent align="end" className="w-fit">
         <Typography as="h3" element="h3">
           Status
@@ -109,7 +109,7 @@ export default function FiltersPopover({
                 >
                   <Calendar size={15} />
                   {StartDate
-                    ? format(parseISO(StartDate), "EEE, dd/MM/yyyy")
+                    ? format(parseISO(StartDate), "dd/MM/yyyy")
                     : t("Start Date")}
                 </Button>
               </PopoverTrigger>
@@ -133,7 +133,7 @@ export default function FiltersPopover({
                 >
                   <Calendar size={15} />
                   {StartDate
-                    ? format(parseISO(EndDate), "EEE, dd/MM/yyyy")
+                    ? format(parseISO(EndDate), "dd/MM/yyyy")
                     : t("Start Date")}
                 </Button>
               </PopoverTrigger>

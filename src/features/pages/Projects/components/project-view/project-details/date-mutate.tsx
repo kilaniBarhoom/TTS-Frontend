@@ -1,11 +1,5 @@
-import Typography from "@/components/ui/typography";
-import { Calendar, MoveRight } from "lucide-react";
-import { useTranslation } from "react-i18next";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { useProject } from "../../../provider";
-import { useProjectFormMutation } from "../../../api";
+import { Button } from "@/components/ui/button";
+import { Calendar as DatePicker } from "@/components/ui/calendar"; // Assuming you have a Calendar component
 import {
   Form,
   FormControl,
@@ -15,12 +9,18 @@ import {
 } from "@/components/ui/form";
 import {
   Popover,
-  PopoverTrigger,
   PopoverContent,
+  PopoverTrigger,
 } from "@/components/ui/popover"; // Adjust the import paths as needed
-import { Calendar as DatePicker } from "@/components/ui/calendar"; // Assuming you have a Calendar component
+import Typography from "@/components/ui/typography";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { format, parseISO } from "date-fns";
-import { Button } from "@/components/ui/button";
+import { Calendar, MoveRight } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import * as z from "zod";
+import { useProjectFormMutation } from "../../../api";
+import { useProject } from "../../../provider";
 
 const DateMutate = () => {
   const { project } = useProject();
@@ -45,7 +45,12 @@ const DateMutate = () => {
 
   const onSubmit = async (data: DateSchemaType) => {
     try {
-      await mutateAsync({ ...data, projectId: project?.id, startDate: new Date(data.startDate), endDate: new Date(data.endDate) });
+      await mutateAsync({
+        ...data,
+        projectId: project?.id,
+        startDate: new Date(data.startDate),
+        endDate: new Date(data.endDate),
+      });
     } catch (error) {
       // Handle submission error
     }
@@ -74,11 +79,11 @@ const DateMutate = () => {
                       <FormControl>
                         <Button
                           variant={"outline"}
-                          className="flex items-center gap-2 text-neutral-500"
+                          className="flex items-center gap-2 text-muted-foreground"
                         >
                           <Calendar size={15} />
                           {field.value
-                            ? format(parseISO(field.value), "EEE, dd/MM/yyyy")
+                            ? format(parseISO(field.value), "dd/MM/yyyy")
                             : t("Start Date")}
                         </Button>
                       </FormControl>
@@ -99,7 +104,7 @@ const DateMutate = () => {
                 </FormItem>
               )}
             />
-            <MoveRight className="text-neutral-500" size={15} />
+            <MoveRight className="text-muted-foreground" size={15} />
             <FormField
               control={dateForm.control}
               name="endDate"
@@ -110,11 +115,11 @@ const DateMutate = () => {
                       <FormControl>
                         <Button
                           variant={"outline"}
-                          className="flex items-center gap-2 text-neutral-500"
+                          className="flex items-center gap-2 text-muted-foreground"
                         >
                           <Calendar size={15} />
                           {field.value
-                            ? format(parseISO(field.value), "EEE, dd/MM/yyyy")
+                            ? format(parseISO(field.value), "dd/MM/yyyy")
                             : t("End Date")}
                         </Button>
                       </FormControl>

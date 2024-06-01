@@ -49,7 +49,7 @@ export const useGetTicketsQuery = () => {
 export const useGetTicketByIdQuery = () => {
   const axios = useAxios();
   const [searchParams] = useSearchParams();
-  const ticketId = searchParams.get("selectedTicket") || useParams().ticketId;
+  const ticketId = searchParams.get("selectedTicket") ?? useParams().ticketId;
 
   return useQuery({
     queryKey: ["ticket", { ticketId }],

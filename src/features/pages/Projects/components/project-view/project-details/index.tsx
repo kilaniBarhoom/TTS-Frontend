@@ -16,7 +16,7 @@ const ProjectDetails = () => {
   const { project, isLoading } = useProject();
 
   return (
-    <>
+    <div className="w-full">
       {isLoading ? (
         <ProjectDetailsSkeleton />
       ) : (
@@ -36,12 +36,14 @@ const ProjectDetails = () => {
                 <DescriptionMutate />
               </div>
               <Separator className="w-full border-border" />
-              <Tools />
+              <div>
+                <Tools />
+              </div>
             </div>
           </div>
         )
       )}
-    </>
+    </div>
   );
 };
 

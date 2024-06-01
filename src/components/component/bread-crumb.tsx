@@ -34,7 +34,7 @@ const BreadcrumbComponent = ({
               <BreadcrumbItem>
                 <BreadcrumbLink
                   className="cursor-pointer"
-                  onClick={() => navigate(item.link || '')} // Add a conditional operator to provide a default value if item.link is undefined
+                  onClick={() => navigate(item.link || "")} // Add a conditional operator to provide a default value if item.link is undefined
                 >
                   {item.title}
                 </BreadcrumbLink>

@@ -98,7 +98,7 @@ const DescriptionMutate = () => {
                   </>
                 ) : (
                   <div
-                    className="text-neutral-500 w-full leading-5 list-disc cursor-text hover:bg-muted/30 py-2"
+                    className="text-muted-foreground w-full leading-5 list-disc cursor-text hover:bg-muted/30 py-2"
                     onClick={() => setIsEditing(true)}
                     dangerouslySetInnerHTML={{ __html: field.value }}
                   />

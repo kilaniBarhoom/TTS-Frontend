@@ -99,7 +99,7 @@ const ProjectForm = ({
                           )}
                         >
                           {field.value ? (
-                            format(stringToDate(field.value), "EEE, dd/LL/y", {
+                            format(stringToDate(field.value), "dd/LL/y", {
                               locale:
                                 document.documentElement.lang === "ar"
                                   ? ar
@@ -146,7 +146,7 @@ const ProjectForm = ({
                           )}
                         >
                           {field.value ? (
-                            format(stringToDate(field.value), "EEE, dd/LL/y", {
+                            format(stringToDate(field.value), "dd/LL/y", {
                               locale:
                                 document.documentElement.lang === "ar"
                                   ? ar

@@ -72,7 +72,7 @@ const NameMutate = () => {
                   <Textarea
                     {...field}
                     className={cn(
-                      "text-3xl font-extrabold resize-none border-0 focus-visible:border-2 h-fit w-[980px] pl-0",
+                      "md:text-3xl overflow-ellipsis text-2xl font-extrabold resize-none border-0 focus-visible:border-2 h-fit w-full pl-0",
                       isFocused && "pl-4"
                     )}
                     onFocus={() => setIsFocused(true)}

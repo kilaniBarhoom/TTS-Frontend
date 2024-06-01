@@ -20,7 +20,7 @@ const MembersMutate = () => {
   const [openAddMemberDrawer, setOpenAddMemberDrawer] = useState(false);
   const { t } = useTranslation();
   return (
-    <div className="flex gap-2 items-center">
+    <div className="flex  items-center">
       <AddMembersDialogDrawer
         projectId={project.id}
         openDialog={openAddMemberDialog}
@@ -31,7 +31,7 @@ const MembersMutate = () => {
       <Typography element="p" as={"smallText"} className="font-bold">
         {t("Members")}:
       </Typography>
-      <div className="flex cursor-pointer">
+      <div className="flex ml-2">
         {members?.length >= 5 ? (
           <>
             {members?.slice(0, 4).map((member: OwnerT) => (
@@ -49,7 +49,7 @@ const MembersMutate = () => {
             <HoverCardTrigger asChild>
               <div className="flex ">
                 {members?.map((member: { id: string; name: string }) => (
-                  <Avatar key={member.id} className="size-7 -mr-2">
+                  <Avatar key={member.id} className="size-6 -mr-2">
                     <AvatarImage alt="Avatar" src="/avatars/01.png" />
                     <AvatarFallback>
                       {member.name.split("")[0].toUpperCase()}
@@ -60,10 +60,8 @@ const MembersMutate = () => {
             </HoverCardTrigger>
             <HoverCardContent
               align="start"
-              className="relative mt-2 w-fit border border-border grid gap-4 h-fit p-2"
+              className="relative w-fit border border-border grid gap-4 h-fit p-2"
             >
-              <div className="absolute -top-4 left-0 translate-x-1 transform  w-0 h-0 border-solid border-8 border-r-transparent border-l-transparent border-t-transparent border-b-border" />
-
               <Typography element="p" as={"smallText"}>
                 Members:
               </Typography>
@@ -85,7 +83,7 @@ const MembersMutate = () => {
       <Typography
         element="p"
         as={"extraSmallText"}
-        className="ml-1 text-muted-foreground hidden md:inline-flex cursor-pointer hover:text-foreground transition-all duration-200 ease-in-out"
+        className="ml-4 text-muted-foreground hidden md:inline-flex cursor-pointer hover:text-foreground transition-all duration-200 ease-in-out"
         onClick={() => setOpenAddMemberDialog(true)}
       >
         + Add/Remove Members
@@ -93,7 +91,7 @@ const MembersMutate = () => {
       <Typography
         element="p"
         as={"extraSmallText"}
-        className="ml-1 text-muted-foreground inline-flex md:hidden cursor-pointer hover:text-foreground transition-all duration-200 ease-in-out"
+        className="ml-4 text-muted-foreground inline-flex md:hidden cursor-pointer hover:text-foreground transition-all duration-200 ease-in-out"
         onClick={() => setOpenAddMemberDrawer(true)}
       >
         + Add/Remove Members

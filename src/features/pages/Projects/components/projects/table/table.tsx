@@ -27,9 +27,9 @@ const ProjectsTable = ({
       <TableHeader>
         <TableRow>
           <TableHead className="min-w-52">Name</TableHead>
-          <TableHead className="hidden md:table-cell">Start Date</TableHead>
-          <TableHead className="hidden md:table-cell">End Date</TableHead>
-          <TableHead className="hidden md:table-cell">Status</TableHead>
+          <TableHead className="min-w-28">Start Date</TableHead>
+          <TableHead className="min-w-28">End Date</TableHead>
+          <TableHead className="min-w-28">Status</TableHead>
           <TableHead>
             <span className="sr-only">Actions</span>
           </TableHead>

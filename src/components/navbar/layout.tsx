@@ -41,7 +41,7 @@ export default function Layout() {
           </Button>
           <Header />
         </header>
-        <main className="flex-1 sm:p-4 h-screen w-full max-w-screen-2xl mx-auto">
+        <main className="flex-1 p-4 h-screen w-full max-w-screen-2xl mx-auto">
           <Outlet />
         </main>
       </div>

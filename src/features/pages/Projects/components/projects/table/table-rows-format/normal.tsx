@@ -18,17 +18,13 @@ const TableRows = ({
           <TableCell
             style={{ paddingLeft: `${level && level * 40}px` }}
             className="font-medium hover:underline cursor-pointer max-w-6 overflow-x-hidden"
-            onClick={() => navigate(project.id.toString(), { replace: true })}
+            onClick={() => navigate(project.id.toString())}
           >
             <div className="truncate">{project.name}</div>
           </TableCell>
-          <TableCell className="hidden md:table-cell">
-            {project.startDate}
-          </TableCell>
-          <TableCell className="hidden md:table-cell">
-            {project.endDate}
-          </TableCell>
-          <TableCell className="hidden md:table-cell">
+          <TableCell>{project.startDate}</TableCell>
+          <TableCell>{project.endDate}</TableCell>
+          <TableCell>
             <ProjectStatusBadge status={project.projectStatus} />
           </TableCell>
           <TableCell className="flex justify-end">

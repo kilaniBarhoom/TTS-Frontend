@@ -26,7 +26,7 @@ export const TicketProvider = ({ children }: { children: React.ReactNode }) => {
 export const useTicket = () => {
   const context = useContext(TicketProviderContext);
   if (!context) {
-    throw new Error("useTicket must be used within an ProjectProvider");
+    throw new Error("useTicket must be used within a TicketProvider");
   }
   return context;
 };

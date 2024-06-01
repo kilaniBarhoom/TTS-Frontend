@@ -42,8 +42,12 @@ export const useGetAllProjectsQuery = () => {
 
 export const useGetProjectByIdQuery = (projectId?: string) => {
   const axios = useAxios();
+  projectId = projectId ?? useParams().projectId;
   if (!projectId) {
-    projectId = useParams().projectId;
+    return {
+      data: null,
+      isLoading: false,
+    };
   }
   return useQuery({
     queryKey: [

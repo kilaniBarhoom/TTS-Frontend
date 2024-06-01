@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 import { Button } from "../ui/button";
 import Typography from "../ui/typography";
 import { HeaderProfileDrop } from "./header-prof-drop";
-import { NotificationsPopover } from "./notifications/popover";
+import { NotificationsPopoverDrawer } from "./notifications/popover-drawer";
 import SideNavSheet from "./side-nav-sheet";
 
 const Header = () => {
@@ -24,7 +24,7 @@ const Header = () => {
       )}
       <div className="flex items-center ltr:ml-auto rtl:mr-auto gap-2">
         {user && (
-          <NotificationsPopover>
+          <NotificationsPopoverDrawer>
             <Button
               variant="ghostOnNav"
               size="xs"
@@ -33,7 +33,7 @@ const Header = () => {
               <Bell size={16} />
               <span className="sr-only">Toggle notifications</span>
             </Button>
-          </NotificationsPopover>
+          </NotificationsPopoverDrawer>
         )}
         <Button
           variant="ghostOnNav"
