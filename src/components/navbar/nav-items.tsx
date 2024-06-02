@@ -1,4 +1,4 @@
-import { Home, Ticket } from "lucide-react";
+import { Home, LineChart, Ticket } from "lucide-react";
 
 export type SideNavItem = {
   title: string;
@@ -10,9 +10,14 @@ export type SideNavItem = {
 
 export const SideNavItems: SideNavItem[] = [
   {
+    title: "Dashboard",
+    path: "/dashboard",
+    icon: <Home className="size-5 mr-1" />,
+  },
+  {
     title: "Projects",
     path: "/projects",
-    icon: <Home className="size-5 mr-1" />,
+    icon: <LineChart className="size-5 mr-1" />,
   },
   {
     title: "Tickets",

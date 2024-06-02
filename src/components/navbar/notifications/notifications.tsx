@@ -22,8 +22,8 @@ export default function NotificationsCard({ className, ...props }: CardProps) {
 
   return (
     <Card className={cn("border-none w-full p-0", className)} {...props}>
-      <CardHeader className="m-0 p-0 bg-muted">
-        <div className="flex items-center justify-between px-4 py-2">
+      <CardHeader className="m-0 p-0">
+        <div className="flex items-center justify-between p-4 ">
           <Typography
             as={"largeText"}
             element="h5"
@@ -38,9 +38,9 @@ export default function NotificationsCard({ className, ...props }: CardProps) {
         </div>
       </CardHeader>
       <Separator className="w-full border-border" />
-      <CardContent className="grid gap-4 w-full p-4 bg-background">
-        <ScrollArea className="h-52">
-          <div>
+      <CardContent className="grid gap-4 w-full py-4 px-0 bg-background overflow-auto">
+        <ScrollArea className="md:h-52">
+          <>
             {isLoading ? (
               <div className="animate-pulse gap-3 flex flex-col ">
                 {dummyArray.map((_, index) => (
@@ -52,7 +52,7 @@ export default function NotificationsCard({ className, ...props }: CardProps) {
                 return (
                   <div
                     key={notification.id}
-                    className="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"
+                    className="mb-4 grid grid-cols-[25px_1fr] border-b border-border items-start p-4 last:mb-0 last:pb-0"
                   >
                     <span className="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
                     <div className="space-y-1">
@@ -77,7 +77,7 @@ export default function NotificationsCard({ className, ...props }: CardProps) {
                 No new notifications
               </div>
             )}
-          </div>
+          </>
         </ScrollArea>
       </CardContent>
     </Card>

@@ -20,7 +20,7 @@ const TicketDetails = () => {
       {isLoading ? (
         <TicketsSkeleton />
       ) : (
-        <div>
+        <>
           <div className="flex justify-between items-center pb-4">
             <BreadcrumbComponent
               tree={[{ title: "Tickets", link: "/tickets" }]}
@@ -40,19 +40,18 @@ const TicketDetails = () => {
               </Button>
             </WatchersMutate>
           </div>
-          <div className="md:flex grid px-4 md:p-0 overflow-y-auto max-h-dvh">
+          <div className="md:flex grid md:px-4 md:p-0 overflow-y-auto h-full md:max-h-dvh">
             <div className="flex-[1.3] md:pr-4 grid gap-8 overflow-y-auto">
               <MainDetails />
               <div className="overflow-y-auto flex md:hidden flex-col gap-2">
                 <OtherDetails />
               </div>
-              <div className="grid gap-1">
+              <div className="grid gap-4">
                 <Typography element="p" as="smallText">
                   {t("Activity")}:
                 </Typography>
                 <Tabs defaultValue="all" className="w-full">
-                  <TabsList className="w-full justify-start rtl:flex-row-reverse mb-2">
-                    <p>Show:</p>
+                  <TabsList className="w-fit justify-start rtl:flex-row-reverse mb-2">
                     <TabsTrigger
                       value="all"
                       className="gap-1 items-center flex text-sm"
@@ -82,7 +81,7 @@ const TicketDetails = () => {
               <OtherDetails />
             </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   );

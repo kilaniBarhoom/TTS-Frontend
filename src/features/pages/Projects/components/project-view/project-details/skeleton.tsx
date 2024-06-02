@@ -13,9 +13,9 @@ const ProjectDetailsSkeleton = () => {
           ))}
           <Separator />
           <Skeleton className="h-10 w-40" />
-          <div className="flex gap-5 w-full">
+          <div className="md:flex grid gap-5 w-full">
             {Array.from({ length: 5 }).map((_, index) => (
-              <Skeleton key={index} className="w-[700px] h-24" />
+              <Skeleton key={index} className="w-full h-24" />
             ))}
           </div>
         </div>

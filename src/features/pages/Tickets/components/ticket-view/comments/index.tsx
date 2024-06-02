@@ -20,7 +20,7 @@ const Comments = () => {
         </Avatar>
         <CommentForm />
       </div>
-      <div className="grid gap-2 p-4">
+      <div className="grid gap-2 md:p-4 p-2">
         {ticket?.comments.length ? (
           ticket?.comments.map((comment: CommentT) => (
             <Comment key={comment.id} comment={comment} />

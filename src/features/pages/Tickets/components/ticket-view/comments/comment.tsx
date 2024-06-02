@@ -15,7 +15,7 @@ const Comment = ({ comment }: { comment: CommentT }) => {
   return isEditingComment ? (
     <CommentForm comment={comment} setIsEditingComment={setIsEditingComment} />
   ) : (
-    <div className="flex gap-2 border-b border-border">
+    <div className="flex gap-2 border-b border-border last:border-0">
       <Avatar className="size-8">
         <AvatarImage src={undefined} alt={""} />
         <AvatarFallback className="xl">
