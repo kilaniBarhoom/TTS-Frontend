@@ -7,11 +7,14 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useTicket } from "../../provider";
 import WatchersMutate from "../mutation-components/watchers-mutate";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const Header = ({
   setOpenDialog,
+  isLoading,
 }: {
   setOpenDialog: (value: boolean) => void;
+  isLoading: boolean;
 }) => {
   const { ticket } = useTicket();
   const { t } = useTranslation();
@@ -29,17 +32,21 @@ const Header = ({
       />
       <div className="flex justify-between items-center">
         <DialogTitle>
-          <Button
-            size="md"
-            variant={"link"}
-            className="p-0 w-fit"
-            onClick={() => {
-              setOpenDialog(false);
-              navigate(`/tickets/${ticket?.id}`);
-            }}
-          >
-            {`${t("Ticket: ")} ${ticket?.id.split(" ").splice(0, 5)}`}
-          </Button>
+          {isLoading ? (
+            <Skeleton className="w-40 h-6" />
+          ) : (
+            <Button
+              size="md"
+              variant={"link"}
+              className="p-0 w-fit"
+              onClick={() => {
+                setOpenDialog(false);
+                navigate(`/tickets/${ticket?.id}`);
+              }}
+            >
+              {`${t("Ticket: ")} ${ticket?.id.split(" ").splice(0, 5)}`}
+            </Button>
+          )}
         </DialogTitle>
         <WatchersMutate ticket={ticket}>
           <Button

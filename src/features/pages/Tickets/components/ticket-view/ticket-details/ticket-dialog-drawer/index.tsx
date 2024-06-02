@@ -1,10 +1,7 @@
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Typography from "@/components/ui/typography";
 import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 import Comments from "../../comments";
 import { useTicket } from "../../provider";
@@ -20,7 +17,6 @@ const TicketDialogDrawer = ({
   children: React.ReactNode;
   ticketId: string;
 }) => {
-  const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const selectedTicket = searchParams.get("selectedTicket");
   const [isOpen, setIsOpen] = useState(ticketId === selectedTicket);
@@ -74,37 +70,7 @@ const TicketDialogDrawer = ({
           <div className="overflow-y-auto flex md:hidden flex-col gap-2">
             <OtherDetails />
           </div>
-          <div className="grid gap-1">
-            <Typography element="p" as="smallText">
-              {t("Activity")}:
-            </Typography>
-            <Tabs defaultValue="all" className="w-full">
-              <TabsList className="w-full justify-start rtl:flex-row-reverse mb-2">
-                <p>Show:</p>
-                <TabsTrigger
-                  value="all"
-                  className="gap-1 items-center flex text-sm"
-                >
-                  All
-                </TabsTrigger>
-                <TabsTrigger
-                  value="comments"
-                  className="gap-1 items-center flex text-sm"
-                >
-                  Comments
-                </TabsTrigger>
-              </TabsList>
-
-              <TabsContent value="all">
-                <Comments />
-              </TabsContent>
-              <TabsContent value="comments">
-                <Typography as="p" element="p">
-                  No comments yet
-                </Typography>
-              </TabsContent>
-            </Tabs>
-          </div>
+          <Comments />
         </div>
         <div className="flex-[0.7] overflow-y-auto pl-4 md:flex hidden flex-col gap-2">
           <OtherDetails />
@@ -113,29 +79,28 @@ const TicketDialogDrawer = ({
     </>
   );
 
+  const renderDialogOrDrawer = isLargeScreen ? (
+    <Dialog open={isOpen} onOpenChange={handleChange}>
+      <DialogTrigger asChild>{children}</DialogTrigger>
+      <DialogContent className="sm:max-w-screen-xl">
+        <Header setOpenDialog={setIsOpen} isLoading={isLoading} />
+        {content}
+      </DialogContent>
+    </Dialog>
+  ) : (
+    <Drawer open={isOpen} onOpenChange={handleChange}>
+      <DrawerTrigger asChild>{children}</DrawerTrigger>
+      <DrawerContent>
+        <Header setOpenDialog={setIsOpen} isLoading={isLoading} />
+        <ScrollArea className="h-fit">{content}</ScrollArea>
+      </DrawerContent>
+    </Drawer>
+  );
+
   return (
     <>
-      {isLargeScreen ? (
-        <div className="hidden md:flex">
-          <Dialog open={isOpen} onOpenChange={handleChange}>
-            <DialogTrigger asChild>{children}</DialogTrigger>
-            <DialogContent className="sm:max-w-screen-xl">
-              <Header setOpenDialog={setIsOpen} />
-              {content}
-            </DialogContent>
-          </Dialog>
-        </div>
-      ) : (
-        <div className="flex md:hidden">
-          <Drawer open={isOpen} onOpenChange={handleChange}>
-            <DrawerTrigger asChild>{children}</DrawerTrigger>
-            <DrawerContent>
-              <Header setOpenDialog={setIsOpen} />
-              <ScrollArea className="h-fit">{content}</ScrollArea>
-            </DrawerContent>
-          </Drawer>
-        </div>
-      )}
+      <div className="hidden md:flex">{renderDialogOrDrawer}</div>
+      <div className="flex md:hidden">{renderDialogOrDrawer}</div>
     </>
   );
 };

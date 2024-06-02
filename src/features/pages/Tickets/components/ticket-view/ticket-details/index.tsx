@@ -1,9 +1,6 @@
-import Typography from "@/components/ui/typography";
 import { useTicket } from "../provider";
 import MainDetails from "./main-details";
 import TicketsSkeleton from "./skeleton";
-import { useTranslation } from "react-i18next";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Comments from "../comments";
 import OtherDetails from "./other-details";
 import BreadcrumbComponent from "@/components/component/bread-crumb";
@@ -14,14 +11,13 @@ import { Eye } from "lucide-react";
 
 const TicketDetails = () => {
   const { ticket, isLoading } = useTicket();
-  const { t } = useTranslation();
   return (
     <div>
       {isLoading ? (
         <TicketsSkeleton />
       ) : (
         <>
-          <div className="flex justify-between items-center pb-4">
+          <div className="flex justify-between items-center pb-4 ">
             <BreadcrumbComponent
               tree={[{ title: "Tickets", link: "/tickets" }]}
               currentPage={ticket.name}
@@ -46,36 +42,7 @@ const TicketDetails = () => {
               <div className="overflow-y-auto flex md:hidden flex-col gap-2">
                 <OtherDetails />
               </div>
-              <div className="grid gap-4">
-                <Typography element="p" as="smallText">
-                  {t("Activity")}:
-                </Typography>
-                <Tabs defaultValue="all" className="w-full">
-                  <TabsList className="w-fit justify-start rtl:flex-row-reverse mb-2">
-                    <TabsTrigger
-                      value="all"
-                      className="gap-1 items-center flex text-sm"
-                    >
-                      All
-                    </TabsTrigger>
-                    <TabsTrigger
-                      value="comments"
-                      className="gap-1 items-center flex text-sm"
-                    >
-                      Comments
-                    </TabsTrigger>
-                  </TabsList>
-
-                  <TabsContent value="all">
-                    <Comments />
-                  </TabsContent>
-                  <TabsContent value="comments">
-                    <Typography as="p" element="p">
-                      No comments yet
-                    </Typography>
-                  </TabsContent>
-                </Tabs>
-              </div>
+              <Comments />
             </div>
             <div className="flex-[0.7] overflow-y-auto pl-4 md:flex hidden flex-col gap-2">
               <OtherDetails />

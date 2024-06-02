@@ -1,15 +1,10 @@
-import { Skeleton } from "@/components/ui/skeleton";
+import { Loader2 } from "lucide-react";
 
 const TicketSkeleton = () => {
   return (
-    <div className="grid gap-2">
-      <div className="my-4">
-        <Skeleton className="w-1/3 h-6" />
-      </div>
-      <div className="grid gap-2">
-        <Skeleton className="w-1/3 h-6" />
-        <Skeleton className="w-1/3 h-6" />
-        <Skeleton className="w-1/3 h-6" />
+    <div className="grid gap-2 min-h-40">
+      <div className="w-full h-full flex justify-center items-center">
+        <Loader2 className="text-primary size-10 animate-spin" />
       </div>
     </div>
   );
