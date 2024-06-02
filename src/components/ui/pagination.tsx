@@ -20,7 +20,10 @@ const PaginationContent = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <ul
     ref={ref}
-    className={cn("flex flex-row items-center gap-1", className)}
+    className={cn(
+      "flex flex-row items-center divide-x divide-border border border-border rounded-md overflow-hidden bg-background shadow-sm",
+      className
+    )}
     {...props}
   />
 ));
@@ -30,7 +33,7 @@ const PaginationItem = React.forwardRef<
   HTMLLIElement,
   React.ComponentProps<"li">
 >(({ className, ...props }, ref) => (
-  <li ref={ref} className={cn("", className)} {...props} />
+  <li ref={ref} className={cn("text-xs", className)} {...props} />
 ));
 PaginationItem.displayName = "PaginationItem";
 
@@ -42,7 +45,7 @@ type PaginationLinkProps = {
 const PaginationLink = ({
   className,
   isActive,
-  size = "icon",
+  size = "xs",
   ...props
 }: PaginationLinkProps) => (
   <a
@@ -50,9 +53,10 @@ const PaginationLink = ({
     className={cn(
       "cursor-pointer",
       buttonVariants({
-        variant: isActive ? "default" : "outline",
+        variant: isActive ? "default" : "ghost",
         size,
       }),
+      "rounded-none",
       className
     )}
     {...props}
@@ -66,11 +70,11 @@ const PaginationPrevious = ({
 }: React.ComponentProps<typeof PaginationLink>) => (
   <PaginationLink
     aria-label="Go to previous page"
-    size="default"
-    className={cn("cursor-pointer", className)}
+    size="xs"
+    className={cn("cursor-pointer px-3", className)}
     {...props}
   >
-    <ChevronLeft className="h-4 w-4" />
+    <ChevronLeft className="size-4" />
   </PaginationLink>
 );
 PaginationPrevious.displayName = "PaginationPrevious";
@@ -81,11 +85,11 @@ const PaginationNext = ({
 }: React.ComponentProps<typeof PaginationLink>) => (
   <PaginationLink
     aria-label="Go to next page"
-    size="default"
-    className={cn("cursor-pointer", className)}
+    size="xs"
+    className={cn("cursor-pointer px-3", className)}
     {...props}
   >
-    <ChevronRight className="h-4 w-4" />
+    <ChevronRight className="size-4" />
   </PaginationLink>
 );
 PaginationNext.displayName = "PaginationNext";

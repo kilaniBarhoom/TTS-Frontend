@@ -1,17 +1,17 @@
 import ErrorHandler from "@/components/error/ErrorHandler";
+import NavLayout from "@/components/navbar/layout";
 import PersistentLogin from "@/components/routing/PresistentLogin";
 import RequireAuth from "@/components/routing/RequiredAuth";
 import AuthLayout from "@/features/pages/Auth/Layout";
-import NavLayout from "@/components/navbar/layout";
+import Login from "@/features/pages/Auth/Login";
+import Register from "@/features/pages/Auth/Register";
+import ProjectsRoutes from "@/features/pages/Projects/routes";
+import TicketsRoutes from "@/features/pages/Tickets/routes";
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
-import ProjectsRoutes from "@/features/pages/Projects/routes";
-import Login from "@/features/pages/Auth/Login";
-import Register from "@/features/pages/Auth/Register";
-import TicketsRoutes from "@/features/pages/Tickets/routes";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -32,6 +32,13 @@ const router = createBrowserRouter(
         <Route />
         <Route path="/" element={<NavLayout />}>
           <Route element={<RequireAuth />}>
+            <Route
+              path="/dashboard"
+              element={<div className="dark:text-white"> </div>}
+              errorElement={
+                <ErrorHandler status={500} title="Internal Server Error!" />
+              }
+            />
             <Route
               path="/projects/*"
               element={<ProjectsRoutes />}

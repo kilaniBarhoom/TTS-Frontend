@@ -24,7 +24,6 @@ const Layout = () => {
       <div className="flex flex-col items-center justify-center m-auto">
         <Card className="w-full max-w-sm border border-border bg-background">
           <div className=" relative">
-            {" "}
             <img
               src="/assets/globals/TTSLogo.png"
               className="w-24 absolute -top-10 left-1/2 -translate-x-1/2"
@@ -32,7 +31,7 @@ const Layout = () => {
             />
           </div>
 
-          <CardHeader className="mt-5">
+          <CardHeader className="mb-4">
             <CardTitle className="text-2xl flex items-center justify-between">
               {cardTitle}
             </CardTitle>
