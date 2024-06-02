@@ -23,7 +23,7 @@ const TicketStatusBadge = ({
           : status === "Completed"
           ? "border-status-completed bg-status-completed/40 hover:bg-status-completed/30"
           : status === "Pending"
-          ? "border-status-pending bg-status-pending/40 hover:bg-status-pending/30"
+          ? "border-yellow-400 bg-status-pending/40 hover:bg-status-pending/30"
           : status === "Canceled"
           ? "border-status-canceled bg-status-canceled/40 hover:bg-status-canceled/30"
           : ""

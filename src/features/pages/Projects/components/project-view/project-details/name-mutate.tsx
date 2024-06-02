@@ -72,7 +72,7 @@ const NameMutate = () => {
                   <Textarea
                     {...field}
                     className={cn(
-                      "md:text-3xl overflow-ellipsis text-2xl font-extrabold resize-none border-0 focus-visible:border-2 h-fit w-full pl-0",
+                      "text-3xl break-words font-extrabold resize-none border-0 focus-visible:border-2 pl-0 h-fit w-fit md:w-full overflow-hidden",
                       isFocused && "pl-4"
                     )}
                     onFocus={() => setIsFocused(true)}
@@ -87,8 +87,6 @@ const NameMutate = () => {
                         }
                       }, 100); // Adjust the timeout as needed
                     }}
-                    rows={1}
-                    maxLength={50}
                     autoComplete="name"
                     error={!!nameForm.formState.errors.name?.message}
                   />

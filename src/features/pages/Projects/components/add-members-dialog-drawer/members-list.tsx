@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 
-import { useGetMembersByProjectId } from "../../../../api";
+import { useGetMembersByProjectId } from "../../api";
 
 import { UserAvatar } from "@/components/component/user-avatar";
 import { Input } from "@/components/ui/input";

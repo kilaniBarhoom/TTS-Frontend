@@ -27,7 +27,7 @@ const ProjectStatusBadge = ({
           : status === "Canceled"
           ? "border-status-canceled bg-status-canceled/40 hover:bg-status-canceled/30"
           : status === "Pending"
-          ? "border-status-pending bg-status-pending/40 hover:bg-status-pending/30"
+          ? "border-yellow-400 bg-status-pending/40 hover:bg-status-pending/30"
           : status === "Delayed"
           ? "border-status-delayed bg-status-delayed/40 hover:bg-status-delayed/30"
           : status === "UnderReview"

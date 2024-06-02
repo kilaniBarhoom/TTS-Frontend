@@ -11,7 +11,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useGetMembersByProjectId } from "../../../api";
 import { useProject } from "../../../provider";
-import AddMembersDialogDrawer from "../../projects/table/add-members-dialog-drawer";
+import AddMembersDialogDrawer from "../../add-members-dialog-drawer";
 
 const MembersMutate = () => {
   const { project } = useProject();

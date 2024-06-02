@@ -1,7 +1,7 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import { TableCell, TableRow } from "@/components/ui/table";
 
-const ProjectsSkeleton = () => {
+const ProjectsTableSkeleton = () => {
   return (
     <TableRow>
       <TableCell className="font-medium">
@@ -23,4 +23,4 @@ const ProjectsSkeleton = () => {
   );
 };
 
-export default ProjectsSkeleton;
+export default ProjectsTableSkeleton;

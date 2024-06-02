@@ -1,24 +1,15 @@
-import { Button } from "@/components/ui/button";
+import BreadcrumbComponent from "@/components/component/bread-crumb";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Typography from "@/components/ui/typography";
-import {
-  AlignJustify,
-  Columns3,
-  Filter,
-  Plus,
-  Search,
-  Table,
-  User,
-} from "lucide-react";
+import { Columns3, Search, Table } from "lucide-react";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
-import { TicketProvider } from "../components/ticket-view/provider";
-import AddTicketDialogDrawer from "../components/tickets/add-ticket-dialog-drawer";
-import TableWrapper from "../components/tickets/table/table-wrapper";
 import { useGetProjectByIdQuery } from "../../Projects/api";
-import BreadcrumbComponent from "@/components/component/bread-crumb";
+import { TicketProvider } from "../components/ticket-view/provider";
+import TicketsActions from "../components/tickets/actions";
+import TableWrapper from "../components/tickets/table/tickets-wrapper";
 const Projects = () => {
   const { t } = useTranslation();
 
@@ -60,47 +51,30 @@ const Projects = () => {
       <Typography as="h2" element="h2">
         {t("Tickets")}
       </Typography>
-      <div className="flex gap-2 w-full justify-between items-center my-5 flex-wrap md:flex-nowrap ">
-        <Input
-          placeholder={t("Search by ticket name...")}
-          value={search}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            setSearch(event.target.value)
-          }
-          icon={<Search size={20} />}
-          iconPosition={"left"}
-          className="h-fit w-full md:w-60"
-        />
-        <div className="flex gap-2">
-          <Button className="h-fit gap-2" variant={"outline"} size={"sm"}>
-            <Filter size={15} />
-            {t("Filter")}
-          </Button>
-          <Button className="h-fit gap-2" variant={"outline"} size={"sm"}>
-            <AlignJustify size={15} />
-            {t("Group By")}
-          </Button>
-          <Button variant={"outline"} className="h-fit gap-2" size={"sm"}>
-            <User size={15} />
-            {t("Assigned To")}
-          </Button>
-          <AddTicketDialogDrawer>
-            <Button variant={"default"} className="h-fit gap-2" size={"sm"}>
-              <Plus size={15} />
-              {t("New")}
-            </Button>
-          </AddTicketDialogDrawer>
-        </div>
-      </div>
       <Tabs defaultValue="table" className="w-full">
-        <TabsList className="border-b-[1px] w-full justify-start rtl:flex-row-reverse border-border">
-          <TabsTrigger value="table" className="gap-1 items-center flex">
-            <Table size={20} /> {t("Table")}
-          </TabsTrigger>
-          <TabsTrigger value="kanban" className="gap-1 items-center flex">
-            <Columns3 size={20} /> {t("Kanban")}
-          </TabsTrigger>
-        </TabsList>
+        <div className="flex gap-2 w-full justify-between items-center my-5 flex-wrap md:flex-nowrap ">
+          <div className="flex gap-2 items-center w-full">
+            <TabsList className="justify-start rtl:flex-row-reverse hidden md:flex">
+              <TabsTrigger value="table" className="gap-1 items-center flex">
+                <Table size={15} /> {t("Table")}
+              </TabsTrigger>
+              <TabsTrigger value="kanban" className="gap-1 items-center flex">
+                <Columns3 size={15} /> {t("Kanban")}
+              </TabsTrigger>
+            </TabsList>
+            <Input
+              placeholder={t("Search by ticket name...")}
+              value={search}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                setSearch(event.target.value)
+              }
+              icon={<Search size={15} />}
+              iconPosition={"left"}
+              className="h-fit p-2 text-xs w-full md:w-72"
+            />
+          </div>
+          <TicketsActions />
+        </div>
 
         <TabsContent value="table">
           <TicketProvider>

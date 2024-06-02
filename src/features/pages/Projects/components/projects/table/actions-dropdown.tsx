@@ -1,4 +1,4 @@
-import { Ban, ExternalLink, MoreVertical, UserRoundPlus } from "lucide-react";
+import { ExternalLink, MoreVertical, UserRoundPlus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -11,13 +11,15 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import AddMembersDialogDrawer from "./add-members-dialog-drawer";
+import { useNavigate } from "react-router-dom";
+import AddMembersDialogDrawer from "../../add-members-dialog-drawer";
 
 const ActionsDropDown = ({ projectId }: { projectId: string }) => {
   const [openMembersDialog, setOpenMembersDialog] = useState(false);
   const [openMembersDrawer, setOpenMembersDrawer] = useState(false);
 
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   return (
     <DropdownMenu>
@@ -54,12 +56,13 @@ const ActionsDropDown = ({ projectId }: { projectId: string }) => {
           {t("Add Members")}
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="gap-2 items-center">
+        <DropdownMenuItem
+          onClick={() => {
+            navigate(projectId);
+          }}
+          className="gap-2 items-center"
+        >
           <ExternalLink size={20} /> {t("Open")}
-        </DropdownMenuItem>
-        <DropdownMenuItem className="text-destructive gap-2 items-center">
-          <Ban size={20} />
-          {t("Set To Cancelled")}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

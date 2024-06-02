@@ -7,7 +7,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { ProjectT } from "@/lib/types";
-import ProjectsSkeleton from "./skeleton";
+import ProjectsTableSkeleton from "./skeleton";
 import TableRows from "./table-rows-format/normal";
 import { useSearchParams } from "react-router-dom";
 import TableGroupedRows from "./table-rows-format/grouped";
@@ -37,7 +37,7 @@ const ProjectsTable = ({
       </TableHeader>
       <TableBody>
         {isLoading ? (
-          dummyArray.map((_, index) => <ProjectsSkeleton key={index} />)
+          dummyArray.map((_, index) => <ProjectsTableSkeleton key={index} />)
         ) : projects.length ? (
           groupBy ? (
             <TableGroupedRows projects={projects} />

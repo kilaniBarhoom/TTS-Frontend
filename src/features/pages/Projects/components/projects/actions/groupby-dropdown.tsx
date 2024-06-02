@@ -56,7 +56,7 @@ export default function GroupByDropDown({
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-52">
         <div className=" flex items-center justify-between">
-          <DropdownMenuLabel className="text-muted-foreground">
+          <DropdownMenuLabel className="text-muted-foreground w-full">
             {t("Group By")}
           </DropdownMenuLabel>
           {groupBy && (

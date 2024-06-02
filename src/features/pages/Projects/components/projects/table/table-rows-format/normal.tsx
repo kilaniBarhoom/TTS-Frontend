@@ -2,7 +2,7 @@ import { TableCell, TableRow } from "@/components/ui/table";
 import { ProjectT } from "@/lib/types";
 import { useNavigate } from "react-router-dom";
 import ProjectStatusBadge from "../../../component/project-status-badge";
-import ActionsDropDown from "../actons-dropdown";
+import ActionsDropDown from "../actions-dropdown";
 const TableRows = ({
   projects,
   level,
