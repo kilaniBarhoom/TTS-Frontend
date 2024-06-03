@@ -1,6 +1,8 @@
 import { ProjectT } from "@/lib/types";
-import ProjectCard from "./project-card";
 import ProjectsCardsSkeleton from "./skeleton";
+import { useSearchParams } from "react-router-dom";
+import GroupedCards from "./card-format/grouped";
+import Cards from "./card-format/normal";
 
 type ProjectsCardsProps = {
   projects: ProjectT[];
@@ -8,15 +10,16 @@ type ProjectsCardsProps = {
 };
 
 const ProjectsCards = ({ projects, isLoading }: ProjectsCardsProps) => {
+  const [searchParams] = useSearchParams();
+  const groupBy = searchParams.get("groupBy");
   return (
     <div className="grid grid-cols-1 w-full gap-4 md:grid-cols-2 lg:grid-cols-3">
       {isLoading ? (
         <ProjectsCardsSkeleton />
+      ) : projects && groupBy ? (
+        <GroupedCards projects={projects} />
       ) : (
-        projects &&
-        projects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
-        ))
+        <Cards projects={projects} />
       )}
     </div>
   );
