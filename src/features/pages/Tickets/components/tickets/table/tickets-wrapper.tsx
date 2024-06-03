@@ -6,14 +6,14 @@ export default function TableWrapper() {
   const { data: tickets, isLoading } = useGetTicketsQuery();
   return (
     <div className="w-full">
-      <div className="hidden md:flex bg-muted/20 border border-border">
+      <div className="hidden lg:flex bg-muted/20">
         <TicketsTable tickets={tickets || []} isLoading={isLoading} />
       </div>
-      <div className="flex w-full md:hidden">
+      <div className="flex w-full lg:hidden">
         <TicketsCards tickets={tickets || []} isLoading={isLoading} />
       </div>
-      {/* <div className="flex items-center md:border border-border md:py-2 py-4">
-        <div className="space-x-2 mx-auto md:ml-auto md:mr-2">
+      {/* <div className="flex items-center lg:border border-border lg:py-2 py-4">
+        <div className="space-x-2 mx-auto lg:ml-auto lg:mr-2">
           <TablePagiation totalPages={tableResponse?.totalPages} />
         </div>
       </div> */}

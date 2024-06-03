@@ -28,13 +28,10 @@ const ProjectCard = ({ project }: { project: ProjectT }) => {
         >
           {project.name}
         </Typography>
-        <Typography
-          element="p"
-          as={"smallText"}
-          className="text-sm text-muted-foreground"
-        >
-          {project.description}
-        </Typography>
+        <div
+          className="text-muted-foreground leading-5 list-disc"
+          dangerouslySetInnerHTML={{ __html: project.description }}
+        />
         <div className="flex justify-between items-center gap-2 flex-wrap">
           <div className="flex gap-2 items-center">
             <Badge

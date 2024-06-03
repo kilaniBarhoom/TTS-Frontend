@@ -33,19 +33,16 @@ const TicketCard = ({ ticket }: { ticket: TicketT }) => {
               {ticket.name}
             </Typography>
           </TicketDialogDrawer>
-          <Typography
-            element="p"
-            as={"smallText"}
-            className="text-sm text-muted-foreground h-fit mt-0"
-          >
-            {ticket.description}
-          </Typography>
+          <div
+            className="text-muted-foreground leading-5 list-disc"
+            dangerouslySetInnerHTML={{ __html: ticket.description }}
+          />
           <div className="grid gap-2">
             <div className="flex gap-2 items-center">
               <Typography
                 element="p"
                 as={"p"}
-                className="flex-[0.2] text-sm text-muted-foreground"
+                className="text-sm text-muted-foreground"
               >
                 Assigned To:
               </Typography>
@@ -61,7 +58,7 @@ const TicketCard = ({ ticket }: { ticket: TicketT }) => {
               <Typography
                 element="p"
                 as={"p"}
-                className="flex-[0.2] text-sm text-muted-foreground"
+                className="text-sm text-muted-foreground"
               >
                 Reporter:
               </Typography>

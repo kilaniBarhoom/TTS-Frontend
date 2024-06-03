@@ -3,6 +3,9 @@ import { ProjectT } from "@/lib/types";
 import { useNavigate } from "react-router-dom";
 import ProjectStatusBadge from "../../../component/project-status-badge";
 import ActionsDropDown from "../actions-dropdown";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
+import AddProjectDialogDrawer from "../../add-project-dialog-drawer";
 const TableRows = ({
   projects,
   level,
@@ -32,6 +35,19 @@ const TableRows = ({
           </TableCell>
         </TableRow>
       ))}
+      <TableRow className="border border-border">
+        <TableCell colSpan={5} className="cursor-pointer">
+          <AddProjectDialogDrawer>
+            <Button
+              className="gap-2 p-0 w-full justify-start"
+              variant={"hover"}
+            >
+              <Plus size={20} />
+              New
+            </Button>
+          </AddProjectDialogDrawer>
+        </TableCell>
+      </TableRow>
     </>
   );
 };
