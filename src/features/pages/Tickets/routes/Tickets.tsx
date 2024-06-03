@@ -18,7 +18,7 @@ const Tickets = () => {
   });
 
   const projectId = searchParams.get("projectId") || "";
-  const { data: project } = useGetProjectByIdQuery(projectId) || {};
+  const { data: project } = useGetProjectByIdQuery(projectId);
 
   const search = searchParams.get("TicketName") || "";
   const setSearch = (value: string) => {

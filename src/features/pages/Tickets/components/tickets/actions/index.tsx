@@ -13,10 +13,10 @@ import { ProjectT } from "@/lib/types";
 import { useGetMembersByProjectId } from "@/features/pages/Projects/api";
 import AssignedToDropDown from "./assigned-to-dropdown";
 
-const TicketsActions = ({ project }: { project: ProjectT }) => {
+const TicketsActions = ({ project }: { project?: ProjectT }) => {
   const { t } = useTranslation();
 
-  const { data: members, isLoading } = useGetMembersByProjectId(project.id);
+  // const { data: members, isLoading } = useGetMembersByProjectId(project.id);
 
   const actions = (
     <>
@@ -38,7 +38,7 @@ const TicketsActions = ({ project }: { project: ProjectT }) => {
           {t("Group By")}
         </Button>
       </GroupByDropDown>
-      <AssignedToDropDown members={members} isLoading={isLoading}>
+      {/* <AssignedToDropDown members={members} isLoading={isLoading}>
         <Button
           className="h-full gap-2 md:p-2 py-3"
           size={"xs"}
@@ -47,7 +47,7 @@ const TicketsActions = ({ project }: { project: ProjectT }) => {
           <User size={15} />
           {t("Assigned To")}
         </Button>
-      </AssignedToDropDown>
+      </AssignedToDropDown> */}
       <AddTicketDialogDrawer>
         <Button
           variant={"default"}
