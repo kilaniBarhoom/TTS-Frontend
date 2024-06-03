@@ -6,10 +6,12 @@ const ProjectStatusBadge = ({
   status,
   className,
   onAction,
+  children,
 }: {
   status: string;
   className?: string;
   onAction?: () => void;
+  children?: React.ReactNode;
 }) => {
   const { t } = useTranslation();
   return (
@@ -39,6 +41,7 @@ const ProjectStatusBadge = ({
       onClick={onAction}
     >
       {t(status)}
+      {children}
     </Badge>
   );
 };
