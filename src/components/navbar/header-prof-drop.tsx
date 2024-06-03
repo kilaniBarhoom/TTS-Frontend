@@ -1,11 +1,4 @@
-import {
-  Languages,
-  LogOut,
-  Moon,
-  PersonStanding,
-  Settings,
-  Sun,
-} from "lucide-react";
+import { LogOut, Moon, PersonStanding, Settings, Sun } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -35,7 +28,7 @@ export function HeaderProfileDrop() {
     await logout();
     navigate("/");
   };
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { setTheme } = useTheme();
 
   return (
