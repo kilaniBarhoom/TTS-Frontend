@@ -47,6 +47,7 @@ export default function AddTicketDialogDrawer({
       ticketPriority: "",
       projectId: projectId || "",
       assigneeId: "",
+      parentTicketId: null,
     },
   });
 

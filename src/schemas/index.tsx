@@ -78,6 +78,7 @@ export const TicketFormSchema = z.object({
   ticketPriority: z.string().min(1, t("Ticket priority is required")),
   projectId: z.string().min(1, t("Project is required")),
   assigneeId: z.string().min(1, t("Assignee is required")),
+  parentTicketId: z.string().nullable(),
 });
 
 export type TicketFormSchemaType = z.infer<typeof TicketFormSchema>;
