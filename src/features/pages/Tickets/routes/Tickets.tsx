@@ -18,7 +18,7 @@ const Tickets = () => {
   });
 
   const projectId = searchParams.get("projectId") || "";
-  const { data: project } = useGetProjectByIdQuery(projectId) || {};
+  const { data: project } = useGetProjectByIdQuery(projectId);
 
   const search = searchParams.get("TicketName") || "";
   const setSearch = (value: string) => {
@@ -73,7 +73,7 @@ const Tickets = () => {
               className="h-fit p-2 text-xs w-full md:w-72"
             />
           </div>
-          <TicketsActions project={project} />
+          <TicketsActions />
         </div>
 
         <TabsContent value="table">

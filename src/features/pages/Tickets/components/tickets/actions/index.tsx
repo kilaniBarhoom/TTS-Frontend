@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { AlignJustify, Filter, Plus, User } from "lucide-react";
+import { AlignJustify, Filter, Plus } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import AddTicketDialogDrawer from "../add-ticket-dialog-drawer";
 import {
@@ -9,14 +9,13 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import GroupByDropDown from "./groupby-dropdown";
-import { ProjectT } from "@/lib/types";
-import { useGetMembersByProjectId } from "@/features/pages/Projects/api";
-import AssignedToDropDown from "./assigned-to-dropdown";
+// import { useGetMembersByProjectId } from "@/features/pages/Projects/api";
+// import AssignedToDropDown from "./assigned-to-dropdown";
 
-const TicketsActions = ({ project }: { project: ProjectT }) => {
+const TicketsActions = () => {
   const { t } = useTranslation();
 
-  const { data: members, isLoading } = useGetMembersByProjectId(project.id);
+  // const { data: members, isLoading } = useGetMembersByProjectId(project.id);
 
   const actions = (
     <>
@@ -38,7 +37,7 @@ const TicketsActions = ({ project }: { project: ProjectT }) => {
           {t("Group By")}
         </Button>
       </GroupByDropDown>
-      <AssignedToDropDown members={members} isLoading={isLoading}>
+      {/* <AssignedToDropDown members={members} isLoading={isLoading}>
         <Button
           className="h-full gap-2 md:p-2 py-3"
           size={"xs"}
@@ -47,7 +46,7 @@ const TicketsActions = ({ project }: { project: ProjectT }) => {
           <User size={15} />
           {t("Assigned To")}
         </Button>
-      </AssignedToDropDown>
+      </AssignedToDropDown> */}
       <AddTicketDialogDrawer>
         <Button
           variant={"default"}

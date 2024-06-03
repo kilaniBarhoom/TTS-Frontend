@@ -19,11 +19,13 @@ const ticketsCards = ({ tickets, isLoading }: TicketsCardsProps) => {
           <TicketsCardsSkeleton />
         </div>
       ) : tickets && groupBy ? (
-        <div className="grid w-full gap-4 ">
+        <div className="grid grid-cols-1 w-full gap-4 md:grid-cols-2 lg:grid-cols-3">
           <GroupedCards tickets={tickets} by={groupBy} />
         </div>
       ) : (
-        <Cards tickets={tickets} />
+        <div className="grid grid-cols-1 w-full gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <Cards tickets={tickets} />
+        </div>
       )}
     </>
   );

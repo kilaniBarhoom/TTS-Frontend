@@ -88,22 +88,6 @@ export function HeaderProfileDrop() {
                   <Sun className="mr-2 h-4 w-4" />
                   <span>{t("Light Mode")}</span>
                 </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() => {
-                    i18n.changeLanguage("ar");
-                  }}
-                >
-                  <Languages className="mr-2 h-4 w-4" />
-                  <span>{t("AR")}</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() => {
-                    i18n.changeLanguage("en");
-                  }}
-                >
-                  <Languages className="mr-2 h-4 w-4" />
-                  <span>{t("EN")}</span>
-                </DropdownMenuItem>
               </DropdownMenuSubContent>
             </DropdownMenuPortal>
           </DropdownMenuSub>
