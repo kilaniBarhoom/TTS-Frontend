@@ -12,7 +12,11 @@ import GroupByDropDown from "./groupby-dropdown";
 // import { useGetMembersByProjectId } from "@/features/pages/Projects/api";
 // import AssignedToDropDown from "./assigned-to-dropdown";
 
+<<<<<<< HEAD
 const TicketsActions = () => {
+=======
+const TicketsActions = ({ project }: { project?: ProjectT }) => {
+>>>>>>> 66372053f6f9cafa19bdf9f6b78cc0b56e62ec58
   const { t } = useTranslation();
 
   // const { data: members, isLoading } = useGetMembersByProjectId(project.id);
