@@ -6,6 +6,9 @@ import TicketDialogDrawer from "../../../ticket-view/ticket-details/ticket-dialo
 import TicketPriorityBadge from "../../../component/ticket-priority-badge";
 import TicketStatusBadge from "../../../component/ticket-status-badge";
 import { UserAvatar } from "@/components/component/user-avatar";
+import AddTicketDialogDrawer from "../../add-ticket-dialog-drawer";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
 
 const TableRows = ({
   tickets,
@@ -50,6 +53,19 @@ const TableRows = ({
           </TableCell>
         </TableRow>
       ))}
+      <TableRow className="border border-border">
+        <TableCell colSpan={6} className="cursor-pointer">
+          <AddTicketDialogDrawer>
+            <Button
+              className="gap-2 p-0 w-full justify-start"
+              variant={"hover"}
+            >
+              <Plus size={20} />
+              New
+            </Button>
+          </AddTicketDialogDrawer>
+        </TableCell>
+      </TableRow>
     </>
   );
 };

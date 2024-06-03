@@ -10,7 +10,7 @@ import { useGetProjectByIdQuery } from "../../Projects/api";
 import { TicketProvider } from "../components/ticket-view/provider";
 import TicketsActions from "../components/tickets/actions";
 import TableWrapper from "../components/tickets/table/tickets-wrapper";
-const Projects = () => {
+const Tickets = () => {
   const { t } = useTranslation();
 
   const [searchParams, setSearchParams] = useSearchParams({
@@ -73,7 +73,7 @@ const Projects = () => {
               className="h-fit p-2 text-xs w-full md:w-72"
             />
           </div>
-          <TicketsActions />
+          <TicketsActions project={project} />
         </div>
 
         <TabsContent value="table">
@@ -91,4 +91,4 @@ const Projects = () => {
   );
 };
 
-export default Projects;
+export default Tickets;

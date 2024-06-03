@@ -9,9 +9,14 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import GroupByDropDown from "./groupby-dropdown";
+import { ProjectT } from "@/lib/types";
+import { useGetMembersByProjectId } from "@/features/pages/Projects/api";
+import AssignedToDropDown from "./assigned-to-dropdown";
 
-const TicketsActions = () => {
+const TicketsActions = ({ project }: { project: ProjectT }) => {
   const { t } = useTranslation();
+
+  const { data: members, isLoading } = useGetMembersByProjectId(project.id);
 
   const actions = (
     <>
@@ -33,14 +38,16 @@ const TicketsActions = () => {
           {t("Group By")}
         </Button>
       </GroupByDropDown>
-      <Button
-        className="h-full gap-2 md:p-2 py-3"
-        size={"xs"}
-        variant="outline"
-      >
-        <User size={15} />
-        {t("Assigned To")}
-      </Button>
+      <AssignedToDropDown members={members} isLoading={isLoading}>
+        <Button
+          className="h-full gap-2 md:p-2 py-3"
+          size={"xs"}
+          variant="outline"
+        >
+          <User size={15} />
+          {t("Assigned To")}
+        </Button>
+      </AssignedToDropDown>
       <AddTicketDialogDrawer>
         <Button
           variant={"default"}

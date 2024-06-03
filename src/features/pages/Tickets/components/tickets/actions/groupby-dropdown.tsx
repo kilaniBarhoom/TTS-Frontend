@@ -77,6 +77,7 @@ export default function GroupByDropDown({
               {groupBy && groupBy === "status" && <Check size={20} />}
             </Typography>
           </DropdownMenuItem>
+          <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => setGroupBy("priority")}>
             <Typography
               as={"p"}
