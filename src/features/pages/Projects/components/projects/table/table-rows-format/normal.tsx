@@ -20,7 +20,7 @@ const TableRows = ({
         <TableRow key={project.id}>
           <TableCell
             style={{ paddingLeft: `${level && level * 40}px` }}
-            className="font-medium hover:underline cursor-pointer max-w-6 overflow-x-hidden"
+            className="font-medium hover:underline cursor-pointer  min-w-fit max-w-6 overflow-x-hidden"
             onClick={() => navigate(project.id.toString())}
           >
             <div className="truncate">{project.name}</div>

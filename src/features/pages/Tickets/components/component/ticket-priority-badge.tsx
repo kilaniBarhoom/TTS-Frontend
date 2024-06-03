@@ -6,10 +6,12 @@ const TicketPriorityBadge = ({
   priority,
   className,
   onAction,
+  children,
 }: {
   priority: string;
   className?: string;
   onAction?: () => void;
+  children?: React.ReactNode;
 }) => {
   const { t } = useTranslation();
   return (
@@ -29,6 +31,7 @@ const TicketPriorityBadge = ({
       onClick={onAction}
     >
       {t(priority)}
+      {children}
     </Badge>
   );
 };

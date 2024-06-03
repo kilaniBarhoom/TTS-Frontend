@@ -6,43 +6,43 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { ProjectT } from "@/lib/types";
-import ProjectsTableSkeleton from "./skeleton";
-import TableRows from "./table-rows-format/normal";
+import { TicketT } from "@/lib/types";
 import { useSearchParams } from "react-router-dom";
-import TableGroupedRows from "./table-rows-format/grouped";
+import TicketsSkeleton from "./skeleton";
+import TableRows from "./table-row-format/normal";
+import TableGroupedRows from "./table-row-format/grouped";
 
-const ProjectsTable = ({
-  projects,
+const TicketsTable = ({
+  tickets,
   isLoading,
 }: {
-  projects: ProjectT[];
+  tickets: TicketT[];
   isLoading: boolean;
 }) => {
   const dummyArray = Array.from({ length: 5 });
   const [searchParams] = useSearchParams();
   const groupBy = searchParams.get("groupBy");
+
   return (
     <Table>
       <TableHeader>
         <TableRow>
           <TableHead className="min-w-52">Name</TableHead>
-          <TableHead className="min-w-28">Start Date</TableHead>
-          <TableHead className="min-w-28">End Date</TableHead>
-          <TableHead className="min-w-28">Status</TableHead>
-          <TableHead>
-            <span className="sr-only">Actions</span>
-          </TableHead>
+          <TableHead className="min-w-52">Project</TableHead>
+          <TableHead>Priority</TableHead>
+          <TableHead>Status</TableHead>
+          <TableHead>Assignee</TableHead>
+          <TableHead>Reporter</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         {isLoading ? (
-          dummyArray.map((_, index) => <ProjectsTableSkeleton key={index} />)
-        ) : projects && projects.length ? (
+          dummyArray.map((_, index) => <TicketsSkeleton key={index} />)
+        ) : tickets && tickets.length ? (
           groupBy ? (
-            <TableGroupedRows projects={projects} />
+            <TableGroupedRows tickets={tickets} by={groupBy} />
           ) : (
-            <TableRows projects={projects} />
+            <TableRows tickets={tickets} />
           )
         ) : (
           <TableRow>
@@ -50,7 +50,7 @@ const ProjectsTable = ({
               colSpan={6}
               className="text-center text-lg fond-bold py-5"
             >
-              No projects found.
+              No tickets found.
             </TableCell>
           </TableRow>
         )}
@@ -59,4 +59,4 @@ const ProjectsTable = ({
   );
 };
 
-export default ProjectsTable;
+export default TicketsTable;

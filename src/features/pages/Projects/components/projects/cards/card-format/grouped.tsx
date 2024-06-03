@@ -13,7 +13,13 @@ import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Typography from "@/components/ui/typography";
 
-const GroupedCards = ({ projects }: { projects: ProjectT[] }) => {
+const GroupedCards = ({
+  projects,
+  by,
+}: {
+  projects: ProjectT[];
+  by: string;
+}) => {
   return (
     <div className="grid gap-8">
       {projectStatuses.map((element, index) => {
@@ -21,7 +27,12 @@ const GroupedCards = ({ projects }: { projects: ProjectT[] }) => {
           (project) => project.projectStatus === element
         );
         return (
-          <GroupedCard key={index} title={element} projects={groupedProjects} />
+          <GroupedCard
+            key={index}
+            title={element}
+            projects={groupedProjects}
+            by={by}
+          />
         );
       })}
     </div>
@@ -33,9 +44,11 @@ export default GroupedCards;
 const GroupedCard = ({
   title,
   projects,
+  by,
 }: {
   title: string;
   projects: ProjectT[];
+  by: string;
 }) => {
   const [open, setOpen] = useState(false);
   return (
@@ -65,7 +78,7 @@ const GroupedCard = ({
               <Cards projects={projects} />
             ) : (
               <Typography element="p" as={"largeText"} className="mx-auto my-4">
-                No projects with status: {title} found
+                No projects with {by}: {title} found
               </Typography>
             )}
           </>

@@ -8,6 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import GroupByDropDown from "./groupby-dropdown";
 
 const TicketsActions = () => {
   const { t } = useTranslation();
@@ -22,14 +23,16 @@ const TicketsActions = () => {
         <Filter size={15} />
         {t("Filter")}
       </Button>
-      <Button
-        className="h-full gap-2 md:p-2 py-3"
-        size={"xs"}
-        variant="outline"
-      >
-        <AlignJustify size={15} />
-        {t("Group By")}
-      </Button>
+      <GroupByDropDown>
+        <Button
+          className="h-full gap-2 md:p-2 py-3"
+          size={"xs"}
+          variant="outline"
+        >
+          <AlignJustify size={15} />
+          {t("Group By")}
+        </Button>
+      </GroupByDropDown>
       <Button
         className="h-full gap-2 md:p-2 py-3"
         size={"xs"}

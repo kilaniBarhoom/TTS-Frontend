@@ -17,7 +17,7 @@ const ProjectsCards = ({ projects, isLoading }: ProjectsCardsProps) => {
       {isLoading ? (
         <ProjectsCardsSkeleton />
       ) : projects && groupBy ? (
-        <GroupedCards projects={projects} />
+        <GroupedCards projects={projects} by={groupBy} />
       ) : (
         <Cards projects={projects} />
       )}
