@@ -1,7 +1,7 @@
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { useEffect, useState } from "react";
+// import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
+// import { ScrollArea } from "@/components/ui/scroll-area";
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import Comments from "../../comments";
 import { useTicket } from "../../provider";
@@ -20,7 +20,6 @@ const TicketDialogDrawer = ({
   const [searchParams, setSearchParams] = useSearchParams();
   const selectedTicket = searchParams.get("selectedTicket");
   const [isOpen, setIsOpen] = useState(ticketId === selectedTicket);
-  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 768);
 
   const setSelectedTicket = (value: string) => {
     setSearchParams(
@@ -48,16 +47,6 @@ const TicketDialogDrawer = ({
     }
   };
 
-  useEffect(() => {
-    const updateScreenSize = () => setIsLargeScreen(window.innerWidth >= 768);
-    window.addEventListener("resize", updateScreenSize);
-    return () => window.removeEventListener("resize", updateScreenSize);
-  }, []);
-
-  useEffect(() => {
-    setIsOpen(ticketId === selectedTicket);
-  }, [selectedTicket, ticketId]);
-
   const { isLoading } = useTicket();
 
   const content = isLoading ? (
@@ -79,28 +68,26 @@ const TicketDialogDrawer = ({
     </>
   );
 
-  const renderDialogOrDrawer = isLargeScreen ? (
-    <Dialog open={isOpen} onOpenChange={handleChange}>
-      <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="sm:max-w-screen-xl">
-        <Header setOpenDialog={setIsOpen} isLoading={isLoading} />
-        {content}
-      </DialogContent>
-    </Dialog>
-  ) : (
-    <Drawer open={isOpen} onOpenChange={handleChange}>
-      <DrawerTrigger asChild>{children}</DrawerTrigger>
-      <DrawerContent>
-        <Header setOpenDialog={setIsOpen} isLoading={isLoading} />
-        <ScrollArea className="h-fit">{content}</ScrollArea>
-      </DrawerContent>
-    </Drawer>
-  );
-
   return (
     <>
-      <div className="hidden md:flex">{renderDialogOrDrawer}</div>
-      <div className="flex md:hidden">{renderDialogOrDrawer}</div>
+      <div className="">
+        <Dialog open={isOpen} onOpenChange={handleChange}>
+          <DialogTrigger asChild>{children}</DialogTrigger>
+          <DialogContent className="sm:max-w-screen-xl">
+            <Header setOpenDialog={setIsOpen} isLoading={isLoading} />
+            {content}
+          </DialogContent>
+        </Dialog>
+      </div>
+      {/* <div className="flex md:hidden">
+        <Drawer open={isOpen} onOpenChange={handleChange}>
+          <DrawerTrigger asChild>{children}</DrawerTrigger>
+          <DrawerContent>
+            <Header setOpenDialog={setIsOpen} isLoading={isLoading} />
+            <ScrollArea className="h-fit">{content}</ScrollArea>
+          </DrawerContent>
+        </Drawer>
+      </div> */}
     </>
   );
 };
