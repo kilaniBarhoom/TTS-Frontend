@@ -1,25 +1,25 @@
-import { TicketT } from "@/lib/types";
-import { useState } from "react";
-import {
-  ticketPriorities,
-  ticketStatuses,
-} from "../../actions/filters-popover";
+import { Button } from "@/components/ui/button";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import Cards from "./normal";
-import { Button } from "@/components/ui/button";
-import { ChevronDown } from "lucide-react";
-import { cn } from "@/lib/utils";
 import Typography from "@/components/ui/typography";
-import TicketStatusBadge from "../../../component/ticket-status-badge";
+import { TicketT } from "@/lib/types";
+import { cn } from "@/lib/utils";
+import { ChevronDown } from "lucide-react";
+import { useState } from "react";
 import TicketPriorityBadge from "../../../component/ticket-priority-badge";
+import TicketStatusBadge from "../../../component/ticket-status-badge";
+import {
+  ticketPriorities,
+  ticketStatuses,
+} from "../../actions/filters-popover";
+import Cards from "./normal";
 
 const GroupedCards = ({ tickets, by }: { tickets: TicketT[]; by: string }) => {
   return (
-    <div className="grid gap-8">
+    <div className="grid gap-8 w-full">
       {by === "status" &&
         ticketStatuses.map((element, index) => {
           const groupedTickets = tickets.filter(
@@ -67,8 +67,8 @@ const GroupedCard = ({
   return (
     <Collapsible open={open} onOpenChange={setOpen} asChild>
       <>
-        <div className="flex items-center gap-2">
-          <CollapsibleTrigger className="" asChild>
+        <div className="flex items-center gap-2 w-full">
+          <CollapsibleTrigger asChild>
             <Button variant={"ghostOnNav"} className="w-full" size="xs">
               {by === "status" ? (
                 <TicketStatusBadge
