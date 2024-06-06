@@ -13,7 +13,7 @@ const ProjectsCards = ({ projects, isLoading }: ProjectsCardsProps) => {
   const [searchParams] = useSearchParams();
   const groupBy = searchParams.get("groupBy");
   return (
-    <div className="grid grid-cols-1 w-full gap-4 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid grid-cols-1 w-full gap-4">
       {isLoading ? (
         <ProjectsCardsSkeleton />
       ) : projects && groupBy ? (

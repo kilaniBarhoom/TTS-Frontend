@@ -1,17 +1,17 @@
-import { ProjectT } from "@/lib/types";
-import { useState } from "react";
-import { projectStatuses } from "../../actions/filters-popover";
+import { Button } from "@/components/ui/button";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import Cards from "./normal";
-import ProjectStatusBadge from "../../../component/project-status-badge";
-import { Button } from "@/components/ui/button";
-import { ChevronDown } from "lucide-react";
-import { cn } from "@/lib/utils";
 import Typography from "@/components/ui/typography";
+import { ProjectT } from "@/lib/types";
+import { cn } from "@/lib/utils";
+import { ChevronDown } from "lucide-react";
+import { useState } from "react";
+import ProjectStatusBadge from "../../../component/project-status-badge";
+import { projectStatuses } from "../../actions/filters-popover";
+import Cards from "./normal";
 
 const GroupedCards = ({
   projects,
@@ -21,7 +21,7 @@ const GroupedCards = ({
   by: string;
 }) => {
   return (
-    <div className="grid gap-8">
+    <div className="grid gap-8 my-4 flex-1 w-full ">
       {projectStatuses.map((element, index) => {
         const groupedProjects = projects.filter(
           (project) => project.projectStatus === element
@@ -52,10 +52,15 @@ const GroupedCard = ({
 }) => {
   const [open, setOpen] = useState(false);
   return (
-    <Collapsible open={open} onOpenChange={setOpen} asChild>
+    <Collapsible
+      open={open}
+      onOpenChange={setOpen}
+      asChild
+      className="border-2 border-blue-700"
+    >
       <>
-        <div className="flex items-center gap-2">
-          <CollapsibleTrigger className="" asChild>
+        <div className="flex items-center gap-2 w-full border-green-500">
+          <CollapsibleTrigger asChild>
             <Button variant={"ghostOnNav"} className="w-full" size="xs">
               <ProjectStatusBadge
                 className="w-full py-4 flex justify-center items-center gap-2"
