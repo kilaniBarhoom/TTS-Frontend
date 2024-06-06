@@ -1,6 +1,6 @@
 import { ProjectT } from "@/lib/types";
 import { createContext, useContext } from "react";
-import { useGetProjectByIdQuery } from "../api";
+import { useGetProjectByIdQuery } from "../api/projects";
 
 const ProjectProviderContext = createContext<any>(null);
 

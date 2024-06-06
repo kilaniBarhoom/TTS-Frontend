@@ -1,7 +1,5 @@
 import { Button } from "@/components/ui/button";
 
-import { useGetMembersByProjectId } from "../../api";
-
 import { UserAvatar } from "@/components/component/user-avatar";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -10,6 +8,7 @@ import { OwnerT } from "@/lib/types";
 import { Search } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useGetMembersByProjectId } from "../../api/members";
 
 export default function MembersList({ projectId }: { projectId: string }) {
   const { data: members, isLoading } = useGetMembersByProjectId(projectId);

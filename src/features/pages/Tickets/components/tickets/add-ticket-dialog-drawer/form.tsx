@@ -22,7 +22,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useGetMembersByProjectId } from "@/features/pages/Projects/api";
+import { useGetMembersByProjectId } from "@/features/pages/Projects/api/members";
 import { OwnerT } from "@/lib/types";
 import { cn, stringToDate } from "@/lib/utils";
 import { format } from "date-fns";

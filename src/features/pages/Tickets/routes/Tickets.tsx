@@ -6,7 +6,7 @@ import { Columns3, Search, Table } from "lucide-react";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
-import { useGetProjectByIdQuery } from "../../Projects/api";
+import { useGetProjectByIdQuery } from "../../Projects/api/projects";
 import { TicketProvider } from "../components/ticket-view/provider";
 import TicketsActions from "../components/tickets/actions";
 import TableWrapper from "../components/tickets/table/tickets-wrapper";

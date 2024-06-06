@@ -9,9 +9,9 @@ import Typography from "@/components/ui/typography";
 import { OwnerT } from "@/lib/types";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useGetMembersByProjectId } from "../../../api";
 import { useProject } from "../../../provider";
 import AddMembersDialogDrawer from "../../add-members-dialog-drawer";
+import { useGetMembersByProjectId } from "../../../api/members";
 
 const MembersMutate = () => {
   const { project } = useProject();

@@ -13,7 +13,7 @@ import { Check, X } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { useProjectFormMutation } from "../../../api";
+import { useProjectFormMutation } from "../../../api/projects";
 import { useProject } from "../../../provider";
 
 const NameMutate = () => {

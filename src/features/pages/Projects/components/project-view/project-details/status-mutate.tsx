@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -14,15 +15,14 @@ import {
 } from "@/components/ui/select";
 import Typography from "@/components/ui/typography";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { X } from "lucide-react";
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import * as z from "zod";
-import { useProjectFormMutation } from "../../../api";
+import { useProjectFormMutation } from "../../../api/projects";
 import { useProject } from "../../../provider";
 import ProjectStatusBadge from "../../component/project-status-badge";
-import { Button } from "@/components/ui/button";
-import { X } from "lucide-react";
 
 const StatusMutate = () => {
   const { project } = useProject();

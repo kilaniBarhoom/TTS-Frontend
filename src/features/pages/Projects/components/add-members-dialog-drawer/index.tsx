@@ -16,10 +16,10 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { AddMemberSchemaType, addMemberSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useMemberMutation } from "../../api";
 // import { toast } from "@/components/ui/use-toast";
 import { useTranslation } from "react-i18next";
 import AddMembersForm from "./form";
+import { useMemberMutation } from "../../api/members";
 
 type AddMembersDialogDrawerProps = {
   openDialog: boolean;

@@ -19,7 +19,7 @@ import { Calendar, MoveRight } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import * as z from "zod";
-import { useProjectFormMutation } from "../../../api";
+import { useProjectFormMutation } from "../../../api/projects";
 import { useProject } from "../../../provider";
 
 const DateMutate = () => {
