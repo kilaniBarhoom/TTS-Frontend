@@ -22,7 +22,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
-import { useTicketFormMutation } from "../../../api";
+import { useTicketFormMutation } from "../../../api/tickets";
 import TicketForm from "./form";
 
 type AddTicketDialogDrawerProps = {

@@ -1,7 +1,7 @@
 // ticket and isLoading context provder component
 import { TicketT } from "@/lib/types";
 import { createContext, useContext } from "react";
-import { useGetTicketByIdQuery } from "../../../api";
+import { useGetTicketByIdQuery } from "../../../api/tickets";
 
 const TicketProviderContext = createContext<any>(null);
 

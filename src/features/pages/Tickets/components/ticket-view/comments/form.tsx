@@ -13,7 +13,7 @@ import { CommentFormSchema, CommentFormSchemaType } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useCommentMutation } from "../../../api";
+import { useCommentMutation } from "../../../api/comments";
 
 const CommentForm = ({
   comment,

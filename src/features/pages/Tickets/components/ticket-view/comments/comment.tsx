@@ -3,9 +3,9 @@ import { Button } from "@/components/ui/button";
 import Typography from "@/components/ui/typography";
 import { CommentT } from "@/lib/types";
 import { useState } from "react";
-import { useDeleteCommentMutation } from "../../../api";
 import DeleteAlertDialog from "./delete-alert-dialog";
 import CommentForm from "./form";
+import { useDeleteCommentMutation } from "../../../api/comments";
 
 const Comment = ({ comment }: { comment: CommentT }) => {
   const [isEditingComment, setIsEditingComment] = useState(false);

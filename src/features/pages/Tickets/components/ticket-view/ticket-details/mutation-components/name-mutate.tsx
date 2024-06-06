@@ -7,14 +7,14 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
+import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Check, X } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { useTicketFormMutation } from "../../../../api";
+import { useTicketFormMutation } from "../../../../api/tickets";
 import { useTicket } from "../../provider";
-import { cn } from "@/lib/utils";
 
 const NameMutate = () => {
   const { ticket } = useTicket();

@@ -1,6 +1,6 @@
-import { useGetTicketsQuery } from "../../../api";
-import TicketsCards from "../cards";
 import TicketsTable from ".";
+import { useGetTicketsQuery } from "../../../api/tickets";
+import TicketsCards from "../cards";
 
 export default function TableWrapper() {
   const { data: tickets, isLoading } = useGetTicketsQuery();

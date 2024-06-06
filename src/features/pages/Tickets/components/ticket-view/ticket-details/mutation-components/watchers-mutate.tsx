@@ -15,7 +15,7 @@ import { useAuth } from "@/providers/auth-provider";
 import { Eye, EyeOff, X } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useTicketWatchMutation } from "../../../../api";
+import { useTicketWatchMutation } from "../../../../api/tickets";
 
 const WatchersMutate = ({
   ticket,

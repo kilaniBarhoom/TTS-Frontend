@@ -1,10 +1,3 @@
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -13,16 +6,23 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import Typography from "@/components/ui/typography";
-import { useTicketFormMutation } from "@/features/pages/Tickets/api";
+import { useTicketFormMutation } from "@/features/pages/Tickets/api/tickets";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { X } from "lucide-react";
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import * as z from "zod";
 import TicketPriorityBadge from "../../../component/ticket-priority-badge";
 import { useTicket } from "../../provider";
-import { useTranslation } from "react-i18next";
 
 const PriorityMutate = () => {
   const { ticket } = useTicket();

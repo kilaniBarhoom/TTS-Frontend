@@ -14,7 +14,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import Typography from "@/components/ui/typography";
-import { useTicketFormMutation } from "@/features/pages/Tickets/api";
+import { useTicketFormMutation } from "@/features/pages/Tickets/api/tickets";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { X } from "lucide-react";
 import { useRef, useState } from "react";

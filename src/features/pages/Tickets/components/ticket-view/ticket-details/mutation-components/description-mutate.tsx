@@ -14,7 +14,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import * as z from "zod";
-import { useTicketFormMutation } from "../../../../api";
+import { useTicketFormMutation } from "../../../../api/tickets";
 import { useTicket } from "../../provider";
 
 const DescriptionMutate = () => {
