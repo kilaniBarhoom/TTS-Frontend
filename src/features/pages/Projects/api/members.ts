@@ -45,8 +45,6 @@ export const useMemberMutation = ({ projectId }: { projectId: string }) => {
         email,
         projectId,
       };
-      console.log(payload);
-
       return axios.post(addMemToProjEndp, payload);
     },
     onSuccess: () => {
