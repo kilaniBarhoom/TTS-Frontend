@@ -31,8 +31,8 @@ const Login = () => {
   const loginForm = useForm<LoginSchemaType>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: "member1@mail.com",
+      password: "Qwer$1234",
     },
   });
   async function onSubmit(values: LoginSchemaType) {
