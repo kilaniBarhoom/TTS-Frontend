@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import {
   Drawer,
   DrawerContent,
@@ -9,12 +10,10 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import NotificationsCard from "./notifications";
-import { useEffect, useState } from "react";
 import Typography from "@/components/ui/typography";
 import { BellRing, Settings } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { useEffect, useState } from "react";
+import NotificationsCard from "./notifications";
 
 export function NotificationsPopoverDrawer({
   children,
