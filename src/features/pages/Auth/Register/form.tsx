@@ -158,7 +158,7 @@ const registerForm = ({
                 className="text-blue-400 cursor-pointer hover:underline"
                 onClick={() => {
                   setError(undefined);
-                  navigate("/");
+                  navigate("/login");
                 }}
               >
                 {t("Login")}

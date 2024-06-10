@@ -16,7 +16,7 @@ const ProjectDetails = () => {
   const { project, isLoading } = useProject();
 
   return (
-    <div className="w-full">
+    <div>
       {isLoading ? (
         <ProjectDetailsSkeleton />
       ) : (
@@ -26,8 +26,8 @@ const ProjectDetails = () => {
               tree={[{ title: "Projects", link: "/projects" }]}
               currentPage={project?.name}
             />
-            <div className="grid gap-5">
-              <div className="grid gap-5 overflow-hidden">
+            <div className="grid gap-5 border">
+              <div className="grid gap-5">
                 <NameMutate />
                 <StatusMutate />
                 <DateMutate />
@@ -36,7 +36,7 @@ const ProjectDetails = () => {
                 <DescriptionMutate />
               </div>
               <Separator className="w-full border-border" />
-              <div>
+              <div className="w-full">
                 <Tools />
               </div>
             </div>

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import Typography from "@/components/ui/typography";
 import { CommentT } from "@/lib/types";
 import { useState } from "react";
-import DeleteAlertDialog from "./delete-alert-dialog";
+import DeleteAlertDialog from "@/components/component/delete-alert-dialog";
 import CommentForm from "./form";
 import { useDeleteCommentMutation } from "../../../api/comments";
 

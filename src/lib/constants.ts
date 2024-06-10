@@ -19,14 +19,13 @@ export const editProjEndp = import.meta.env
 export const getProjEndp = import.meta.env
   .VITE_GET_PROJECT_BY_ID_ENDPOINT as string;
 
-export const getTicketsByProjIdEndp = import.meta.env
-  .VITE_GET_TICKETS_BY_PROJECT_ID_ENDPOINT;
-
 export const getMemOfAProjEndp = import.meta.env
   .VITE_GET_MEMBERS_OF_A_PROJECT_ENDPOINT as string;
 
 export const addMemToProjEndp = import.meta.env
   .VITE_ADD_MEMBER_TO_PROJECT_ENDPOINT as string;
+export const removeMemFromProjEndp = import.meta.env
+  .VITE_REMOVE_MEMBER_FROM_PROJECT_ENDPOINT as string;
 
 export const getMemNotifsEndp = import.meta.env
   .VITE_GET_MEMBER_NOTIFICATIONS_ENDPOINT as string;

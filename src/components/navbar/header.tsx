@@ -1,24 +1,30 @@
 import { useAuth } from "@/providers/auth-provider";
 import { useTheme } from "@/providers/theme-provider";
 import { Bell, Moon, Sun } from "lucide-react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 // import LanguageSelectForm from "../component/LanguageSelect";
 import { Button } from "../ui/button";
-import Typography from "../ui/typography";
 import { HeaderProfileDrop } from "./header-prof-drop";
 import { NotificationsPopoverDrawer } from "./notifications/popover-drawer";
 import SideNavSheet from "./side-nav-sheet";
+import Typography from "../ui/typography";
 
 const Header = () => {
   const { user } = useAuth();
   const { theme, setTheme } = useTheme();
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   return (
-    <div className="flex items-center justify-between w-full py-2 ltr:pr-4 rtl:pl-4 max-w-screen-2xl mx-auto px-2">
+    <div className="flex items-center justify-between w-full py-2 px-4 max-w-screen-2xl mx-auto">
       {user && <SideNavSheet />}
-      {["/", "/register"].includes(pathname) && (
-        <Typography as={"h5"} element="h5" className="border-none">
+      {["/login", "/register"].includes(pathname) && (
+        <Typography
+          as={"h5"}
+          element="h5"
+          className="border-none cursor-pointer"
+          onClick={() => navigate("/")}
+        >
           TTS
         </Typography>
       )}

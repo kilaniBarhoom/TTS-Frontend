@@ -43,7 +43,7 @@ export default function AddMembersDialogDrawer({
     },
   });
 
-  const { mutateAsync } = useMemberMutation({ projectId });
+  const { mutateAsync } = useMemberMutation(projectId);
 
   async function onSubmit(data: AddMemberSchemaType) {
     try {

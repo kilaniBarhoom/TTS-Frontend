@@ -4,9 +4,7 @@ import { ProjectProvider } from "../provider";
 const ProjectView = () => {
   return (
     <ProjectProvider>
-      <div className="h-full relative">
-        <ProjectDetails />
-      </div>
+      <ProjectDetails />
     </ProjectProvider>
   );
 };

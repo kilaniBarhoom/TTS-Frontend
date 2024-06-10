@@ -12,7 +12,7 @@ const ToolCard = () => {
   return (
     <div
       onClick={() => {
-        navigate(`/tickets?projectId=${project?.id.toString()}`);
+        navigate(`/tickets?ProjectId=${project?.id.toString()}`);
       }}
       className="flex border border-border cursor-pointer hover:bg-muted transition-all duration-200 ease-in-out rounded-md items-center w-full md:w-96 h-24"
     >

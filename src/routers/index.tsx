@@ -1,10 +1,12 @@
 import ErrorHandler from "@/components/error/ErrorHandler";
+import MainLayout from "@/components/main-layout";
 import NavLayout from "@/components/navbar/layout";
 import PersistentLogin from "@/components/routing/PresistentLogin";
 import RequireAuth from "@/components/routing/RequiredAuth";
 import AuthLayout from "@/features/pages/Auth/Layout";
 import Login from "@/features/pages/Auth/Login";
 import Register from "@/features/pages/Auth/Register";
+import LandingRoutes from "@/features/pages/Landing/routes";
 import ProjectsRoutes from "@/features/pages/Projects/routes";
 import TicketsRoutes from "@/features/pages/Tickets/routes";
 import {
@@ -17,8 +19,11 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route element={<PersistentLogin />}>
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<LandingRoutes />} />
+        </Route>
         <Route path="/" element={<AuthLayout />}>
-          <Route index element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Route>
         {/*<Route path="/forgot-password" element={<ForgotPassword />} />

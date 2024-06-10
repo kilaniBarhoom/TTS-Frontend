@@ -23,6 +23,9 @@ const buttonVariants = cva(
           "hover:bg-background text-muted-foreground hover:text-secondary-foreground",
         link: "text-primary-foreground underline-offset-4 hover:underline",
         hover: "text-muted-foreground hover:text-secondary-foreground",
+        expandIcon: "group relative text-white bg-primary hover:bg-primary/90",
+        linkHover:
+          "relative after:absolute after:bg-primary after:bottom-2 after:h-[1px] after:w-2/3 after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out  text-primary-foreground after:duration-300",
       },
       size: {
         xs: "h-7 rounded-md text-xs p-2",
@@ -45,6 +48,7 @@ export interface ButtonProps
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
   loading?: boolean;
+  Icon?: React.ComponentType<{ className?: string }>;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -55,6 +59,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       size,
       asChild = false,
       loading = false,
+      Icon,
       children,
       ...props
     },
@@ -69,6 +74,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
         {children}
+        {Icon && (
+          <div className="w-0 translate-x-[100%] pl-0 opacity-0 transition-all duration-200 group-hover:w-5 group-hover:translate-x-0 group-hover:pl-2 group-hover:opacity-100">
+            <Icon />
+          </div>
+        )}
       </Comp>
     );
   }

@@ -44,7 +44,7 @@ const ActionsDropDown = ({ projectId }: { projectId: string }) => {
           }}
         >
           <UserRoundPlus size={20} />
-          {t("Add Members")}
+          {t("Members")}
         </DropdownMenuItem>
         <DropdownMenuItem
           className="gap-2 items-center hidden md:flex"
@@ -53,7 +53,7 @@ const ActionsDropDown = ({ projectId }: { projectId: string }) => {
           }}
         >
           <UserRoundPlus size={20} />
-          {t("Add Members")}
+          {t("Members")}
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem

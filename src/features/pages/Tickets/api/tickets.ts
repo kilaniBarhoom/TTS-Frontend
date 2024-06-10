@@ -4,7 +4,6 @@ import {
   createTicketEndp,
   editTicketEndp,
   getTicketById,
-  getTicketsByProjIdEndp,
   getTicketsEndp,
   watchTicketEndp,
 } from "@/lib/constants";
@@ -19,26 +18,25 @@ import * as z from "zod";
 export const useGetTicketsQuery = () => {
   const axios = useAxios();
   const [searchParams] = useSearchParams();
-  const projectId = searchParams.get("projectId" || "");
+  const ProjectId = searchParams.get("ProjectId" || "");
   const TicketName = searchParams.get("TicketName") || "";
+  const AssignedMemberId = searchParams.get("AssignedMemberId") || "";
 
   return useQuery({
     queryKey: [
       "tickets",
       {
-        projectId,
+        ProjectId,
         TicketName,
+        AssignedMemberId,
       },
     ],
     queryFn: async () => {
-      const { data: response } = await axios.get(
-        projectId ? getTicketsByProjIdEndp : getTicketsEndp,
-        {
-          params: { projectId, TicketName },
-        }
-      );
-      const tickets = projectId ? response?.tickets : response?.items;
-      return tickets as TicketT[];
+      const { data: response } = await axios.get(getTicketsEndp, {
+        params: { ProjectId, TicketName, AssignedMemberId },
+      });
+
+      return response?.items as TicketT[];
     },
   });
 };
@@ -68,10 +66,10 @@ export const useTicketFormMutation = () => {
   return useMutation({
     mutationFn: (
       data: PartialTicketFormData & { ticketId?: string } & {
-        projectId?: string;
+        ProjectId?: string;
       }
     ) => {
-      const { ticketId, projectId, ...formData } = data;
+      const { ticketId, ProjectId, ...formData } = data;
       if (!ticketId) {
         return axios.post(createTicketEndp, {
           ...formData,
@@ -81,13 +79,13 @@ export const useTicketFormMutation = () => {
           dueDate: formData.dueDate
             ? dateToString(formData.dueDate)
             : undefined,
-          projectId,
+          ProjectId,
         });
       } else {
         return axios.put(editTicketEndp, {
           ...formData,
           ticketId,
-          projectId,
+          ProjectId,
         });
       }
     },
