@@ -70,7 +70,7 @@ const MainPage = () => {
           once: true,
         }}
         custom={2}
-        className="rounded-md border border-border"
+        className="rounded-md border border-border md:flex hidden"
       >
         <img src="/assets/landing/projects-table.png" alt="" />
       </motion.div>
