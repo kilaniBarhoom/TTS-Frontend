@@ -22,7 +22,7 @@ const MainPage = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col items-center gap-20 mt-10 mx-auto w-fit">
+    <div className="flex flex-col items-center md:gap-20 gap-10  mt-10 mx-auto w-fit">
       <motion.div
         variants={fadeInAnimationVariants}
         initial="initial"
