@@ -1,5 +1,5 @@
+import RichEditor from "@/components/component/rich-editor";
 import { UserAvatar } from "@/components/component/user-avatar";
-import TiptapEditor from "@/components/tiptap-editor";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -79,11 +79,7 @@ const TicketForm = ({
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <TiptapEditor
-                    content={field.value}
-                    onChange={field.onChange}
-                    placeholder="Description"
-                  />
+                  <RichEditor value={field.value} onChange={field.onChange} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

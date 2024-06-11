@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Eye, EyeOff } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { CardContent, CardFooter } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -10,11 +10,11 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Typography from "@/components/ui/typography";
-import { CardContent, CardFooter } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { useError } from "@/providers/error-provider";
+import { Eye, EyeOff } from "lucide-react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { useError } from "@/providers/error-provider";
 import ErrorAlert from "../components/error-alert";
 
 const LoginForm = ({

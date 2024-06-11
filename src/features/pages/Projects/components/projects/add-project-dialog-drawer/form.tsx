@@ -1,4 +1,4 @@
-import TiptapEditor from "@/components/tiptap-editor";
+import RichEditor from "@/components/component/rich-editor";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -26,7 +26,7 @@ import { format } from "date-fns";
 import { ar, enGB } from "date-fns/locale";
 import { CalendarIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
-
+import "react-quill/dist/quill.snow.css";
 const ProjectForm = ({
   projectForm,
   onSubmit,
@@ -70,11 +70,7 @@ const ProjectForm = ({
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <TiptapEditor
-                    content={field.value}
-                    onChange={field.onChange}
-                    placeholder="Description"
-                  />
+                  <RichEditor value={field.value} onChange={field.onChange} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -204,6 +200,7 @@ const ProjectForm = ({
             )}
           />
         </div>
+
         <div className="w-full flex flex-col gap-2">
           <Button type="submit" loading={isLoading}>
             Create

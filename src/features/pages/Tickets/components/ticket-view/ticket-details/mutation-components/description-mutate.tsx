@@ -1,4 +1,3 @@
-import TiptapEditor from "@/components/tiptap-editor";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -16,6 +15,7 @@ import { useTranslation } from "react-i18next";
 import * as z from "zod";
 import { useTicketFormMutation } from "../../../../api/tickets";
 import { useTicket } from "../../provider";
+import RichEditor from "@/components/component/rich-editor";
 
 const DescriptionMutate = () => {
   const { ticket } = useTicket();
@@ -72,10 +72,9 @@ const DescriptionMutate = () => {
                 {isEditing ? (
                   <>
                     <FormControl>
-                      <TiptapEditor
-                        content={field.value}
+                      <RichEditor
+                        value={field.value}
                         onChange={field.onChange}
-                        placeholder="Description"
                       />
                     </FormControl>
                     <div className="flex space-x-2 mt-2">

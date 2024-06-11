@@ -1,7 +1,6 @@
 import { Separator } from "@/components/ui/separator";
 import { useProject } from "../../../provider";
 
-// import TiptapEditor from "../components/projects/mutation dialog/tiptqp-editor/tiptap-editor";
 import BreadcrumbComponent from "@/components/component/bread-crumb";
 import Tools from "../tools";
 import DateMutate from "./date-mutate";
@@ -26,7 +25,7 @@ const ProjectDetails = () => {
               tree={[{ title: "Projects", link: "/projects" }]}
               currentPage={project?.name}
             />
-            <div className="grid gap-5 border">
+            <div className="grid gap-5">
               <div className="grid gap-5">
                 <NameMutate />
                 <StatusMutate />

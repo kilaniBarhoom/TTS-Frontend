@@ -1,4 +1,3 @@
-import TiptapEditor from "@/components/tiptap-editor";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -14,6 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useCommentMutation } from "../../../api/comments";
+import RichEditor from "@/components/component/rich-editor";
 
 const CommentForm = ({
   comment,
@@ -121,11 +121,7 @@ const CommentForm = ({
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <TiptapEditor
-                      content={field.value}
-                      onChange={field.onChange}
-                      error={!!commentForm.formState.errors.content?.message}
-                    />
+                    <RichEditor value={field.value} onChange={field.onChange} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
