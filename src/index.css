@@ -79,6 +79,9 @@
   * {
     @apply font-sans box-border scrollbar-thin scrollbar-thumb-[#7b7b7b] scrollbar-track-[#424242];
   }
+  .ql-toolbar .ql-snow {
+    @apply border-black !important rounded-md;
+  }
 }
 
 .tiptap .is-empty::before {
@@ -89,12 +92,8 @@
   @apply h-0;
 }
 
-.ql-toolbar {
-  @apply dark:bg-[#999] bg-[#ccc] border-border;
-}
-
-.ql-snow {
-  @apply border-border;
+.quill {
+  @apply border-border !important;
 }
 
 .ql-editor {
