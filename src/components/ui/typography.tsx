@@ -7,7 +7,7 @@ const typographyVariants = cva("text-foreground", {
   variants: {
     as: {
       h1: "scroll-m-20 capitalize text-4xl font-extrabold  lg:text-6xl leading-10",
-      h2: "scroll-m-20  pb-2 text-3xl font-semibold tracking-tight first:mt-0",
+      h2: "scroll-m-20  pb-2 text-3xl lg:text-5xl font-semibold tracking-tight first:mt-0",
       h3: "scroll-m-20 text-2xl font-semibold tracking-tight",
       h4: "scroll-m-20 text-xl font-semibold tracking-tight",
       h5: "scroll-m-20 text-lg font-semibold tracking-tight",
