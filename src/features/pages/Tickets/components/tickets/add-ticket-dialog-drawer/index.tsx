@@ -27,14 +27,15 @@ import TicketForm from "./form";
 
 type AddTicketDialogDrawerProps = {
   children: React.ReactNode;
-  project?: ProjectT;
+  projects: ProjectT[];
 };
 
 export default function AddTicketDialogDrawer({
   children,
+  projects,
 }: AddTicketDialogDrawerProps) {
   const [searchParams] = useSearchParams();
-  const projectId = searchParams.get("projectId");
+  const projectId = searchParams.get("ProjectId");
 
   const ticketForm = useForm<TicketFormSchemaType>({
     resolver: zodResolver(TicketFormSchema),
@@ -73,7 +74,7 @@ export default function AddTicketDialogDrawer({
       isLoading={isLoading}
       onSubmit={ticketForm.handleSubmit(onSubmit)}
       ticketForm={ticketForm}
-      projectId={projectId}
+      projects={projects}
     />
   );
 

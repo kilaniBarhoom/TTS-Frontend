@@ -23,29 +23,38 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useGetMembersByProjectId } from "@/features/pages/Projects/api/members";
-import { OwnerT } from "@/lib/types";
+import { OwnerT, ProjectT } from "@/lib/types";
 import { cn, stringToDate } from "@/lib/utils";
 import { format } from "date-fns";
 import { ar, enGB } from "date-fns/locale";
-import { CalendarIcon } from "lucide-react";
+import { CalendarIcon, Loader2 } from "lucide-react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useSearchParams } from "react-router-dom";
+
+type TicketFormProps = {
+  ticketForm: any;
+  onSubmit: any;
+  isLoading: boolean;
+  projects: ProjectT[];
+};
 
 const TicketForm = ({
   ticketForm,
   onSubmit,
   isLoading,
-  projectId,
-}: {
-  ticketForm: any;
-  onSubmit: any;
-  isLoading: boolean;
-  projectId: string | null;
-}) => {
+  projects,
+}: TicketFormProps) => {
   const { t } = useTranslation();
+  const [searchParams] = useSearchParams();
+  const [projectId, setProjectId] = useState(
+    searchParams.get("ProjectId") || projects[0]?.id
+  );
 
-  const { data: members } = projectId
-    ? useGetMembersByProjectId(projectId)
-    : { data: null };
+  const { data: members, isLoading: isLoadingToGetMembers = false } =
+    useGetMembersByProjectId(projectId);
+
+  // console.log("members", members);
 
   return (
     <Form {...ticketForm}>
@@ -235,12 +244,48 @@ const TicketForm = ({
             />
           </div>
         </div>
-        <div className="w-1/2 pr-1">
+        <div className="gap-3 flex items-center">
+          <FormField
+            control={ticketForm.control}
+            name="projectId"
+            render={({ field }) => (
+              <FormItem className="flex-1">
+                <Select
+                  onValueChange={(value) => {
+                    field.onChange(value);
+                    setProjectId(value);
+                  }}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue
+                        placeholder="Project"
+                        defaultValue={
+                          projects.find((project) => project.id === projectId)
+                            ?.name
+                        }
+                      />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {projects?.map(({ id, name }: OwnerT) => {
+                      return (
+                        <SelectItem key={id} value={id}>
+                          {name}
+                        </SelectItem>
+                      );
+                    })}
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <FormField
             control={ticketForm.control}
             name="assigneeId"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="flex-1">
                 <Select onValueChange={field.onChange}>
                   <FormControl>
                     <SelectTrigger>
@@ -248,18 +293,24 @@ const TicketForm = ({
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {members?.map(({ id, name }: OwnerT) => {
-                      return (
-                        <SelectItem key={id} value={id}>
-                          <UserAvatar
-                            name={name}
-                            avatarSize="size-5"
-                            nameSize="text-xs"
-                            // className="hover:bg-muted/40 cursor-pointer py-1 px-2 rounded-md transition-all duration-200 ease-in-out"
-                          />
-                        </SelectItem>
-                      );
-                    })}
+                    {isLoadingToGetMembers ? (
+                      <div className="h-20 flex justify-center items-center">
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      </div>
+                    ) : (
+                      members?.map(({ id, name }: OwnerT) => {
+                        return (
+                          <SelectItem key={id} value={id}>
+                            <UserAvatar
+                              name={name}
+                              avatarSize="size-5"
+                              nameSize="text-xs"
+                              // className="hover:bg-muted/40 cursor-pointer py-1 px-2 rounded-md transition-all duration-200 ease-in-out"
+                            />
+                          </SelectItem>
+                        );
+                      })
+                    )}
                   </SelectContent>
                 </Select>
                 <FormMessage />

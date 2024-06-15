@@ -6,10 +6,11 @@ import { Columns3, Search, Table } from "lucide-react";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
-import { useGetProjectByIdQuery } from "../../Projects/api/projects";
+import { useGetAllProjectsQuery } from "../../Projects/api/projects";
 import { TicketProvider } from "../components/ticket-view/provider";
 import TicketsActions from "../components/tickets/actions";
 import TableWrapper from "../components/tickets/table/tickets-wrapper";
+import { ProjectT } from "@/lib/types";
 const Tickets = () => {
   const { t } = useTranslation();
 
@@ -17,8 +18,14 @@ const Tickets = () => {
     TicketName: "",
   });
 
-  const projectId = searchParams.get("projectId") || "";
-  const { data: project } = useGetProjectByIdQuery(projectId);
+  const projectId = searchParams.get("ProjectId") || "";
+  const { data: projectsResponse } = useGetAllProjectsQuery();
+
+  const getProject = () => {
+    return projectsResponse.items?.find((project: ProjectT) => {
+      return project.id === projectId;
+    });
+  };
 
   const search = searchParams.get("TicketName") || "";
   const setSearch = (value: string) => {
@@ -34,12 +41,12 @@ const Tickets = () => {
 
   return (
     <div className="flex flex-col h-full">
-      {project && (
+      {projectsResponse && projectId && (
         <BreadcrumbComponent
           tree={[
             {
-              title: `Project: ${project.name}`,
-              link: `/projects/${project.id}`,
+              title: `Project: ${getProject().name}`,
+              link: `/projects/${getProject().id}`,
             },
           ]}
           currentPage={t("Tickets")}
@@ -73,7 +80,7 @@ const Tickets = () => {
               className="h-fit p-2 text-xs w-full md:w-72"
             />
           </div>
-          <TicketsActions />
+          <TicketsActions projects={projectsResponse?.items} />
         </div>
 
         <TabsContent value="table">
