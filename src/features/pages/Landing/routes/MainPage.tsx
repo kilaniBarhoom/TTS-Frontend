@@ -22,7 +22,7 @@ const MainPage = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col items-center md:gap-20 gap-10  mt-10 mx-auto w-fit">
+    <div className="flex flex-col items-center md:gap-20 gap-10 mt-10 lg:mt-20 mx-auto w-full">
       <motion.div
         variants={fadeInAnimationVariants}
         initial="initial"
@@ -32,13 +32,24 @@ const MainPage = () => {
         }}
         custom={0}
       >
-        <Typography
-          element="h1"
-          as={"h1"}
-          className="text-center max-w-screen-lg"
-        >
-          Manage your work through out ticket management system
-        </Typography>
+        <div className="max-w-screen-2xl mx-auto text-center grid gap-5 p-5">
+          <Typography element="h1" className="text-7xl">
+            Manage your work through our
+          </Typography>
+          <Typography
+            element="h1"
+            className="text-primary text-8xl font-bold capitalize"
+          >
+            ticket management system
+          </Typography>
+          <Typography
+            element="h1"
+            className="capitalize text-3xl mt-5 max-w-screen-lg mx-auto text-muted-foreground"
+          >
+            Meet the new standard for modern software development. Streamline
+            issues, sprints, and product roadmaps.
+          </Typography>
+        </div>
       </motion.div>
       <motion.div
         variants={fadeInAnimationVariants}
@@ -48,7 +59,7 @@ const MainPage = () => {
           once: true,
         }}
         custom={1}
-        className="bg-muted/50 mx-auto flex md:flex-row flex-col gap-4 justify-center md:justify-between items-center h-fit p-4 rounded-md max-w-screen-lg w-full"
+        className="bg-muted/50 mx-auto flex md:flex-row flex-col gap-4 justify-center md:justify-between items-center h-fit p-5 rounded-md max-w-screen-sm w-full"
       >
         <Typography element="p" as={"h5"} className="text-center capitalize">
           Get started with our ticket management system
@@ -70,11 +81,18 @@ const MainPage = () => {
           once: true,
         }}
         custom={2}
-        className="rounded-md border border-border"
+        className="relative"
       >
-        <img src="/assets/landing/projects-table.png" alt="" />
+        <div className="absolute inset-0 bg-[#3676df] opacity-50 blur-3xl rounded-md"></div>
+        <div className="mx-auto w-fit relative p-5">
+          <img
+            src="/assets/landing/projects-table.png"
+            alt=""
+            // width={1000}
+            className="rounded-md"
+          />
+        </div>
       </motion.div>
-      <div className="flex items-center justify-between w-full"></div>
     </div>
   );
 };
