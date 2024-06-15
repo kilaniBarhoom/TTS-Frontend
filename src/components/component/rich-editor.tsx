@@ -13,10 +13,8 @@ const RichEditor = ({
   value: string;
   onChange: (value: string) => void;
 }) => {
-  // Editor state
-
   // Editor ref
-  const quill = useRef();
+  const quill = useRef<QuillEditor | null>(null);
 
   const imageHandler = useCallback(() => {
     // Create an input element of type 'file'
@@ -27,20 +25,24 @@ const RichEditor = ({
 
     // When a file is selected
     input.onchange = () => {
-      const file = input?.files[0];
-      const reader = new FileReader();
+      if (input.files) {
+        const file = input.files[0];
+        const reader = new FileReader();
 
-      // Read the selected file as a data URL
-      reader.onload = () => {
-        const imageUrl = reader.result;
-        const quillEditor = quill.current.getEditor();
+        // Read the selected file as a data URL
+        reader.onload = () => {
+          const imageUrl = reader.result;
+          if (quill.current) {
+            const quillEditor = quill.current.getEditor();
 
-        // Get the current selection range and insert the image at that index
-        const range = quillEditor.getSelection(true);
-        quillEditor.insertEmbed(range.index, "image", imageUrl, "user");
-      };
+            // Get the current selection range and insert the image at that index
+            const range = quillEditor.getSelection(true);
+            quillEditor.insertEmbed(range.index, "image", imageUrl, "user");
+          }
+        };
 
-      reader.readAsDataURL(file);
+        reader.readAsDataURL(file);
+      }
     };
   }, []);
 
@@ -89,8 +91,9 @@ const RichEditor = ({
 
   return (
     <QuillEditor
-      ref={(el) => (quill.current = el)}
-      //   className={styles.editor}
+      ref={(el) => {
+        quill.current = el;
+      }}
       theme="snow"
       className="text-secondary-foreground"
       value={value}
