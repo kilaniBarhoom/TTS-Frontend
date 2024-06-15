@@ -23,7 +23,7 @@ const MainLayout = () => {
           <Header />
         </header>
         <BackgroundBeams />
-        <main className="flex-1 p-4 h-screen w-full max-w-screen-2xl mx-auto flex z-50">
+        <main className="flex-1 h-screen w-full flex z-50">
           <Outlet />
         </main>
         <footer className="z-50">

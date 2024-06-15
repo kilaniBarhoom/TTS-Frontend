@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
+import Typography from "../../ui/typography";
 import { SideNavItems } from "./nav-items";
-import Typography from "../ui/typography";
 
 const SideNavRender = () => {
   const location = useLocation();

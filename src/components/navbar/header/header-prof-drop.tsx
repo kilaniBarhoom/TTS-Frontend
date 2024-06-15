@@ -18,7 +18,7 @@ import { useAuth, useLogout } from "@/providers/auth-provider";
 import { useTheme } from "@/providers/theme-provider";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { UserAvatar } from "../component/user-avatar";
+import { UserAvatar } from "../../component/user-avatar";
 
 export function HeaderProfileDrop() {
   const navigate = useNavigate();

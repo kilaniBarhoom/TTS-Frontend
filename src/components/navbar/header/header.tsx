@@ -1,17 +1,15 @@
 import { useAuth } from "@/providers/auth-provider";
-import { useTheme } from "@/providers/theme-provider";
-import { Bell, Moon, Sun } from "lucide-react";
+import { Bell } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 // import LanguageSelectForm from "../component/LanguageSelect";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
+import Typography from "../../ui/typography";
+import { NotificationsPopoverDrawer } from "../notifications/popover-drawer";
+import SideNavSheet from "../side-nav/side-nav-sheet";
 import { HeaderProfileDrop } from "./header-prof-drop";
-import { NotificationsPopoverDrawer } from "./notifications/popover-drawer";
-import SideNavSheet from "./side-nav-sheet";
-import Typography from "../ui/typography";
 
 const Header = () => {
   const { user } = useAuth();
-  const { theme, setTheme } = useTheme();
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -41,16 +39,6 @@ const Header = () => {
             </Button>
           </NotificationsPopoverDrawer>
         )}
-        <Button
-          variant="ghostOnNav"
-          size="xs"
-          onClick={() => {
-            setTheme(theme === "dark" ? "light" : "dark");
-          }}
-        >
-          {theme === "dark" ? <Moon size={16} /> : <Sun size={16} />}
-        </Button>
-        {/* <LanguageSelectForm /> */}
         {user && <HeaderProfileDrop />}
       </div>
     </div>

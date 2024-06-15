@@ -1,32 +1,19 @@
-import { cn } from "@/lib/utils";
-import { useState } from "react";
+// import { cn } from "@/lib/utils";
+// import { PanelRightClose } from "lucide-react";
 import { Outlet } from "react-router-dom";
-import Header from "./header";
-import SideNav from "./side-nav";
-import { Button } from "../ui/button";
-import { PanelRightClose } from "lucide-react";
+// import { Button } from "../ui/button";
+import Header from "./header/header";
+import SideNav from "./side-nav/side-nav";
 
 export default function Layout() {
-  const [isSideNavVisible, setIsSideNavVisible] = useState(true);
-
   return (
     <div className=" min-h-screen w-full flex flex-col bg-background">
-      <aside
-        className={cn(
-          "bg-sidebar fixed inset-y-0 left-0 z-10 border-r border-border hidden md:flex min-w-64 transition-all duration-300 ease-in-out overflow-y-auto",
-          isSideNavVisible ? "w-72" : "w-0 min-w-0"
-        )}
-      >
-        <SideNav setIsSideNavVisible={setIsSideNavVisible} />
+      <aside className="bg-sidebar fixed inset-y-0 left-0 z-10 border-r border-border hidden lg:flex min-w-56 w-56 transition-all duration-300 ease-in-out overflow-y-auto">
+        <SideNav />
       </aside>
-      <div
-        className={cn(
-          " min-h-screen flex flex-col transition-all duration-300 ease-in-out",
-          isSideNavVisible ? "md:pl-72" : "pl-0"
-        )}
-      >
+      <div className="min-h-screen flex flex-col transition-all duration-300 ease-in-out lg:pl-56">
         <header className="flex items-center gap-4 border-b border-border bg-muted">
-          <Button
+          {/* <Button
             variant="ghostOnNav"
             size="xs"
             onClick={() => {
@@ -38,7 +25,7 @@ export default function Layout() {
             )}
           >
             <PanelRightClose size={16} />
-          </Button>
+          </Button> */}
           <Header />
         </header>
         <main className="flex-1 p-4 h-screen w-full max-w-screen-2xl mx-auto">

@@ -2,7 +2,7 @@ import { useAuth } from "@/providers/auth-provider";
 // import { useTheme } from "@/providers/theme-provider";
 import { Github } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { HeaderProfileDrop } from "../navbar/header-prof-drop";
+import { HeaderProfileDrop } from "../navbar/header/header-prof-drop";
 import { Button } from "../ui/button";
 import Typography from "../ui/typography";
 
@@ -16,7 +16,7 @@ const Header = () => {
         className="flex gap-2 items-center cursor-pointer"
         onClick={() => navigate("/")}
       >
-        <img src="/assets/globals/TTSLogo.png" alt="no" className="size-11" />
+        <img src="/assets/globals/logov2.png" alt="no" className="size-11" />
         <Typography
           as={"h4"}
           element="h4"

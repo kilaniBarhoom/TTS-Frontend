@@ -1,5 +1,4 @@
-"use client";
-
+import * as React from "react";
 import {
   Calculator,
   Calendar,
@@ -8,7 +7,6 @@ import {
   Smile,
   User,
 } from "lucide-react";
-import * as React from "react";
 
 import {
   CommandDialog,
@@ -20,7 +18,7 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from "@/components/ui/command";
-import Typography from "../ui/typography";
+import Typography from "../../ui/typography";
 
 export function CommandBox() {
   const [open, setOpen] = React.useState(false);
