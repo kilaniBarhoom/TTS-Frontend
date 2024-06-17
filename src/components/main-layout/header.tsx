@@ -16,7 +16,7 @@ const Header = () => {
         className="flex gap-2 items-center cursor-pointer"
         onClick={() => navigate("/")}
       >
-        <img src="/assets/globals/logov2.png" alt="no" className="size-11" />
+        <img src="/assets/globals/TTSLogo.png" alt="no" className="size-8" />
         <Typography
           as={"h4"}
           element="h4"
