@@ -6,12 +6,12 @@ import { cn } from "@/lib/utils";
 const typographyVariants = cva("text-foreground", {
   variants: {
     as: {
-      h1: "scroll-m-20 capitalize text-4xl font-extrabold  lg:text-6xl leading-10",
-      h2: "scroll-m-20  pb-2 text-3xl lg:text-5xl font-semibold tracking-tight first:mt-0",
-      h3: "scroll-m-20 text-2xl font-semibold tracking-tight",
-      h4: "scroll-m-20 text-xl font-semibold tracking-tight",
-      h5: "scroll-m-20 text-lg font-semibold tracking-tight",
-      h6: "scroll-m-20 text-base font-semibold tracking-tight",
+      h1: "scroll-m-20 text-5xl font-extrabold tracking-tight lg:text-7xl",
+      h2: "scroll-m-20  pb-2 md:text-6xl text-4xl font-semibold tracking-tight first:mt-0",
+      h3: "scroll-m-20 md:text-4xl text-2xl font-semibold tracking-tight",
+      h4: "scroll-m-20 md:text-2xl text-lg font-semibold tracking-tight",
+      h5: "scroll-m-20 md:text-lg text-sm font-semibold tracking-tight",
+      h6: "scroll-m-20 md:text-base text-xs font-semibold tracking-tight",
       p: "leading-7 [&:not(:first-child)]:mt-6",
       blockquote: "mt-6 pl-6 italic",
       ul: "my-6 ml-6 list-disc [&>li]:mt-2",
@@ -19,9 +19,9 @@ const typographyVariants = cva("text-foreground", {
         "relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold",
       lead: "text-xl text-muted-foreground",
       largeText: "text-lg font-semibold",
-      smallText: "text-sm font-medium leading-none",
-      extraSmallText: "text-xs font-medium",
-      mutedText: "text-sm text-muted-foreground",
+      smallText: "md:text-sm text-xs font-light leading-none",
+      extraSmallText: "text-xs font-light",
+      mutedText: "text-muted-foreground",
     },
   },
 });

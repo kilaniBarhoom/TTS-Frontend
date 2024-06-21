@@ -33,18 +33,16 @@ const MainPage = () => {
         custom={0}
       >
         <div className="max-w-screen-2xl mx-auto text-center grid gap-5 p-5">
-          <Typography element="h1" className="text-7xl">
+          <Typography element="h1" as="h2">
             Manage your work through our
           </Typography>
-          <Typography
-            element="h1"
-            className="text-primary text-8xl font-bold capitalize"
-          >
+          <Typography element="h1" as="h1" className="text-primary capitalize">
             ticket management system
           </Typography>
           <Typography
-            element="h1"
-            className="capitalize text-3xl mt-5 max-w-screen-lg mx-auto text-muted-foreground"
+            element="p"
+            as={"mutedText"}
+            className="capitalize mt-5 max-w-screen-lg mx-auto md:text-3xl text-xl"
           >
             Meet the new standard for modern software development. Streamline
             issues, sprints, and product roadmaps.
